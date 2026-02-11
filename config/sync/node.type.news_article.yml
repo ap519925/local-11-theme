@@ -1,0 +1,11 @@
+uuid: 348ff066-2b50-464d-99a2-f720ff03e28c
+langcode: en
+status: true
+dependencies: {  }
+name: 'News Article'
+type: news_article
+description: 'News articles, press releases, and external news links.'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: true

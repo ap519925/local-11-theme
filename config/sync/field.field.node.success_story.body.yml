@@ -1,0 +1,24 @@
+uuid: b065bd5f-bb66-414d-b09c-b7fde256326e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.success_story
+  module:
+    - text
+id: node.success_story.body
+field_name: body
+entity_type: node
+bundle: success_story
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+  allowed_formats: {  }
+field_type: text_with_summary

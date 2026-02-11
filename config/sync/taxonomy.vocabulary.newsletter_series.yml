@@ -1,0 +1,9 @@
+uuid: abfcfe65-1da3-4b85-9f94-33c20fb0a1d1
+langcode: en
+status: true
+dependencies: {  }
+name: 'Newsletter Series'
+vid: newsletter_series
+description: ''
+weight: 0
+new_revision: false

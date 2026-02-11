@@ -1,0 +1,10 @@
+uuid: ba20fc82-9a63-4bb3-ae73-672c7c00d234
+langcode: en
+status: true
+dependencies:
+  theme:
+    - ibew_theme
+id: ibew_theme.sidebar_second
+region: sidebar_second
+theme: ibew_theme
+component_tree: {  }

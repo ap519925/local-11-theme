@@ -1,0 +1,10 @@
+uuid: 43dffedd-6c12-462d-b383-55a7722a4ef1
+langcode: en
+status: true
+dependencies:
+  theme:
+    - radix
+id: radix.footer
+region: footer
+theme: radix
+component_tree: {  }

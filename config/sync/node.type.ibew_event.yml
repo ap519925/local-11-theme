@@ -1,0 +1,11 @@
+uuid: 5adddeab-ef91-4f3c-a4df-675f2c6cdfae
+langcode: en
+status: true
+dependencies: {  }
+name: Event
+type: ibew_event
+description: 'Calendar events, meetings, and workshops.'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: false

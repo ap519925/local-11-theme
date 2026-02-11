@@ -1,0 +1,37 @@
+uuid: 5c4e4492-9158-4f5f-86f3-3e3cc2c0b747
+langcode: en
+status: false
+dependencies:
+  content:
+    - 'block_content:basic:footer-contact-block'
+  module:
+    - block_content
+active_version: 9c61484044f944c5
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: 'block_content:footer-contact-block'
+        label: 'Footer Contact'
+        label_display: '0'
+        provider: block_content
+        view_mode: full
+    fallback_metadata:
+      slot_definitions: null
+  d2f2ea2aeb1fe28c:
+    settings:
+      default_settings:
+        id: 'block_content:footer-contact-block'
+        label: 'Footer Contact'
+        label_display: '0'
+        provider: block_content
+        status: true
+        info: ''
+        view_mode: full
+    fallback_metadata:
+      slot_definitions: null
+label: 'Footer Contact'
+id: block.block_content.footer-contact-block
+provider: block_content
+source: block
+source_local_id: 'block_content:footer-contact-block'

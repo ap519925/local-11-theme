@@ -1,0 +1,22 @@
+uuid: 22c17bb5-a420-42be-aca5-42b46598069e
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.block.block_content.ef724f74-0de1-4312-8903-2055a78ae94a
+  theme:
+    - ibew_theme
+id: ibew_theme.footer_col_4
+region: footer_col_4
+theme: ibew_theme
+component_tree:
+  -
+    uuid: e51dea57-b8c0-4c23-9a88-06d47b403967
+    component_id: block.block_content.ef724f74-0de1-4312-8903-2055a78ae94a
+    component_version: 743eb3b21196ec7e
+    inputs:
+      label: Contact
+      label_display: visible
+      status: true
+      info: ''
+      view_mode: full

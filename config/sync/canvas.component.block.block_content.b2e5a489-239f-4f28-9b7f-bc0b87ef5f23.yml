@@ -1,0 +1,37 @@
+uuid: 59fb544a-e3e0-4766-97e9-860bade536c0
+langcode: en
+status: false
+dependencies:
+  content:
+    - 'block_content:basic:b2e5a489-239f-4f28-9b7f-bc0b87ef5f23'
+  module:
+    - block_content
+active_version: 500812c3991123d8
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: 'block_content:b2e5a489-239f-4f28-9b7f-bc0b87ef5f23'
+        label: 'Homepage Contact'
+        label_display: '0'
+        provider: block_content
+        view_mode: full
+    fallback_metadata:
+      slot_definitions: null
+  f89d1f99a8174bd3:
+    settings:
+      default_settings:
+        id: 'block_content:b2e5a489-239f-4f28-9b7f-bc0b87ef5f23'
+        label: 'Homepage Contact'
+        label_display: '0'
+        provider: block_content
+        status: true
+        info: ''
+        view_mode: full
+    fallback_metadata:
+      slot_definitions: null
+label: 'Homepage Contact'
+id: block.block_content.b2e5a489-239f-4f28-9b7f-bc0b87ef5f23
+provider: block_content
+source: block
+source_local_id: 'block_content:b2e5a489-239f-4f28-9b7f-bc0b87ef5f23'

@@ -30,6 +30,11 @@ function ibew_theme_preprocess_html(&$variables) {
     $variables['attributes']['class'][] = 'path-contact';
   }
 
+  // Skip color injection on admin routes — let the admin theme (Gin) render cleanly
+  if (\Drupal::service('router.admin_context')->isAdminRoute()) {
+    return;
+  }
+
   // --- Inject Color Scheme CSS Variables ---
   // Retrieve Light Mode Settings
   $light_primary = theme_get_setting('ibew_light_primary') ?? '#1e293b';

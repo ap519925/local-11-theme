@@ -1,0 +1,25 @@
+uuid: 8f1950cd-7f34-4a18-bad0-cf562cca3d08
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.footer-members
+  module:
+    - system
+  theme:
+    - ibew_theme
+id: ibew_theme_footer_col_3_menu
+theme: ibew_theme
+region: footer_col_3
+weight: 0
+provider: null
+plugin: 'system_menu_block:footer-members'
+settings:
+  id: 'system_menu_block:footer-members'
+  label: Members
+  label_display: visible
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility: {  }

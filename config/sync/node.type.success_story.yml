@@ -1,0 +1,11 @@
+uuid: bb5094f1-ab23-4057-a82f-5326ed657b33
+langcode: en
+status: true
+dependencies: {  }
+name: 'Success Story'
+type: success_story
+description: 'For project showcases and testimonials.'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: true

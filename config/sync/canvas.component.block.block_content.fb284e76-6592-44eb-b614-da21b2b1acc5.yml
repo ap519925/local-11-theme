@@ -1,0 +1,37 @@
+uuid: 3a061477-f259-4766-becd-283793c6c36e
+langcode: en
+status: false
+dependencies:
+  content:
+    - 'block_content:hero_overlay:fb284e76-6592-44eb-b614-da21b2b1acc5'
+  module:
+    - block_content
+active_version: 22be12eefb10e6cf
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: 'block_content:fb284e76-6592-44eb-b614-da21b2b1acc5'
+        label: 'Homepage Hero Overlay'
+        label_display: '0'
+        provider: block_content
+        view_mode: full
+    fallback_metadata:
+      slot_definitions: null
+  3cd21b7480db2aa6:
+    settings:
+      default_settings:
+        id: 'block_content:fb284e76-6592-44eb-b614-da21b2b1acc5'
+        label: 'Homepage Hero Overlay'
+        label_display: '0'
+        provider: block_content
+        status: true
+        info: ''
+        view_mode: full
+    fallback_metadata:
+      slot_definitions: null
+label: 'Homepage Hero Overlay'
+id: block.block_content.fb284e76-6592-44eb-b614-da21b2b1acc5
+provider: block_content
+source: block
+source_local_id: 'block_content:fb284e76-6592-44eb-b614-da21b2b1acc5'

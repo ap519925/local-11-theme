@@ -1,0 +1,22 @@
+uuid: 4b4171c0-6477-48ea-af04-92b917a39b84
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.block.system_menu_block.footer-members
+  theme:
+    - ibew_theme
+id: ibew_theme.footer_col_3
+region: footer_col_3
+theme: ibew_theme
+component_tree:
+  -
+    uuid: 8f1950cd-7f34-4a18-bad0-cf562cca3d08
+    component_id: block.system_menu_block.footer-members
+    component_version: e54ba0d93743daad
+    inputs:
+      label: Members
+      label_display: visible
+      level: 1
+      depth: 0
+      expand_all_items: false

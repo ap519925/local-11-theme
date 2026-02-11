@@ -1,0 +1,25 @@
+uuid: c4c6c99e-b686-47b6-82c4-e0c3f1c97c5c
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.footer-quick-links
+  module:
+    - system
+  theme:
+    - ibew_theme
+id: ibew_theme_footer_col_2_menu
+theme: ibew_theme
+region: footer_col_2
+weight: 0
+provider: null
+plugin: 'system_menu_block:footer-quick-links'
+settings:
+  id: 'system_menu_block:footer-quick-links'
+  label: 'Quick Links'
+  label_display: visible
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility: {  }

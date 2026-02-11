@@ -1,0 +1,23 @@
+uuid: 894129d7-c7dc-43b5-ac3a-19806ba5e7e2
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:hero_slider:8d6fd74e-hero-slider-block'
+  module:
+    - block_content
+  theme:
+    - ibew_theme
+id: ibew_theme_homepage_hero_slider
+theme: ibew_theme
+region: homepage_hero
+weight: 0
+provider: block_content
+plugin: 'block_content:8d6fd74e-hero-slider-block'
+settings:
+  id: 'block_content:8d6fd74e-hero-slider-block'
+  label: 'Homepage Hero Slider'
+  label_display: '0'
+  provider: block_content
+  view_mode: full
+visibility: {  }

@@ -1,0 +1,21 @@
+uuid: af929d8c-a119-4642-b68e-43d5e0953905
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_style
+    - paragraphs.paragraphs_type.ibew_section
+  module:
+    - options
+id: paragraph.ibew_section.field_style
+field_name: field_style
+entity_type: paragraph
+bundle: ibew_section
+label: 'Section Style'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

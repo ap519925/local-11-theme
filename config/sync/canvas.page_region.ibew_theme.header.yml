@@ -1,0 +1,44 @@
+uuid: 417e9b04-160a-492b-98f0-2882eb38df33
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.block.system_branding_block
+    - canvas.component.block.system_menu_block.account
+    - canvas.component.block.system_menu_block.main
+  theme:
+    - ibew_theme
+id: ibew_theme.header
+region: header
+theme: ibew_theme
+component_tree:
+  -
+    uuid: ee80fa79-31e1-44db-b96e-173e475dbb3c
+    component_id: block.system_menu_block.account
+    component_version: 7f3863fb77e23b88
+    inputs:
+      label: 'User account menu'
+      label_display: '0'
+      level: 1
+      depth: 1
+      expand_all_items: false
+  -
+    uuid: c008f64a-b43a-4c94-96bc-5f615f50863a
+    component_id: block.system_menu_block.main
+    component_version: 6fcbe14a0547fc91
+    inputs:
+      label: 'Main navigation'
+      label_display: visible
+      level: 1
+      depth: null
+      expand_all_items: false
+  -
+    uuid: d4d1b0a1-4a96-48e1-9a1d-6cb4e3d7caf2
+    component_id: block.system_branding_block
+    component_version: 247a23298360adb2
+    inputs:
+      label: 'Site branding'
+      label_display: '0'
+      use_site_logo: true
+      use_site_name: true
+      use_site_slogan: true

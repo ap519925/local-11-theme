@@ -1,0 +1,8 @@
+uuid: d309c326-7237-4e73-9712-bff49285c497
+langcode: en
+status: true
+dependencies: {  }
+id: footer-quick-links
+label: 'Footer - Quick Links'
+description: 'Links for the "Quick Links" footer column.'
+locked: false

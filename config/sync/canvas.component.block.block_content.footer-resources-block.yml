@@ -1,0 +1,37 @@
+uuid: a1cca281-8145-47c0-a1fa-b58a9b9dec13
+langcode: en
+status: false
+dependencies:
+  content:
+    - 'block_content:basic:footer-resources-block'
+  module:
+    - block_content
+active_version: b675f9ce34d9cc2a
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: 'block_content:footer-resources-block'
+        label: 'Footer Resources'
+        label_display: '0'
+        provider: block_content
+        view_mode: full
+    fallback_metadata:
+      slot_definitions: null
+  90ff0ea58d7483a9:
+    settings:
+      default_settings:
+        id: 'block_content:footer-resources-block'
+        label: 'Footer Resources'
+        label_display: '0'
+        provider: block_content
+        status: true
+        info: ''
+        view_mode: full
+    fallback_metadata:
+      slot_definitions: null
+label: 'Footer Resources'
+id: block.block_content.footer-resources-block
+provider: block_content
+source: block
+source_local_id: 'block_content:footer-resources-block'

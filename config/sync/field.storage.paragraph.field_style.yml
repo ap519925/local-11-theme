@@ -1,0 +1,30 @@
+uuid: 35597988-3020-4568-94bd-a6b18b20d7d2
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_style
+field_name: field_style
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: white
+      label: 'White Background'
+    -
+      value: gray
+      label: 'Light Gray Background'
+    -
+      value: navy
+      label: 'Navy Brand Background'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,22 @@
+uuid: 22c68438-1850-40f6-beea-5a7c7894a3a8
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: obituary
+label: Obituary
+type: 'canonical_entities:node'
+pattern: '/members/obituaries/[node:title]'
+selection_criteria:
+  b74490e0-5be2-440f-b99b-dc8b60059d62:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: b74490e0-5be2-440f-b99b-dc8b60059d62
+    context_mapping:
+      node: node
+    bundles:
+      - obituary
+selection_logic: and
+weight: -5
+relationships: {  }

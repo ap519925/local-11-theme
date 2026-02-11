@@ -1,0 +1,23 @@
+uuid: 767a6daf-e472-4a83-ad46-dbca4752a1ba
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:1137e118-c900-4019-8626-76dff9172970'
+  module:
+    - block_content
+  theme:
+    - ibew_theme
+id: ibew_theme_homepagewelcomesection
+theme: ibew_theme
+region: homepage_about
+weight: 0
+provider: null
+plugin: 'block_content:1137e118-c900-4019-8626-76dff9172970'
+settings:
+  id: 'block_content:1137e118-c900-4019-8626-76dff9172970'
+  label: 'Homepage welcome Section'
+  label_display: '0'
+  provider: block_content
+  view_mode: full
+visibility: {  }

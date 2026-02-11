@@ -1,0 +1,24 @@
+uuid: 8b056a71-2bf4-4ceb-9669-87d75119b96f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_feed_source
+    - node.type.feed_item
+    - taxonomy.vocabulary.feed_source
+id: node.feed_item.field_feed_source
+field_name: field_feed_source
+entity_type: node
+bundle: feed_item
+label: 'Feed Source'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      feed_source: feed_source
+field_type: entity_reference

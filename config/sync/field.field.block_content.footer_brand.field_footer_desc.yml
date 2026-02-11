@@ -1,0 +1,19 @@
+uuid: 6c845a4f-3f8d-4a99-8602-f1341d023b72
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.footer_brand
+    - field.storage.block_content.field_footer_desc
+id: block_content.footer_brand.field_footer_desc
+field_name: field_footer_desc
+entity_type: block_content
+bundle: footer_brand
+label: Description
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

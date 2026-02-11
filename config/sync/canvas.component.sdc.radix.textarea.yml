@@ -1,0 +1,35 @@
+uuid: a270b34e-40e5-4657-82ed-80cab8922926
+langcode: en
+status: true
+dependencies:
+  theme:
+    - radix
+label: Textarea
+id: sdc.radix.textarea
+source: sdc
+source_local_id: 'radix:textarea'
+provider: radix
+active_version: db5af7183a5f5a1c
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        value:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value: null
+          expression: ℹ︎string␟value
+        table_utility_classes:
+          required: false
+          field_type: string
+          cardinality: -1
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value: null
+          expression: ℹ︎string␟value
+    fallback_metadata:
+      slot_definitions: {  }

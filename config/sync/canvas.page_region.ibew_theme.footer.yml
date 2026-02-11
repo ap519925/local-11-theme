@@ -1,0 +1,10 @@
+uuid: d9be36f8-40b0-4309-ae78-46b5ef09394c
+langcode: en
+status: true
+dependencies:
+  theme:
+    - ibew_theme
+id: ibew_theme.footer
+region: footer
+theme: ibew_theme
+component_tree: {  }

@@ -1,0 +1,27 @@
+uuid: d5d87033-94ac-47e3-ab20-c1b671be9649
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_course_materials
+    - node.type.training_course
+  module:
+    - file
+id: node.training_course.field_course_materials
+field_name: field_course_materials
+entity_type: node
+bundle: training_course
+label: 'Course Materials'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: txt
+  max_filesize: ''
+  description_field: false
+field_type: file

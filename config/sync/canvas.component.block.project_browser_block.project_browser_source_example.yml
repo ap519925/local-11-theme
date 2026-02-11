@@ -1,0 +1,27 @@
+uuid: de881039-59df-417f-b53b-e5a7ac0ad914
+langcode: en
+status: true
+dependencies:
+  module:
+    - project_browser
+active_version: f617b7b619299be6
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: 'project_browser_block:project_browser_source_example'
+        label: 'Example source'
+        label_display: '0'
+        provider: project_browser
+        paginate: true
+        page_sizes: '12, 24, 36, 48'
+        sort_options: null
+        default_sort: null
+        filters: null
+    fallback_metadata:
+      slot_definitions: null
+label: 'Example source'
+id: block.project_browser_block.project_browser_source_example
+provider: project_browser
+source: block
+source_local_id: 'project_browser_block:project_browser_source_example'

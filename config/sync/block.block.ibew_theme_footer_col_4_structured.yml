@@ -1,0 +1,23 @@
+uuid: e51dea57-b8c0-4c23-9a88-06d47b403967
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:footer_contact:ef724f74-0de1-4312-8903-2055a78ae94a'
+  module:
+    - block_content
+  theme:
+    - ibew_theme
+id: ibew_theme_footer_col_4_structured
+theme: ibew_theme
+region: footer_col_4
+weight: 0
+provider: null
+plugin: 'block_content:ef724f74-0de1-4312-8903-2055a78ae94a'
+settings:
+  id: 'block_content:ef724f74-0de1-4312-8903-2055a78ae94a'
+  label: Contact
+  label_display: visible
+  provider: block_content
+  view_mode: full
+visibility: {  }

@@ -1,0 +1,24 @@
+uuid: b7e24749-665d-478d-9118-a7463f53a72b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.newsletter_issue
+  module:
+    - text
+id: node.newsletter_issue.body
+field_name: body
+entity_type: node
+bundle: newsletter_issue
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+  allowed_formats: {  }
+field_type: text_with_summary

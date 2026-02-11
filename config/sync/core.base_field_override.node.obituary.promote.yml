@@ -1,0 +1,22 @@
+uuid: cee095e3-ea5f-4c75-b539-a73f88f363d4
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.obituary
+id: node.obituary.promote
+field_name: promote
+entity_type: node
+bundle: obituary
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: true
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

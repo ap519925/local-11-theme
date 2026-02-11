@@ -1,0 +1,19 @@
+uuid: c87d0ba9-6356-4bb6-a526-702996b758ff
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.hero_overlay
+    - field.storage.block_content.field_hero_description
+id: block_content.hero_overlay.field_hero_description
+field_name: field_hero_description
+entity_type: block_content
+bundle: hero_overlay
+label: Description
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

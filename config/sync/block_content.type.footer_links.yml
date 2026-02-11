@@ -1,0 +1,8 @@
+uuid: 397dd428-bd38-44f2-895f-e344986e7567
+langcode: en
+status: true
+dependencies: {  }
+id: footer_links
+label: 'Footer Links'
+revision: false
+description: 'Title and list of links.'

@@ -1,0 +1,37 @@
+uuid: 92e54aa9-bf05-4951-841e-af44a87d4640
+langcode: en
+status: true
+dependencies:
+  theme:
+    - ibew_theme
+label: 'IBEW Header'
+id: sdc.ibew_theme.ibew-header
+source: sdc
+source_local_id: 'ibew_theme:ibew-header'
+provider: ibew_theme
+active_version: 30a3a4dc4e1b9778
+versioned_properties:
+  active:
+    settings:
+      prop_field_definitions:
+        site_name:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value: null
+          expression: ℹ︎string␟value
+        logo_url:
+          required: false
+          field_type: string
+          field_storage_settings: {  }
+          field_instance_settings: {  }
+          field_widget: string_textfield
+          default_value: null
+          expression: ℹ︎string␟value
+    fallback_metadata:
+      slot_definitions:
+        navigation:
+          title: Navigation
+          description: 'Main navigation menu'

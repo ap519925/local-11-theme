@@ -1,0 +1,8 @@
+uuid: f6945d68-508a-44c1-8555-6b3da508cde6
+langcode: en
+status: true
+dependencies: {  }
+id: footer-members
+label: 'Footer - Members'
+description: 'Links for the "Members" footer column.'
+locked: false

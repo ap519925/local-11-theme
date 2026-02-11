@@ -1,0 +1,10 @@
+uuid: b1100e91-5ab6-4a25-953c-45a2ce025fa3
+langcode: en
+status: true
+dependencies: {  }
+id: ibew_stats_bar
+label: 'Stats Bar'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

@@ -1,0 +1,19 @@
+uuid: 5494f819-098c-4555-bc96-d9d9fcee7683
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_stat_2_num
+    - paragraphs.paragraphs_type.ibew_stats_bar
+id: paragraph.ibew_stats_bar.field_stat_2_num
+field_name: field_stat_2_num
+entity_type: paragraph
+bundle: ibew_stats_bar
+label: 'Stat 2 Number'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

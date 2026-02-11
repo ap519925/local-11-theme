@@ -1,0 +1,10 @@
+uuid: 7181499d-bb22-44a3-b320-76418df0d20f
+langcode: en
+status: true
+dependencies: {  }
+id: ibew_section_news_events
+label: 'News & Events Grid (Side-by-Side)'
+icon_uuid: null
+icon_default: null
+description: null
+behavior_plugins: {  }

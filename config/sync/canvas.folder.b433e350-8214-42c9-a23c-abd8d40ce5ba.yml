@@ -1,0 +1,11 @@
+uuid: b433e350-8214-42c9-a23c-abd8d40ce5ba
+langcode: en
+status: true
+dependencies: {  }
+name: 'IBEW Homepage'
+configEntityTypeId: component
+weight: 0
+items:
+  - block.ibew_cta_grid
+  - block.ibew_events_section
+  - block.ibew_news_section

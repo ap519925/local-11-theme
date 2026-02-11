@@ -1,0 +1,20 @@
+uuid: 92b242b0-62a1-40f3-af63-b6aadd3d6e10
+langcode: en
+status: true
+dependencies:
+  theme:
+    - ibew_theme
+id: ibew_theme_local_tasks
+theme: ibew_theme
+region: content
+weight: -100
+provider: core
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: true
+visibility: {  }

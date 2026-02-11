@@ -1,0 +1,19 @@
+uuid: af07d333-9e36-45e4-9598-1efd37016387
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_stat_3_label
+    - paragraphs.paragraphs_type.ibew_stats_bar
+id: paragraph.ibew_stats_bar.field_stat_3_label
+field_name: field_stat_3_label
+entity_type: paragraph
+bundle: ibew_stats_bar
+label: 'Stat 3 Label'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

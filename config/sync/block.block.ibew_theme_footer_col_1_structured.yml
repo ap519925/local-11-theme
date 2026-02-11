@@ -1,0 +1,23 @@
+uuid: 8691d580-9fd8-49ae-a387-2a89cf27c6ff
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:footer_brand:6c24ba5c-f131-4139-98fd-ee1a6cd4365b'
+  module:
+    - block_content
+  theme:
+    - ibew_theme
+id: ibew_theme_footer_col_1_structured
+theme: ibew_theme
+region: footer_col_1
+weight: 0
+provider: null
+plugin: 'block_content:6c24ba5c-f131-4139-98fd-ee1a6cd4365b'
+settings:
+  id: 'block_content:6c24ba5c-f131-4139-98fd-ee1a6cd4365b'
+  label: 'Footer Brand'
+  label_display: '0'
+  provider: block_content
+  view_mode: full
+visibility: {  }

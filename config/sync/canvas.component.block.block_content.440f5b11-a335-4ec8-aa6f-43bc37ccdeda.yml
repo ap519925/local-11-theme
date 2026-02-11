@@ -1,0 +1,37 @@
+uuid: 69177faf-9ef6-46c6-b8f4-5a8d88c6c863
+langcode: en
+status: false
+dependencies:
+  content:
+    - 'block_content:basic:440f5b11-a335-4ec8-aa6f-43bc37ccdeda'
+  module:
+    - block_content
+active_version: 6829a694cce8c479
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: 'block_content:440f5b11-a335-4ec8-aa6f-43bc37ccdeda'
+        label: 'Footer Col 4 (Contact)'
+        label_display: '0'
+        provider: block_content
+        view_mode: full
+    fallback_metadata:
+      slot_definitions: null
+  5638cc595117b029:
+    settings:
+      default_settings:
+        id: 'block_content:440f5b11-a335-4ec8-aa6f-43bc37ccdeda'
+        label: 'Footer Col 4 (Contact)'
+        label_display: '0'
+        provider: block_content
+        status: true
+        info: ''
+        view_mode: full
+    fallback_metadata:
+      slot_definitions: null
+label: 'Footer Col 4 (Contact)'
+id: block.block_content.440f5b11-a335-4ec8-aa6f-43bc37ccdeda
+provider: block_content
+source: block
+source_local_id: 'block_content:440f5b11-a335-4ec8-aa6f-43bc37ccdeda'

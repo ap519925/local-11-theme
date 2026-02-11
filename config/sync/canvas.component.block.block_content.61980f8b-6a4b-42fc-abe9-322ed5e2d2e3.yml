@@ -1,0 +1,37 @@
+uuid: eb109c88-7a80-48aa-9912-ec691cf8bce7
+langcode: en
+status: false
+dependencies:
+  content:
+    - 'block_content:footer_links:61980f8b-6a4b-42fc-abe9-322ed5e2d2e3'
+  module:
+    - block_content
+active_version: 4bd4599b176e8a89
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: 'block_content:61980f8b-6a4b-42fc-abe9-322ed5e2d2e3'
+        label: 'Footer - Members'
+        label_display: '0'
+        provider: block_content
+        view_mode: full
+    fallback_metadata:
+      slot_definitions: null
+  5f3023336c1fe7ff:
+    settings:
+      default_settings:
+        id: 'block_content:61980f8b-6a4b-42fc-abe9-322ed5e2d2e3'
+        label: 'Footer - Members'
+        label_display: '0'
+        provider: block_content
+        status: true
+        info: ''
+        view_mode: full
+    fallback_metadata:
+      slot_definitions: null
+label: 'Footer - Members'
+id: block.block_content.61980f8b-6a4b-42fc-abe9-322ed5e2d2e3
+provider: block_content
+source: block
+source_local_id: 'block_content:61980f8b-6a4b-42fc-abe9-322ed5e2d2e3'

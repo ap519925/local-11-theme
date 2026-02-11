@@ -1,0 +1,24 @@
+uuid: 55c00049-b70f-4f80-bf70-cef30571aaa5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_gallery_type
+    - node.type.gallery
+    - taxonomy.vocabulary.gallery_type
+id: node.gallery.field_gallery_type
+field_name: field_gallery_type
+entity_type: node
+bundle: gallery
+label: 'Gallery Type'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      gallery_type: gallery_type
+field_type: entity_reference

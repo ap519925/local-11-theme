@@ -1,0 +1,19 @@
+uuid: d7ce2ced-ec12-46ab-b314-10477f0baf8f
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.footer_contact
+    - field.storage.block_content.field_address
+id: block_content.footer_contact.field_address
+field_name: field_address
+entity_type: block_content
+bundle: footer_contact
+label: Address
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

@@ -1,0 +1,21 @@
+uuid: c58537e8-dd21-496b-a1e0-18526e5a08e1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_date_passing
+    - node.type.obituary
+  module:
+    - datetime
+id: node.obituary.field_date_passing
+field_name: field_date_passing
+entity_type: node
+bundle: obituary
+label: 'Date of Passing'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

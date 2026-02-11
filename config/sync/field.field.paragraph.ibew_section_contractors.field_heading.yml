@@ -1,0 +1,21 @@
+uuid: bccaf38a-88a3-47ef-b700-92b67bddc296
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_heading
+    - paragraphs.paragraphs_type.ibew_section_contractors
+id: paragraph.ibew_section_contractors.field_heading
+field_name: field_heading
+entity_type: paragraph
+bundle: ibew_section_contractors
+label: Heading
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 'FOR CONTRACTORS'
+default_value_callback: ''
+settings: {  }
+field_type: string

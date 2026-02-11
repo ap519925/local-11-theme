@@ -1,0 +1,22 @@
+uuid: 2aa68448-e9b2-43ef-9d79-ffd9d137374b
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.block.block_content.2d115c3d-250d-4f67-9c2e-5f99b7de1f15
+  theme:
+    - ibew_theme
+id: ibew_theme.homepage_members
+region: homepage_members
+theme: ibew_theme
+component_tree:
+  -
+    uuid: e57f7ab0-fa4d-4e1c-b985-c7e0e5475538
+    component_id: block.block_content.2d115c3d-250d-4f67-9c2e-5f99b7de1f15
+    component_version: '8682200211e44642'
+    inputs:
+      label: 'Homepage Members'
+      label_display: ''
+      status: true
+      info: ''
+      view_mode: full

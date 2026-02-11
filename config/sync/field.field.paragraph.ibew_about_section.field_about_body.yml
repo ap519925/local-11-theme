@@ -1,0 +1,22 @@
+uuid: f1400c49-e712-460d-ae1a-9077fbe3a8c3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_about_body
+    - paragraphs.paragraphs_type.ibew_about_section
+  module:
+    - text
+id: paragraph.ibew_about_section.field_about_body
+field_name: field_about_body
+entity_type: paragraph
+bundle: ibew_about_section
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

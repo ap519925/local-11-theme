@@ -1,0 +1,21 @@
+uuid: 0aa3db14-135a-4ea2-b00a-c02931880beb
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - node.type.ibew_event
+  module:
+    - user
+id: node.ibew_event.teaser
+targetEntityType: node
+bundle: ibew_event
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  search_api_excerpt: true

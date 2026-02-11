@@ -1,0 +1,22 @@
+uuid: 7cd32ed4-1407-47d2-88e0-ef6b08c2c72a
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.training_course
+id: node.training_course.promote
+field_name: promote
+entity_type: node
+bundle: training_course
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: true
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

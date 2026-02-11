@@ -1,0 +1,37 @@
+uuid: ca224459-c84a-4a92-9f4b-d3927cb0dd30
+langcode: en
+status: true
+dependencies:
+  module:
+    - navigation
+active_version: 6bff3fd95c9429fb
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: navigation_link
+        label: Link
+        label_display: '0'
+        provider: navigation
+        title: ''
+        uri: ''
+        icon_class: ''
+    fallback_metadata:
+      slot_definitions: null
+  4ae4e2752b2f332d:
+    settings:
+      default_settings:
+        id: navigation_link
+        label: Link
+        label_display: '0'
+        provider: navigation
+        title: ''
+        uri: ''
+        icon_class: ''
+    fallback_metadata:
+      slot_definitions: null
+label: Link
+id: block.navigation_link
+provider: navigation
+source: block
+source_local_id: navigation_link

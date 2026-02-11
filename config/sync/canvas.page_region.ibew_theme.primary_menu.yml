@@ -1,0 +1,22 @@
+uuid: 7fd5b260-8676-4811-a684-742b557989b6
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.block.system_menu_block.main
+  theme:
+    - ibew_theme
+id: ibew_theme.primary_menu
+region: primary_menu
+theme: ibew_theme
+component_tree:
+  -
+    uuid: a2e3193c-0a8c-4234-b30f-da60b4b640a6
+    component_id: block.system_menu_block.main
+    component_version: 023ff7ba63f80798
+    inputs:
+      label: 'Main navigation'
+      label_display: ''
+      level: 1
+      depth: 2
+      expand_all_items: false

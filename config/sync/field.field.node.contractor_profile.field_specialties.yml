@@ -1,0 +1,24 @@
+uuid: 6116e100-aaa2-47a8-ad9c-a41ae8185cab
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_specialties
+    - node.type.contractor_profile
+    - taxonomy.vocabulary.contractor_specialties
+id: node.contractor_profile.field_specialties
+field_name: field_specialties
+entity_type: node
+bundle: contractor_profile
+label: Specialties
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      contractor_specialties: contractor_specialties
+field_type: entity_reference

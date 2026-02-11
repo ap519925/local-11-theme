@@ -1,0 +1,24 @@
+uuid: 0b4619f6-44bc-4a31-a1e3-e6153e9a4ba7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_contractor_ref
+    - node.type.contractor_profile
+    - node.type.success_story
+id: node.success_story.field_contractor_ref
+field_name: field_contractor_ref
+entity_type: node
+bundle: success_story
+label: 'Contractor Reference'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      contractor_profile: contractor_profile
+field_type: entity_reference

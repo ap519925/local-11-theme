@@ -1,0 +1,22 @@
+uuid: 0435be75-a41e-4337-b0f4-ad0bfab85cd8
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.block.system_menu_block.footer-quick-links
+  theme:
+    - ibew_theme
+id: ibew_theme.footer_col_2
+region: footer_col_2
+theme: ibew_theme
+component_tree:
+  -
+    uuid: c4c6c99e-b686-47b6-82c4-e0c3f1c97c5c
+    component_id: block.system_menu_block.footer-quick-links
+    component_version: c092488f81313d79
+    inputs:
+      label: 'Quick Links'
+      label_display: visible
+      level: 1
+      depth: 0
+      expand_all_items: false

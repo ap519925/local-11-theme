@@ -1,0 +1,29 @@
+uuid: c31446a4-017c-4755-b2d5-53e9c5323c05
+langcode: en
+status: true
+dependencies:
+  module:
+    - ibew_homepage_blocks
+  theme:
+    - ibew_theme
+id: ibew_theme_ibewherocontent
+theme: ibew_theme
+region: homepage_hero_content
+weight: 0
+provider: null
+plugin: ibew_hero_content
+settings:
+  id: ibew_hero_content
+  label: 'IBEW Hero Content'
+  label_display: '0'
+  provider: ibew_homepage_blocks
+  eyebrow: 'The New Haven Electricians'
+  title: 'IBEW Local 90'
+  description: 'Serving electricians across Greater New Haven from our Wallingford office. Business Manager: Sean W. Daly.'
+  link_1_title: 'Member Re-Sign'
+  link_1_url: /content/book-1-re-sign-procedure
+  link_2_title: JoinIBEWCT.org
+  link_2_url: 'https://JoinIBEWCT.org'
+  link_3_title: 'Email Local 90'
+  link_3_url: 'mailto:info@ibewlocal90.org'
+visibility: {  }

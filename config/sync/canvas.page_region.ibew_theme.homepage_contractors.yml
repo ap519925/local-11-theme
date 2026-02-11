@@ -1,0 +1,10 @@
+uuid: b512db65-ff47-4405-9db1-24df08e63ab1
+langcode: en
+status: true
+dependencies:
+  theme:
+    - ibew_theme
+id: ibew_theme.homepage_contractors
+region: homepage_contractors
+theme: ibew_theme
+component_tree: {  }

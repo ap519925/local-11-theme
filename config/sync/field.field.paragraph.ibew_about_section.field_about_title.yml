@@ -1,0 +1,19 @@
+uuid: 0ca53312-6b83-4740-8f45-116fc00070e7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_about_title
+    - paragraphs.paragraphs_type.ibew_about_section
+id: paragraph.ibew_about_section.field_about_title
+field_name: field_about_title
+entity_type: paragraph
+bundle: ibew_about_section
+label: Title
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

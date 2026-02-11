@@ -1,0 +1,37 @@
+uuid: 1378e981-6f3e-48bc-b9a6-95baf676e5b5
+langcode: en
+status: false
+dependencies:
+  content:
+    - 'block_content:footer_brand:6c24ba5c-f131-4139-98fd-ee1a6cd4365b'
+  module:
+    - block_content
+active_version: 2e2920e53e3242d4
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: 'block_content:6c24ba5c-f131-4139-98fd-ee1a6cd4365b'
+        label: 'Footer - Brand Identity'
+        label_display: '0'
+        provider: block_content
+        view_mode: full
+    fallback_metadata:
+      slot_definitions: null
+  7ae646328d8f26e5:
+    settings:
+      default_settings:
+        id: 'block_content:6c24ba5c-f131-4139-98fd-ee1a6cd4365b'
+        label: 'Footer - Brand Identity'
+        label_display: '0'
+        provider: block_content
+        status: true
+        info: ''
+        view_mode: full
+    fallback_metadata:
+      slot_definitions: null
+label: 'Footer - Brand Identity'
+id: block.block_content.6c24ba5c-f131-4139-98fd-ee1a6cd4365b
+provider: block_content
+source: block
+source_local_id: 'block_content:6c24ba5c-f131-4139-98fd-ee1a6cd4365b'

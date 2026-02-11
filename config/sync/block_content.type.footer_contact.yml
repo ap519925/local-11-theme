@@ -1,0 +1,8 @@
+uuid: 73e05ec1-1f96-4168-b80e-f1df44b56d80
+langcode: en
+status: true
+dependencies: {  }
+id: footer_contact
+label: 'Footer Contact'
+revision: false
+description: 'Contact info (Phone, Email, Address).'

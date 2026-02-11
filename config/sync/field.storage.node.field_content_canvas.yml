@@ -1,0 +1,19 @@
+uuid: 5f822627-16dc-41a8-b6d6-04f43720d653
+langcode: en
+status: true
+dependencies:
+  module:
+    - canvas
+    - node
+id: node.field_content_canvas
+field_name: field_content_canvas
+entity_type: node
+type: component_tree
+settings: {  }
+module: canvas
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

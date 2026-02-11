@@ -1,0 +1,11 @@
+uuid: 297c53b4-c79a-44e2-a1d9-4ed0601ecb67
+langcode: en
+status: true
+dependencies: {  }
+name: 'Feed Item'
+type: feed_item
+description: 'For external RSS/news aggregation.'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: true

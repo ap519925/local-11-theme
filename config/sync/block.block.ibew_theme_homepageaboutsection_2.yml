@@ -1,0 +1,23 @@
+uuid: ef9f7311-168a-4c71-9b83-0fa3acef8b64
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:04d1397d-8ee8-46d7-bf66-0a9de66a68c5'
+  module:
+    - block_content
+  theme:
+    - ibew_theme
+id: ibew_theme_homepageaboutsection_2
+theme: ibew_theme
+region: content
+weight: -6
+provider: null
+plugin: 'block_content:04d1397d-8ee8-46d7-bf66-0a9de66a68c5'
+settings:
+  id: 'block_content:04d1397d-8ee8-46d7-bf66-0a9de66a68c5'
+  label: 'Homepage About Section'
+  label_display: visible
+  provider: block_content
+  view_mode: full
+visibility: {  }

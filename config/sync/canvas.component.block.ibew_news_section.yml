@@ -1,0 +1,40 @@
+uuid: fe0e818e-182f-417a-9308-0089276223e4
+langcode: en
+status: true
+dependencies:
+  module:
+    - ibew_homepage_blocks
+active_version: 2d8d85407edc9a5b
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: ibew_news_section
+        label: 'IBEW News Section'
+        label_display: '0'
+        provider: ibew_homepage_blocks
+        chip_text: 'Latest Updates'
+        chip_color: gold
+        main_title: 'Union News'
+        show_view_all_link: true
+        view_all_url: /news
+        news_items:
+          -
+            chip: Negotiations
+            title: 'Contract Negotiations Update'
+            description: 'Members are encouraged to attend the next general meeting for important updates regarding the new commercial agreement.'
+          -
+            chip: Training
+            title: 'Apprenticeship Applications'
+            description: 'The JATC will be accepting applications for the 2025 apprenticeship class starting next month. Spread the word to qualified candidates.'
+          -
+            chip: Community
+            title: 'Annual Food Drive'
+            description: 'Local 90 is collecting non-perishable food items for the CT Food Bank. Donation bins are located in the union hall lobby.'
+    fallback_metadata:
+      slot_definitions: null
+label: 'IBEW News Section'
+id: block.ibew_news_section
+provider: ibew_homepage_blocks
+source: block
+source_local_id: ibew_news_section

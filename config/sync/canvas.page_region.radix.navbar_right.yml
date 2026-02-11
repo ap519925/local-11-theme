@@ -1,0 +1,10 @@
+uuid: 9e2664d2-320e-4711-959d-96cd2b2079ba
+langcode: en
+status: true
+dependencies:
+  theme:
+    - radix
+id: radix.navbar_right
+region: navbar_right
+theme: radix
+component_tree: {  }

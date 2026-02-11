@@ -1,0 +1,11 @@
+uuid: cb4439a4-ba33-451d-b44d-3e33f0c64c4e
+langcode: en
+status: true
+dependencies: {  }
+name: Obituary
+type: obituary
+description: 'For "In Sympathy" member memorials.'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: true

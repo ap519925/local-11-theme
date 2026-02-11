@@ -1,0 +1,22 @@
+uuid: 4c996041-7d9c-4832-800b-93d60553e0f7
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: ibew_event
+label: Events
+type: 'canonical_entities:node'
+pattern: '/events/[node:title]'
+selection_criteria:
+  f9233694-2dc0-4d1b-83ca-9ed5d4ba7b95:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: f9233694-2dc0-4d1b-83ca-9ed5d4ba7b95
+    context_mapping:
+      node: node
+    bundles:
+      - ibew_event
+selection_logic: and
+weight: -5
+relationships: {  }

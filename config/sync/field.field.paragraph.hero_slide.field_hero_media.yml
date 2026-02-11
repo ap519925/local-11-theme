@@ -1,0 +1,24 @@
+uuid: 85c5fa8a-a44d-47cb-a37f-c2fc11648df9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_hero_media
+    - media.type.image
+    - paragraphs.paragraphs_type.hero_slide
+id: paragraph.hero_slide.field_hero_media
+field_name: field_hero_media
+entity_type: paragraph
+bundle: hero_slide
+label: 'Slide Image (Media)'
+description: 'Upload a new image or select from the Media Library.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+field_type: entity_reference

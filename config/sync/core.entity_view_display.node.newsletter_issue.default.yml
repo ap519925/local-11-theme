@@ -1,0 +1,145 @@
+uuid: 866382aa-1b96-4f65-b9e6-04ecc50818c2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.newsletter_issue.body
+    - field.field.node.newsletter_issue.field_newsletter_series
+    - field.field.node.newsletter_issue.field_pdf_version
+    - field.field.node.newsletter_issue.field_publication_date
+    - node.type.newsletter_issue
+  module:
+    - datetime
+    - file
+    - layout_builder
+    - text
+    - user
+third_party_settings:
+  layout_builder:
+    enabled: true
+    allow_custom: true
+    sections:
+      -
+        layout_id: layout_onecol
+        layout_settings:
+          label: ''
+        components:
+          1b6fb47e-e9ae-4966-83db-cc10fa53d8ac:
+            uuid: 1b6fb47e-e9ae-4966-83db-cc10fa53d8ac
+            region: content
+            configuration:
+              id: 'extra_field_block:node:newsletter_issue:links'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+            weight: 0
+            additional: {  }
+          0e5afda0-2230-4794-a95d-9060eb1b03bb:
+            uuid: 0e5afda0-2230-4794-a95d-9060eb1b03bb
+            region: content
+            configuration:
+              id: 'field_block:node:newsletter_issue:body'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: text_default
+                label: hidden
+                settings: {  }
+                third_party_settings: {  }
+            weight: 1
+            additional: {  }
+          31f2f215-5045-44a3-80f0-4b1ee1fa2498:
+            uuid: 31f2f215-5045-44a3-80f0-4b1ee1fa2498
+            region: content
+            configuration:
+              id: 'field_block:node:newsletter_issue:field_publication_date'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: datetime_default
+                label: above
+                settings:
+                  timezone_override: ''
+                  format_type: medium
+                third_party_settings: {  }
+            weight: 2
+            additional: {  }
+          566b3aad-ee7c-4b43-9023-2b866704659a:
+            uuid: 566b3aad-ee7c-4b43-9023-2b866704659a
+            region: content
+            configuration:
+              id: 'field_block:node:newsletter_issue:field_newsletter_series'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: entity_reference_label
+                label: above
+                settings:
+                  link: true
+                third_party_settings: {  }
+            weight: 3
+            additional: {  }
+          9e0e334c-bf0b-4ab2-9b7b-6b57d1efc4f5:
+            uuid: 9e0e334c-bf0b-4ab2-9b7b-6b57d1efc4f5
+            region: content
+            configuration:
+              id: 'field_block:node:newsletter_issue:field_pdf_version'
+              label_display: '0'
+              context_mapping:
+                entity: layout_builder.entity
+              formatter:
+                type: file_default
+                label: above
+                settings:
+                  use_description_as_link_text: true
+                third_party_settings: {  }
+            weight: 4
+            additional: {  }
+        third_party_settings: {  }
+id: node.newsletter_issue.default
+targetEntityType: node
+bundle: newsletter_issue
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_newsletter_series:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_pdf_version:
+    type: file_default
+    label: above
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  field_publication_date:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  search_api_excerpt: true

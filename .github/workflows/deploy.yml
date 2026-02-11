@@ -37,26 +37,39 @@ jobs:
           chmod 600 ~/.ssh/deploy_key_rsa
           ssh-keyscan -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts 2>/dev/null || echo "SSH host added"
 
-      - name: Deploy via rsync
+      - name: Deploy via tar + scp
         run: |
-          rsync -avz --delete \
-            --exclude='.git/' \
-            --exclude='.ddev/' \
+          # Create tar archive excluding unnecessary files
+          tar czf deploy.tar.gz \
+            --exclude='.git' \
+            --exclude='.ddev' \
             --exclude='.env' \
-            --exclude='web/sites/default/files/' \
+            --exclude='web/sites/default/files' \
             --exclude='web/sites/default/settings.local.php' \
             --exclude='web/sites/default/settings.ddev.php' \
-            --exclude='node_modules/' \
+            --exclude='node_modules' \
             --exclude='*.sql' \
             --exclude='*.sql.gz' \
             --exclude='*.zip' \
             --exclude='pantheon_key' \
             --exclude='pantheon_key.pub' \
-            --exclude='private/' \
-            --exclude='.agent/' \
-            --exclude='.code/' \
-            -e "ssh -i ~/.ssh/deploy_key_rsa -p ${{ secrets.SSH_PORT }} -o StrictHostKeyChecking=no" \
-            ./ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.DEPLOY_PATH }}/
+            --exclude='private' \
+            --exclude='.agent' \
+            --exclude='.code' \
+            .
+          
+          # Transfer to server
+          scp -i ~/.ssh/deploy_key_rsa \
+            -P ${{ secrets.SSH_PORT }} \
+            -o StrictHostKeyChecking=no \
+            deploy.tar.gz ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/tmp/
+          
+          # Extract on server
+          ssh -i ~/.ssh/deploy_key_rsa \
+            -p ${{ secrets.SSH_PORT }} \
+            -o StrictHostKeyChecking=no \
+            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
+            "cd ${{ secrets.DEPLOY_PATH }} && tar xzf /tmp/deploy.tar.gz && rm /tmp/deploy.tar.gz"
 
       - name: Run Composer Install on Server
         run: |

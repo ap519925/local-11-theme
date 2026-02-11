@@ -2,8 +2,8 @@
 # IBEW Drupal 11 - Deploy to cPanel via SSH
 # ===========================================
 #
-# Triggers on push to `main` branch.
-# Runs composer install on the server, clears Drupal cache.
+# Triggers when a PR is merged into `main` (dev → main merge).
+# Also supports manual deploy from GitHub Actions tab.
 #
 # Required GitHub Secrets:
 #   SSH_HOST       - Your server IP or hostname
@@ -15,14 +15,16 @@
 name: Deploy to Production
 
 on:
-  push:
+  pull_request:
     branches: [main]
+    types: [closed]
   workflow_dispatch:   # Allows manual trigger from GitHub UI
 
 jobs:
   deploy:
     name: Deploy to cPanel Server
     runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true || github.event_name == 'workflow_dispatch'
 
     steps:
       - name: Checkout Code

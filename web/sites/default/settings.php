@@ -875,25 +875,21 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
 # $settings['migrate_file_public_path'] = '';
 # $settings['migrate_file_private_path'] = '';
 
-// Automatically generated include for settings managed by ddev.
+// ===========================================
+// Environment Detection & Settings Loading
+// ===========================================
+
+// 1. DDEV (Local Development)
 if (getenv('IS_DDEV_PROJECT') == 'true' && file_exists(__DIR__ . '/settings.ddev.php')) {
   include __DIR__ . '/settings.ddev.php';
 }
 
-/**
- * Load local development override configuration, if available.
- *
- * Create a settings.local.php file to override variables on secondary (staging,
- * development, etc.) installations of this site.
- *
- * Typical uses of settings.local.php include:
- * - Disabling caching.
- * - Disabling JavaScript/CSS compression.
- * - Rerouting outgoing emails.
- *
- * Keep this code block at the end of this file to take full effect.
- */
-#
+// 2. Production (WHM/cPanel)
+if (!getenv('IS_DDEV_PROJECT') && file_exists(__DIR__ . '/settings.production.php')) {
+  include __DIR__ . '/settings.production.php';
+}
+
+// 3. Local overrides (always loaded last if present)
 if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
   include $app_root . '/' . $site_path . '/settings.local.php';
 }

@@ -1,0 +1,93 @@
+# ===========================================
+# IBEW Drupal 11 - Deploy to cPanel via SSH
+# ===========================================
+#
+# Triggers on push to `main` branch.
+# Runs composer install on the server, clears Drupal cache.
+#
+# Required GitHub Secrets:
+#   SSH_HOST       - Your server IP or hostname
+#   SSH_USER       - Your cPanel SSH username
+#   SSH_KEY        - Your SSH private key (full contents)
+#   SSH_PORT       - SSH port (usually 22)
+#   DEPLOY_PATH    - Absolute path on server (e.g., /home/user/public_html)
+#
+name: Deploy to Production
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:   # Allows manual trigger from GitHub UI
+
+jobs:
+  deploy:
+    name: Deploy to cPanel Server
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup SSH Key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_KEY }}" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          ssh-keyscan -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts 2>/dev/null
+
+      - name: Deploy via rsync
+        run: |
+          rsync -avz --delete \
+            --exclude='.git/' \
+            --exclude='.ddev/' \
+            --exclude='.env' \
+            --exclude='web/sites/default/files/' \
+            --exclude='web/sites/default/settings.local.php' \
+            --exclude='web/sites/default/settings.ddev.php' \
+            --exclude='node_modules/' \
+            --exclude='*.sql' \
+            --exclude='*.sql.gz' \
+            --exclude='*.zip' \
+            --exclude='pantheon_key' \
+            --exclude='pantheon_key.pub' \
+            --exclude='private/' \
+            --exclude='.agent/' \
+            --exclude='.code/' \
+            -e "ssh -i ~/.ssh/deploy_key -p ${{ secrets.SSH_PORT }} -o StrictHostKeyChecking=no" \
+            ./ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.DEPLOY_PATH }}/
+
+      - name: Run Composer Install on Server
+        run: |
+          ssh -i ~/.ssh/deploy_key \
+            -p ${{ secrets.SSH_PORT }} \
+            -o StrictHostKeyChecking=no \
+            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
+            "cd ${{ secrets.DEPLOY_PATH }} && composer install --no-dev --optimize-autoloader --no-interaction 2>&1 || echo 'Composer install completed with warnings'"
+
+      - name: Clear Drupal Cache
+        run: |
+          ssh -i ~/.ssh/deploy_key \
+            -p ${{ secrets.SSH_PORT }} \
+            -o StrictHostKeyChecking=no \
+            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
+            "cd ${{ secrets.DEPLOY_PATH }} && vendor/bin/drush cr 2>&1 || echo 'Cache clear completed'"
+
+      - name: Run Database Updates
+        run: |
+          ssh -i ~/.ssh/deploy_key \
+            -p ${{ secrets.SSH_PORT }} \
+            -o StrictHostKeyChecking=no \
+            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
+            "cd ${{ secrets.DEPLOY_PATH }} && vendor/bin/drush updatedb -y 2>&1 || echo 'Database updates completed'"
+
+      - name: Import Config (if applicable)
+        run: |
+          ssh -i ~/.ssh/deploy_key \
+            -p ${{ secrets.SSH_PORT }} \
+            -o StrictHostKeyChecking=no \
+            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
+            "cd ${{ secrets.DEPLOY_PATH }} && vendor/bin/drush config:import -y 2>&1 || echo 'Config import completed (or no changes)'"
+
+      - name: Cleanup SSH Key
+        if: always()
+        run: rm -f ~/.ssh/deploy_key

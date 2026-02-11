@@ -1,23 +1,61 @@
-# Ignore backups and archives
-*.zip
+# ===========================================
+# IBEW Drupal 11 - Git Ignore
+# ===========================================
+
+# ----- Backups & Archives -----
 *.sql
 *.sql.gz
 *.tar.gz
 *.tgz
+*.zip
 
-# Ignore dependencies managed by Composer
-/vendor
-/web/core
-/web/modules/contrib
-/web/themes/contrib
-/web/profiles/contrib
-/web/libraries
+# ----- Composer Dependencies -----
+# These are rebuilt on the server via `composer install`
+/vendor/
+/web/core/
+/web/modules/contrib/
+/web/themes/contrib/
+/web/profiles/contrib/
+/web/libraries/
 
-# Ignore DDEV
-.ddev/
+# ----- DDEV (Local Dev Only) -----
+/.ddev/
+
+# ----- Environment & Secrets -----
 .env
+.env.*
+!.env.example
+/pantheon_key
+/pantheon_key.pub
 
-# Ignore temp files
+# ----- Drupal Files (user-uploaded content) -----
+/web/sites/default/files/
+/web/sites/simpletest/
+
+# ----- Drupal Local Settings -----
+/web/sites/default/settings.local.php
+/web/sites/default/settings.ddev.php
+
+# ----- OS Junk -----
 .DS_Store
 Thumbs.db
+Desktop.ini
+
+# ----- IDE / Editor -----
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# ----- Node (if using frontend build tools) -----
 node_modules/
+
+# ----- Temp & Build Artifacts -----
+/scripts/deploy-temp/
+*.log
+push_error.*
+debug_push.*
+
+# ----- Pantheon (no longer used) -----
+pantheon.yml
+pantheon.upstream.yml

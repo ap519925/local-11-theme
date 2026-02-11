@@ -1,0 +1,38 @@
+uuid: 21e9dc57-e74d-49aa-b4c7-bd473246c962
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_page_sections
+    - node.type.page
+    - paragraphs.paragraphs_type.ibew_section
+    - paragraphs.paragraphs_type.ibew_section_contractors
+    - paragraphs.paragraphs_type.ibew_section_cta_grid
+    - paragraphs.paragraphs_type.ibew_section_events
+    - paragraphs.paragraphs_type.ibew_section_news
+    - paragraphs.paragraphs_type.ibew_section_news_events
+  module:
+    - entity_reference_revisions
+id: node.page.field_page_sections
+field_name: field_page_sections
+entity_type: node
+bundle: page
+label: 'Page Sections'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      ibew_section: ibew_section
+      ibew_section_news: ibew_section_news
+      ibew_section_events: ibew_section_events
+      ibew_section_contractors: ibew_section_contractors
+      ibew_section_cta_grid: ibew_section_cta_grid
+      ibew_section_news_events: ibew_section_news_events
+    sort:
+      field: _none
+field_type: entity_reference_revisions

@@ -1,0 +1,42 @@
+uuid: ab643074-d357-4335-a9b3-1094832a6fc2
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.hero_slider
+    - field.field.block_content.hero_slider.field_hero_slides
+  module:
+    - field_layout
+    - layout_discovery
+    - paragraphs
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
+id: block_content.hero_slider.default
+targetEntityType: block_content
+bundle: hero_slider
+mode: default
+content:
+  field_hero_slides:
+    type: entity_reference_paragraphs
+    weight: 1
+    region: content
+    settings:
+      title: Slide
+      title_plural: Slides
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+    third_party_settings: {  }
+  info:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden: {  }

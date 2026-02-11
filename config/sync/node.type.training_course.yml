@@ -1,0 +1,11 @@
+uuid: 1f813a1e-5de1-4b68-9ee8-1357cdd0f09c
+langcode: en
+status: true
+dependencies: {  }
+name: 'Training Course/Session'
+type: training_course
+description: 'For JATC courses and continuing education.'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: true

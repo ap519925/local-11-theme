@@ -1,0 +1,36 @@
+uuid: 1142b9a7-e453-4e51-94c1-cdf671772af9
+langcode: en
+status: true
+dependencies: {  }
+label: 'IBEW Homepage CTA Grid'
+id: block.ibew_cta_grid
+source: block
+source_local_id: ibew_cta_grid
+provider: ibew_homepage_blocks
+active_version: 1078fe028b592609
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: ibew_cta_grid
+        label: 'IBEW Homepage CTA Grid'
+        label_display: '0'
+        provider: ibew_homepage_blocks
+        section_title: 'READY TO BUILD YOUR FUTURE?'
+        card_1_title: 'Prospective Members'
+        card_1_desc: 'Start your journey in the electrical trade with world-class training and support'
+        card_1_link_title: 'Become a Member'
+        card_1_link_url: /join
+        card_1_style: gold
+        card_2_title: Contractors
+        card_2_desc: 'Find skilled IBEW electricians for your next project today'
+        card_2_link_title: 'Find Contractors'
+        card_2_link_url: /contractors
+        card_2_style: blue
+        card_3_title: Training
+        card_3_desc: 'Advance your skills with comprehensive apprenticeship programs'
+        card_3_link_title: 'Learn more'
+        card_3_link_url: /training
+        card_3_style: red
+    fallback_metadata:
+      slot_definitions: null

@@ -1,0 +1,26 @@
+uuid: 5f19e164-78fd-41d7-b10e-02d5718db03f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_text_content
+    - filter.format.basic_html
+    - filter.format.full_html
+    - paragraphs.paragraphs_type.ibew_section
+  module:
+    - text
+id: paragraph.ibew_section.field_text_content
+field_name: field_text_content
+entity_type: paragraph
+bundle: ibew_section
+label: Content
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - basic_html
+    - full_html
+field_type: text_long

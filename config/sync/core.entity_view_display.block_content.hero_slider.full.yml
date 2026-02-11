@@ -1,0 +1,26 @@
+uuid: d1532d95-f6b1-4676-83bc-4b564b180658
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.hero_slider
+    - core.entity_view_mode.block_content.full
+    - field.field.block_content.hero_slider.field_hero_slides
+  module:
+    - entity_reference_revisions
+id: block_content.hero_slider.full
+targetEntityType: block_content
+bundle: hero_slider
+mode: full
+content:
+  field_hero_slides:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  search_api_excerpt: true

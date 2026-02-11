@@ -1,0 +1,14 @@
+uuid: 7b20db9f-6a6b-4dce-b508-31cb6c240925
+langcode: en
+status: true
+dependencies: {  }
+name: 'Inline blocks'
+configEntityTypeId: component
+weight: 0
+items:
+  - block.inline_block.basic
+  - block.inline_block.footer_brand
+  - block.inline_block.footer_contact
+  - block.inline_block.footer_links
+  - block.inline_block.hero_overlay
+  - block.inline_block.hero_slider

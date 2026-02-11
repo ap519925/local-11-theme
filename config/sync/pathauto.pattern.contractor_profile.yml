@@ -1,0 +1,22 @@
+uuid: 9376f85a-5e67-4ae9-b5e7-67e909dfd6ac
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: contractor_profile
+label: Contractor
+type: 'canonical_entities:node'
+pattern: '/contractors/[node:title]'
+selection_criteria:
+  1d98f96b-45d3-4cbe-b9ba-05a27cd37666:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 1d98f96b-45d3-4cbe-b9ba-05a27cd37666
+    context_mapping:
+      node: node
+    bundles:
+      - contractor_profile
+selection_logic: and
+weight: -5
+relationships: {  }

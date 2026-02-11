@@ -1,0 +1,37 @@
+uuid: 6baa4dd8-363e-40a3-8190-572f39092709
+langcode: en
+status: false
+dependencies:
+  content:
+    - 'block_content:basic:165e194c-484a-416d-9b8c-2bb2d4d75b2c'
+  module:
+    - block_content
+active_version: e01a0ee4dcb5cb3d
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: 'block_content:165e194c-484a-416d-9b8c-2bb2d4d75b2c'
+        label: 'Homepage Events'
+        label_display: '0'
+        provider: block_content
+        view_mode: full
+    fallback_metadata:
+      slot_definitions: null
+  406ab1870b12d7e6:
+    settings:
+      default_settings:
+        id: 'block_content:165e194c-484a-416d-9b8c-2bb2d4d75b2c'
+        label: 'Homepage Events'
+        label_display: '0'
+        provider: block_content
+        status: true
+        info: ''
+        view_mode: full
+    fallback_metadata:
+      slot_definitions: null
+label: 'Homepage Events'
+id: block.block_content.165e194c-484a-416d-9b8c-2bb2d4d75b2c
+provider: block_content
+source: block
+source_local_id: 'block_content:165e194c-484a-416d-9b8c-2bb2d4d75b2c'

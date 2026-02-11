@@ -1,0 +1,9 @@
+uuid: 18140990-5016-45e6-a687-c24003c2d3d1
+langcode: en
+status: true
+dependencies: {  }
+name: 'Feed Source'
+vid: feed_source
+description: ''
+weight: 0
+new_revision: false

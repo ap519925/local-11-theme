@@ -1,0 +1,21 @@
+uuid: 2a0f6fc8-8839-4db1-aff2-aa2af200996f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_news_date
+    - node.type.news_article
+  module:
+    - datetime
+id: node.news_article.field_news_date
+field_name: field_news_date
+entity_type: node
+bundle: news_article
+label: Date
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

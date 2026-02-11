@@ -1,0 +1,41 @@
+uuid: 31752b18-b05c-4419-a1d7-4a937f478c8b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.ibew_cta_strip.field_cta_link
+    - field.field.paragraph.ibew_cta_strip.field_cta_text
+    - paragraphs.paragraphs_type.ibew_cta_strip
+  module:
+    - field_layout
+    - layout_discovery
+    - link
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
+id: paragraph.ibew_cta_strip.default
+targetEntityType: paragraph
+bundle: ibew_cta_strip
+mode: default
+content:
+  field_cta_link:
+    type: link_default
+    weight: 1
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+  field_cta_text:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

@@ -1,0 +1,72 @@
+uuid: 9306320d-5b9e-4f53-9fa8-a1cce84ec820
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.obituary.body
+    - field.field.node.obituary.field_date_birth
+    - field.field.node.obituary.field_date_passing
+    - field.field.node.obituary.field_image
+    - field.field.node.obituary.field_member_number
+    - node.type.obituary
+  module:
+    - datetime
+    - image
+    - text
+    - user
+id: node.obituary.default
+targetEntityType: node
+bundle: obituary
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_date_birth:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_date_passing:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  field_image:
+    type: image
+    label: above
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_member_number:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 105
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  search_api_excerpt: true

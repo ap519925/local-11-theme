@@ -1,0 +1,37 @@
+uuid: a718e53d-2e14-459c-9048-36492ddd987e
+langcode: en
+status: false
+dependencies:
+  content:
+    - 'block_content:basic:34103210-f20f-4f0c-8ffc-d441dec2d04b'
+  module:
+    - block_content
+active_version: 79f59245e47a1469
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: 'block_content:34103210-f20f-4f0c-8ffc-d441dec2d04b'
+        label: 'Homepage Stats Bar'
+        label_display: '0'
+        provider: block_content
+        view_mode: full
+    fallback_metadata:
+      slot_definitions: null
+  8165a238ea8a5989:
+    settings:
+      default_settings:
+        id: 'block_content:34103210-f20f-4f0c-8ffc-d441dec2d04b'
+        label: 'Homepage Stats Bar'
+        label_display: '0'
+        provider: block_content
+        status: true
+        info: ''
+        view_mode: full
+    fallback_metadata:
+      slot_definitions: null
+label: 'Homepage Stats Bar'
+id: block.block_content.34103210-f20f-4f0c-8ffc-d441dec2d04b
+provider: block_content
+source: block
+source_local_id: 'block_content:34103210-f20f-4f0c-8ffc-d441dec2d04b'

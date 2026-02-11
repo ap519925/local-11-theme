@@ -1,0 +1,37 @@
+uuid: ad4d8f79-9eae-4b09-aa06-523a29ec78f8
+langcode: en
+status: false
+dependencies:
+  content:
+    - 'block_content:basic:0e1a94e1-f6bc-4efc-aef2-fe44da71712c'
+  module:
+    - block_content
+active_version: 9dde7844d4744974
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: 'block_content:0e1a94e1-f6bc-4efc-aef2-fe44da71712c'
+        label: 'Static About Homepage'
+        label_display: '0'
+        provider: block_content
+        view_mode: full
+    fallback_metadata:
+      slot_definitions: null
+  dc7a6b0fd212cb4a:
+    settings:
+      default_settings:
+        id: 'block_content:0e1a94e1-f6bc-4efc-aef2-fe44da71712c'
+        label: 'Static About Homepage'
+        label_display: '0'
+        provider: block_content
+        status: true
+        info: ''
+        view_mode: full
+    fallback_metadata:
+      slot_definitions: null
+label: 'Static About Homepage'
+id: block.block_content.0e1a94e1-f6bc-4efc-aef2-fe44da71712c
+provider: block_content
+source: block
+source_local_id: 'block_content:0e1a94e1-f6bc-4efc-aef2-fe44da71712c'

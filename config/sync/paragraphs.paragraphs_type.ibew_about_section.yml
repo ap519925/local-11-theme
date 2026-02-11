@@ -1,0 +1,10 @@
+uuid: ff880050-d277-4e89-8203-44828b120856
+langcode: en
+status: true
+dependencies: {  }
+id: ibew_about_section
+label: 'About Section'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

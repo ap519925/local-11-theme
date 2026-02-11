@@ -1,0 +1,21 @@
+uuid: 227e6ac6-2307-42c6-be1f-23146467c449
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_heading
+    - paragraphs.paragraphs_type.ibew_section_cta_grid
+id: paragraph.ibew_section_cta_grid.field_heading
+field_name: field_heading
+entity_type: paragraph
+bundle: ibew_section_cta_grid
+label: Heading
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 'READY TO BUILD YOUR FUTURE?'
+default_value_callback: ''
+settings: {  }
+field_type: string

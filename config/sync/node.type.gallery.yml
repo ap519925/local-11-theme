@@ -1,0 +1,11 @@
+uuid: 64cd7afe-8a92-4012-9dd9-3c367e7675a3
+langcode: en
+status: true
+dependencies: {  }
+name: Gallery
+type: gallery
+description: 'For photo galleries and event photos.'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: true

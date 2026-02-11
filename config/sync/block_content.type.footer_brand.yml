@@ -1,0 +1,8 @@
+uuid: 225fe25d-b079-43ed-aac1-db6015239b85
+langcode: en
+status: true
+dependencies: {  }
+id: footer_brand
+label: 'Footer Brand'
+revision: false
+description: 'Logo and description for footer.'

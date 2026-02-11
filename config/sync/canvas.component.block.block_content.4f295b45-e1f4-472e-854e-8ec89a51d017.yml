@@ -1,0 +1,37 @@
+uuid: 64bb930a-4591-4161-b1cc-43c2844fbd65
+langcode: en
+status: false
+dependencies:
+  content:
+    - 'block_content:basic:4f295b45-e1f4-472e-854e-8ec89a51d017'
+  module:
+    - block_content
+active_version: 3fd1d8384eda9930
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: 'block_content:4f295b45-e1f4-472e-854e-8ec89a51d017'
+        label: 'Footer Col 2 (Links)'
+        label_display: '0'
+        provider: block_content
+        view_mode: full
+    fallback_metadata:
+      slot_definitions: null
+  fb572420dfa7e4b3:
+    settings:
+      default_settings:
+        id: 'block_content:4f295b45-e1f4-472e-854e-8ec89a51d017'
+        label: 'Footer Col 2 (Links)'
+        label_display: '0'
+        provider: block_content
+        status: true
+        info: ''
+        view_mode: full
+    fallback_metadata:
+      slot_definitions: null
+label: 'Footer Col 2 (Links)'
+id: block.block_content.4f295b45-e1f4-472e-854e-8ec89a51d017
+provider: block_content
+source: block
+source_local_id: 'block_content:4f295b45-e1f4-472e-854e-8ec89a51d017'

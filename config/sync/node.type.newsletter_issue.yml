@@ -1,0 +1,11 @@
+uuid: c652d88c-a32f-4229-b717-a46f442a8b07
+langcode: en
+status: true
+dependencies: {  }
+name: 'Newsletter Issue'
+type: newsletter_issue
+description: 'For recurring newsletters like "Build Back Better".'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: true

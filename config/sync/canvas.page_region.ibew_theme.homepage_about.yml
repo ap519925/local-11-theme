@@ -1,0 +1,66 @@
+uuid: 1d76c8d5-e2a3-406d-a236-ea19889ba075
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.block.block_content.04d1397d-8ee8-46d7-bf66-0a9de66a68c5
+    - canvas.component.block.block_content.1137e118-c900-4019-8626-76dff9172970
+    - canvas.component.block.block_content.26d30b32-df29-44dc-aabd-68b1db076ebf
+    - canvas.component.block.block_content.34c2f6e0-0b49-4c3d-9a8a-30c2640b6cb4
+    - canvas.component.block.block_content.a36d549b-8543-4a74-adfc-930625546640
+  theme:
+    - ibew_theme
+id: ibew_theme.homepage_about
+region: homepage_about
+theme: ibew_theme
+component_tree:
+  -
+    uuid: 01a8b85b-196a-410b-8949-bf13fd081145
+    component_id: block.block_content.04d1397d-8ee8-46d7-bf66-0a9de66a68c5
+    component_version: ddb62933a4743e7d
+    inputs:
+      label: Block
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: full
+  -
+    uuid: a1aaa303-0507-4cb3-96aa-3705bab9eafd
+    component_id: block.block_content.1137e118-c900-4019-8626-76dff9172970
+    component_version: ba764f5fb51e40f5
+    inputs:
+      label: Block
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: full
+  -
+    uuid: fe835875-490d-44bf-ae59-f081be0eda29
+    component_id: block.block_content.26d30b32-df29-44dc-aabd-68b1db076ebf
+    component_version: bdfe434f6181b7fe
+    inputs:
+      label: Block
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: full
+  -
+    uuid: d42d00d9-332d-46d6-92c7-240857f2947d
+    component_id: block.block_content.a36d549b-8543-4a74-adfc-930625546640
+    component_version: 087738ce2e3de581
+    inputs:
+      label: Block
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: full
+  -
+    uuid: 16b2cd41-6356-4720-939c-58a1845d38b0
+    component_id: block.block_content.34c2f6e0-0b49-4c3d-9a8a-30c2640b6cb4
+    component_version: 0743f9208119ad88
+    inputs:
+      label: 'Homepage About'
+      label_display: visible
+      status: true
+      info: ''
+      view_mode: full

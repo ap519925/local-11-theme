@@ -1,0 +1,27 @@
+uuid: cdc29646-ee6f-4aa2-918f-1f1eb097910d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_pdf_version
+    - node.type.newsletter_issue
+  module:
+    - file
+id: node.newsletter_issue.field_pdf_version
+field_name: field_pdf_version
+entity_type: node
+bundle: newsletter_issue
+label: 'PDF Version'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: txt
+  max_filesize: ''
+  description_field: false
+field_type: file

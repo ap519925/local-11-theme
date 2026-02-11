@@ -1,0 +1,19 @@
+uuid: ec272908-d4f8-4f61-abcf-a62f9daabd58
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_service_areas
+    - node.type.contractor_profile
+id: node.contractor_profile.field_service_areas
+field_name: field_service_areas
+entity_type: node
+bundle: contractor_profile
+label: 'Service Areas'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

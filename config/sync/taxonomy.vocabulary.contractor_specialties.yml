@@ -1,0 +1,9 @@
+uuid: eb63c668-ece6-48af-8c53-3673ae91e819
+langcode: en
+status: true
+dependencies: {  }
+name: 'Contractor Specialties'
+vid: contractor_specialties
+description: ''
+weight: 0
+new_revision: false

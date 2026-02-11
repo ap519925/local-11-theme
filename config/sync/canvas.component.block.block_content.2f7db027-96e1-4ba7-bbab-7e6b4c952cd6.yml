@@ -1,0 +1,25 @@
+uuid: 46072f05-726a-43c5-bc83-dac2bfdff530
+langcode: en
+status: false
+dependencies:
+  content:
+    - 'block_content:basic:2f7db027-96e1-4ba7-bbab-7e6b4c952cd6'
+  module:
+    - block_content
+active_version: 5f45659a81a34ced
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: 'block_content:2f7db027-96e1-4ba7-bbab-7e6b4c952cd6'
+        label: 'Homepage About Intro'
+        label_display: '0'
+        provider: block_content
+        view_mode: full
+    fallback_metadata:
+      slot_definitions: null
+label: 'Homepage About Intro'
+id: block.block_content.2f7db027-96e1-4ba7-bbab-7e6b4c952cd6
+provider: block_content
+source: block
+source_local_id: 'block_content:2f7db027-96e1-4ba7-bbab-7e6b4c952cd6'

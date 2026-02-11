@@ -1,0 +1,19 @@
+uuid: 695e4ea4-140b-4c50-8f25-faa16f29cf72
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_phone
+    - node.type.contractor_profile
+id: node.contractor_profile.field_phone
+field_name: field_phone
+entity_type: node
+bundle: contractor_profile
+label: Phone
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

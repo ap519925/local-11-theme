@@ -1,0 +1,10 @@
+uuid: 64008f40-7ee3-48c1-b6ff-73002d0fd5b6
+langcode: en
+status: true
+dependencies: {  }
+id: ibew_section_news
+label: 'IBEW News Section'
+icon_uuid: null
+icon_default: null
+description: null
+behavior_plugins: {  }

@@ -1,0 +1,27 @@
+uuid: 002b5843-52d1-4dd2-b37c-1f484a7d6b34
+langcode: en
+status: true
+dependencies:
+  module:
+    - project_browser
+active_version: 95af6b49fedc4f71
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: 'project_browser_block:local_modules'
+        label: 'Local modules'
+        label_display: '0'
+        provider: project_browser
+        paginate: true
+        page_sizes: '12, 24, 36, 48'
+        sort_options: null
+        default_sort: null
+        filters: null
+    fallback_metadata:
+      slot_definitions: null
+label: 'Local modules'
+id: block.project_browser_block.local_modules
+provider: project_browser
+source: block
+source_local_id: 'project_browser_block:local_modules'

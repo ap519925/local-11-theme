@@ -1,0 +1,33 @@
+uuid: fc81642b-0c87-4b3e-8ddf-1ebc146f4f01
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.block.block_content.e662fe3f-3ae6-4d4c-973f-77dfadaf379b
+    - canvas.component.block.block_content.fb284e76-6592-44eb-b614-da21b2b1acc5
+  theme:
+    - ibew_theme
+id: ibew_theme.homepage_hero_content
+region: homepage_hero_content
+theme: ibew_theme
+component_tree:
+  -
+    uuid: c30e9ade-8d37-48d8-a1fb-d771a333b888
+    component_id: block.block_content.e662fe3f-3ae6-4d4c-973f-77dfadaf379b
+    component_version: 1f31793c3df7b6b9
+    inputs:
+      label: Block
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: full
+  -
+    uuid: 4703a3b4-fb83-4b9f-a217-105dfde7dc8c
+    component_id: block.block_content.fb284e76-6592-44eb-b614-da21b2b1acc5
+    component_version: 3cd21b7480db2aa6
+    inputs:
+      label: Block
+      label_display: '0'
+      status: true
+      info: ''
+      view_mode: full

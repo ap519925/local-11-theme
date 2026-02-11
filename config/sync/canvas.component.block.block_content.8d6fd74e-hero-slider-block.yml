@@ -1,0 +1,25 @@
+uuid: 0a420a5b-3c03-43ab-bdc8-2d7df5a10494
+langcode: en
+status: false
+dependencies:
+  content:
+    - 'block_content:hero_slider:8d6fd74e-hero-slider-block'
+  module:
+    - block_content
+active_version: 79340ddfef29e8fa
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: 'block_content:8d6fd74e-hero-slider-block'
+        label: 'Homepage Hero Slider'
+        label_display: '0'
+        provider: block_content
+        view_mode: full
+    fallback_metadata:
+      slot_definitions: null
+label: 'Homepage Hero Slider'
+id: block.block_content.8d6fd74e-hero-slider-block
+provider: block_content
+source: block
+source_local_id: 'block_content:8d6fd74e-hero-slider-block'

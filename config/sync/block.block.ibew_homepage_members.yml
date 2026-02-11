@@ -1,0 +1,23 @@
+uuid: e57f7ab0-fa4d-4e1c-b985-c7e0e5475538
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:2d115c3d-250d-4f67-9c2e-5f99b7de1f15'
+  module:
+    - block_content
+  theme:
+    - ibew_theme
+id: ibew_homepage_members
+theme: ibew_theme
+region: homepage_members
+weight: -8
+provider: null
+plugin: 'block_content:2d115c3d-250d-4f67-9c2e-5f99b7de1f15'
+settings:
+  id: 'block_content:2d115c3d-250d-4f67-9c2e-5f99b7de1f15'
+  label: 'Homepage Members'
+  label_display: ''
+  provider: block_content
+  view_mode: full
+visibility: {  }

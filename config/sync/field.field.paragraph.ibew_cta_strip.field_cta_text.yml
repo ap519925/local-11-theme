@@ -1,0 +1,19 @@
+uuid: 9cdb439b-7321-4f86-99b1-f0eb67c0a535
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_cta_text
+    - paragraphs.paragraphs_type.ibew_cta_strip
+id: paragraph.ibew_cta_strip.field_cta_text
+field_name: field_cta_text
+entity_type: paragraph
+bundle: ibew_cta_strip
+label: 'Main Text'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,8 @@
+uuid: 7bc0247e-587b-43a6-b909-ba6b34f77c97
+langcode: en
+status: true
+dependencies: {  }
+id: hero_overlay
+label: 'Hero Overlay'
+revision: false
+description: 'Overlay content for the homepage hero slider.'

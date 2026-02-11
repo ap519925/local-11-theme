@@ -1,0 +1,11 @@
+uuid: 0cbd36fd-a9b5-4592-a765-d91f729eedc7
+langcode: en
+status: true
+dependencies: {  }
+name: Resource/Document
+type: resource
+description: 'For member resources, forms, and downloadable content.'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: true

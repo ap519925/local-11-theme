@@ -1,0 +1,22 @@
+uuid: 579a18d9-c05d-4737-9547-a34b182c93e5
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: training_course
+label: 'Training Course'
+type: 'canonical_entities:node'
+pattern: '/training/[node:title]'
+selection_criteria:
+  088d6059-e134-45c7-a35d-d72a39219749:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 088d6059-e134-45c7-a35d-d72a39219749
+    context_mapping:
+      node: node
+    bundles:
+      - training_course
+selection_logic: and
+weight: -5
+relationships: {  }

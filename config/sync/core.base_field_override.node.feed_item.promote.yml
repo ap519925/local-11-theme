@@ -1,0 +1,22 @@
+uuid: bcff0251-7307-47d6-9939-c88c1fc8827d
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.feed_item
+id: node.feed_item.promote
+field_name: promote
+entity_type: node
+bundle: feed_item
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: true
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

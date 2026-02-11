@@ -1,0 +1,52 @@
+uuid: 7e5f9659-e739-4823-832f-10a00426751c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.ibew_about_section.field_about_body
+    - field.field.paragraph.ibew_about_section.field_about_image
+    - field.field.paragraph.ibew_about_section.field_about_title
+    - image.style.thumbnail
+    - paragraphs.paragraphs_type.ibew_about_section
+  module:
+    - field_layout
+    - image
+    - layout_discovery
+    - text
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
+id: paragraph.ibew_about_section.default
+targetEntityType: paragraph
+bundle: ibew_about_section
+mode: default
+content:
+  field_about_body:
+    type: text_textarea
+    weight: 1
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_about_image:
+    type: image_image
+    weight: 2
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+  field_about_title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

@@ -1,0 +1,28 @@
+uuid: 14c94ac9-5d63-4cf5-b318-d3cb89c6082e
+langcode: en
+status: false
+dependencies:
+  config:
+    - block_content.type.hero_overlay
+  module:
+    - layout_builder
+active_version: 87c0300570fced8c
+versioned_properties:
+  active:
+    settings:
+      default_settings:
+        id: 'inline_block:hero_overlay'
+        label: 'Hero Overlay'
+        label_display: '0'
+        provider: layout_builder
+        view_mode: full
+        block_id: null
+        block_revision_id: null
+        block_serialized: null
+    fallback_metadata:
+      slot_definitions: null
+label: 'Hero Overlay'
+id: block.inline_block.hero_overlay
+provider: layout_builder
+source: block
+source_local_id: 'inline_block:hero_overlay'

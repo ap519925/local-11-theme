@@ -1,0 +1,19 @@
+uuid: 6ea68fe1-51ad-4fa1-88f4-0efa75509cd0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_project_type
+    - node.type.success_story
+id: node.success_story.field_project_type
+field_name: field_project_type
+entity_type: node
+bundle: success_story
+label: 'Project Type'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,18 @@
+uuid: 5d15ff3f-628d-450d-acf4-cf057a788f0b
+langcode: en
+status: true
+dependencies:
+  theme:
+    - ibew_theme
+id: ibew_theme_local_actions
+theme: ibew_theme
+region: content
+weight: -101
+provider: core
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary Admin Actions'
+  label_display: '0'
+  provider: core
+visibility: {  }

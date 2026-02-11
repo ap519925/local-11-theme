@@ -1,0 +1,22 @@
+uuid: 9fec6d62-44a5-41b1-9de8-9ed23013525e
+langcode: en
+status: true
+dependencies:
+  config:
+    - canvas.component.block.block_content.e443b34c-f5c2-4eb8-9378-9b5a8c9483e9
+  theme:
+    - ibew_theme
+id: ibew_theme.homepage_news
+region: homepage_news
+theme: ibew_theme
+component_tree:
+  -
+    uuid: 91365d65-de08-4fda-99ff-181d2429d228
+    component_id: block.block_content.e443b34c-f5c2-4eb8-9378-9b5a8c9483e9
+    component_version: 30f13a922b762a3e
+    inputs:
+      label: 'Homepage News'
+      label_display: ''
+      status: true
+      info: ''
+      view_mode: full

@@ -1,0 +1,11 @@
+uuid: dede8a45-d183-49f1-b2d5-5076b7753bae
+langcode: en
+status: true
+dependencies: {  }
+name: 'Contractor Profile'
+type: contractor_profile
+description: 'For NECA contractors and signatory companies.'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: true

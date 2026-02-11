@@ -1,0 +1,19 @@
+uuid: e4593de9-36df-4308-846b-bb6297824018
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_content
+id: block_content.field_hero_description
+field_name: field_hero_description
+entity_type: block_content
+type: string_long
+settings:
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

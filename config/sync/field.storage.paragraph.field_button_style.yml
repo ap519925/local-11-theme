@@ -1,0 +1,30 @@
+uuid: 21249515-27e1-4e31-9f3d-57c5eb39e6da
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_button_style
+field_name: field_button_style
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: gold
+      label: 'Gold (Primary)'
+    -
+      value: blue
+      label: 'Blue (Secondary)'
+    -
+      value: outline
+      label: 'White Outline'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

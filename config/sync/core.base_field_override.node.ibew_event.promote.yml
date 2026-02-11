@@ -1,0 +1,22 @@
+uuid: 50b7cad3-f4de-49c8-b571-e4d4c171e3dd
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.ibew_event
+id: node.ibew_event.promote
+field_name: promote
+entity_type: node
+bundle: ibew_event
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: true
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -1,0 +1,10 @@
+uuid: 289f8b91-5bc2-4ede-ba8e-0a6277330ee7
+langcode: en
+status: true
+dependencies: {  }
+id: ibew_cta_strip
+label: 'CTA Strip'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

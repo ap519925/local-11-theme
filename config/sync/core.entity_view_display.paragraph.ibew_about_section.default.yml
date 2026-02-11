@@ -1,0 +1,45 @@
+uuid: 284c6dc1-8d1b-4d46-9bc0-fc78651bc776
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.ibew_about_section.field_about_body
+    - field.field.paragraph.ibew_about_section.field_about_image
+    - field.field.paragraph.ibew_about_section.field_about_title
+    - paragraphs.paragraphs_type.ibew_about_section
+  module:
+    - image
+    - text
+id: paragraph.ibew_about_section.default
+targetEntityType: paragraph
+bundle: ibew_about_section
+mode: default
+content:
+  field_about_body:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_about_image:
+    type: image
+    label: above
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_about_title:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  search_api_excerpt: true

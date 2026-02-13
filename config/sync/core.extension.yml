@@ -15,8 +15,6 @@ module:
   block: 0
   block_content: 0
   breakpoint: 0
-  canvas: 0
-  canvas_dev_mode: 0
   ckeditor5: 0
   comment: 0
   config: 0
@@ -45,9 +43,9 @@ module:
   help: 0
   history: 0
   hover_on: 0
-  ibew_canvas_helper: 0
   ibew_contact: 0
   ibew_homepage_blocks: 0
+  ibew_login_redirect: 0
   image: 0
   key: 0
   layout_builder: 0
@@ -91,5 +89,4 @@ theme:
   radix: 0
   ibew_theme: 0
   gin: 0
-  canvas_stark: 0
 profile: standard

@@ -139,15 +139,29 @@ function ibew_theme_preprocess_page(&$variables) {
   $breadcrumb = $breadcrumb_manager->build($route_match);
   
   if ($breadcrumb) {
-    $variables['breadcrumb'] = [
-      '#theme' => 'breadcrumb',
-      '#links' => $breadcrumb->getLinks(),
-      '#cache' => [
-        'contexts' => $breadcrumb->getCacheContexts(),
-        'tags' => $breadcrumb->getCacheTags(),
-        'max-age' => $breadcrumb->getCacheMaxAge(),
-      ],
-    ];
+    $links = $breadcrumb->getLinks();
+    $breadcrumb_items = [];
+    
+    foreach ($links as $link) {
+      $breadcrumb_items[] = [
+        'text' => $link->getText(),
+        'url' => $link->getUrl()->toString(),
+      ];
+    }
+    
+    // Add current page title as the last breadcrumb item (no link)
+    $request = \Drupal::request();
+    $title = \Drupal::service('title_resolver')->getTitle($request, $route_match->getRouteObject());
+    if ($title) {
+      $breadcrumb_items[] = [
+        'text' => $title,
+        'url' => '',
+      ];
+    }
+    
+    if (!empty($breadcrumb_items)) {
+      $variables['breadcrumb'] = $breadcrumb_items;
+    }
   }
   $route_name = \Drupal::routeMatch()->getRouteName();
   if ($route_name === 'ibew_contact.contact_page') {
@@ -177,6 +191,50 @@ function ibew_theme_preprocess_page(&$variables) {
   $variables['social_twitter'] = theme_get_setting('social_twitter') ?: '#';
   $variables['social_linkedin'] = theme_get_setting('social_linkedin') ?: '#';
   $variables['social_instagram'] = theme_get_setting('social_instagram') ?: '#';
+
+  // --- Hero Video Background Settings ---
+  $hero_video_enabled = theme_get_setting('hero_video_enabled') ?? FALSE;
+  $variables['hero_video_enabled'] = $hero_video_enabled;
+
+  if ($hero_video_enabled) {
+    $video_source = theme_get_setting('hero_video_source') ?? 'url';
+    $video_url = '';
+    $video_type = 'mp4'; // 'mp4', 'youtube', 'vimeo'
+
+    if ($video_source === 'upload') {
+      // Resolve the uploaded file to a URL
+      $fids = theme_get_setting('hero_video_upload');
+      if (!empty($fids)) {
+        $fid = is_array($fids) ? reset($fids) : $fids;
+        if ($fid) {
+          $file = \Drupal\file\Entity\File::load($fid);
+          if ($file) {
+            $video_url = \Drupal::service('file_url_generator')->generateAbsoluteString($file->getFileUri());
+          }
+        }
+      }
+    }
+    else {
+      $video_url = theme_get_setting('hero_video_url') ?? '';
+    }
+
+    // Detect YouTube or Vimeo URLs
+    if (!empty($video_url)) {
+      if (preg_match('/(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/', $video_url, $matches)) {
+        $video_type = 'youtube';
+        $video_url = $matches[1]; // Extract just the YouTube ID
+      }
+      elseif (preg_match('/vimeo\.com\/(?:video\/)?(\d+)/', $video_url, $matches)) {
+        $video_type = 'vimeo';
+        $video_url = $matches[1]; // Extract just the Vimeo ID
+      }
+    }
+
+    $variables['hero_video_url'] = $video_url;
+    $variables['hero_video_type'] = $video_type;
+    $variables['hero_video_overlay_opacity'] = (theme_get_setting('hero_video_overlay_opacity') ?? 50) / 100;
+    $variables['hero_video_poster'] = theme_get_setting('hero_video_poster') ?? '';
+  }
 
   // LOAD MAIN MENU PROGRAMMATICALLY (Global Navigation)
   // This ensures the menu is available on EVERY page, regardless of block layout.

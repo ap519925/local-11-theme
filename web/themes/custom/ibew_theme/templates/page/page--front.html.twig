@@ -33,14 +33,63 @@
 
 	<section
 		class="ibew-hero p-0 relative h-screen">
-		{# Background Slider (Z-0) #}
-		<div class="absolute inset-0 w-full h-full z-0">
-			{% if page.homepage_hero %}
-				{{ page.homepage_hero }}
-			{% endif %}
-		</div>
-		{# Global Overlay (Z-10) #}
-		<div class="absolute inset-0 z-10 pointer-events-none" style="background-color: rgba(0, 0, 0, 0.6);"></div>
+
+		{# ===== HERO BACKGROUND (Video or Image Slider) ===== #}
+		{% if hero_video_enabled and hero_video_url %}
+			{# --- VIDEO BACKGROUND MODE --- #}
+			<div class="ibew-hero-video-wrapper absolute inset-0 w-full h-full z-0 overflow-hidden">
+				{% if hero_video_type == 'youtube' %}
+					{# YouTube Embed as Background #}
+					<iframe
+						class="ibew-hero-video-iframe"
+						src="https://www.youtube.com/embed/{{ hero_video_url }}?autoplay=1&mute=1&loop=1&playlist={{ hero_video_url }}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&origin={{ url('<front>')|render }}"
+						frameborder="0"
+						allow="autoplay; encrypted-media"
+						allowfullscreen
+						title="Hero Background Video"
+						loading="eager"
+					></iframe>
+				{% elseif hero_video_type == 'vimeo' %}
+					{# Vimeo Embed as Background #}
+					<iframe
+						class="ibew-hero-video-iframe"
+						src="https://player.vimeo.com/video/{{ hero_video_url }}?autoplay=1&loop=1&muted=1&background=1&controls=0&playsinline=1"
+						frameborder="0"
+						allow="autoplay; encrypted-media"
+						allowfullscreen
+						title="Hero Background Video"
+						loading="eager"
+					></iframe>
+				{% else %}
+					{# Direct MP4/WebM Video #}
+					<video
+						class="ibew-hero-video"
+						autoplay
+						muted
+						loop
+						playsinline
+						preload="auto"
+						{% if hero_video_poster %}poster="{{ hero_video_poster }}"{% endif %}
+					>
+						<source src="{{ hero_video_url }}" type="video/mp4">
+						{{ 'Your browser does not support HTML5 video.'|t }}
+					</video>
+				{% endif %}
+			</div>
+
+			{# Video Overlay (configurable opacity) #}
+			<div class="absolute inset-0 z-10 pointer-events-none" style="background-color: rgba(0, 0, 0, {{ hero_video_overlay_opacity }});"></div>
+		{% else %}
+			{# --- IMAGE SLIDER MODE (Default/Fallback) --- #}
+			{# Background Slider (Z-0) #}
+			<div class="absolute inset-0 w-full h-full z-0">
+				{% if page.homepage_hero %}
+					{{ page.homepage_hero }}
+				{% endif %}
+			</div>
+			{# Global Overlay (Z-10) #}
+			<div class="absolute inset-0 z-10 pointer-events-none" style="background-color: rgba(0, 0, 0, 0.6);"></div>
+		{% endif %}
 
 
 		{# Content Overlay (Z-20) #}

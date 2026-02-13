@@ -7,15 +7,12 @@ dependencies:
     - field.field.node.news_article.body
     - field.field.node.news_article.field_external_link
     - field.field.node.news_article.field_featured_image
-    - field.field.node.news_article.field_image_gallery
     - field.field.node.news_article.field_news_date
-    - field.field.node.news_article.field_news_image
     - field.field.node.news_article.field_news_source
     - field.field.node.news_article.field_published_date
     - field.field.node.news_article.field_tags
     - node.type.news_article
   module:
-    - image
     - link
     - user
 id: node.news_article.teaser
@@ -51,17 +48,6 @@ content:
     third_party_settings: {  }
     weight: 103
     region: content
-  field_news_image:
-    type: image
-    label: hidden
-    settings:
-      image_link: ''
-      image_style: ''
-      image_loading:
-        attribute: lazy
-    third_party_settings: {  }
-    weight: 102
-    region: content
   field_news_source:
     type: string
     label: hidden
@@ -77,7 +63,6 @@ content:
     region: content
 hidden:
   field_featured_image: true
-  field_image_gallery: true
   field_published_date: true
   field_tags: true
   search_api_excerpt: true

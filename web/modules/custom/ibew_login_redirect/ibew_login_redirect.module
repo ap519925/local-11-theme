@@ -3,22 +3,34 @@
 /**
  * @file
  * IBEW Login Redirect module.
+ *
+ * Redirects authenticated users to /admin/content after login.
  */
 
 use Drupal\Core\Form\FormStateInterface;
-use Symfony\Component\HttpFoundation\RedirectResponse;
+use Drupal\Core\Url;
 
 /**
  * Implements hook_form_FORM_ID_alter() for user_login_form.
  */
 function ibew_login_redirect_form_user_login_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  // Add our redirect handler to the END so it runs last and wins.
   $form['#submit'][] = 'ibew_login_redirect_user_login_submit';
+
+  // Also remove any ?destination= parameter that would override our redirect.
+  $request = \Drupal::request();
+  if ($request->query->has('destination')) {
+    $request->query->remove('destination');
+  }
 }
 
 /**
  * Custom submit handler for user login form.
+ *
+ * Redirects to /admin/content after successful login.
  */
 function ibew_login_redirect_user_login_submit($form, FormStateInterface $form_state) {
-  // Redirect to /admin/content after login
-  $form_state->setRedirect('system.admin_content');
+  // Use setRedirectUrl for a reliable redirect.
+  $url = Url::fromRoute('system.admin_content');
+  $form_state->setRedirectUrl($url);
 }

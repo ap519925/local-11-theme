@@ -9,7 +9,7 @@
 		<ol class="breadcrumb-list flex flex-wrap items-center gap-2 text-sm m-0 p-0 list-none">
 			{% for item in breadcrumb %}
 				<li class="breadcrumb-item flex items-center">
-					{% if not loop.last %}
+					{% if item.url is not empty and not loop.last %}
 						<a href="{{ item.url }}" class="text-gray-600 hover:text-ibew-gold transition-colors duration-200 no-underline">
 							{{ item.text }}
 						</a>

@@ -6,18 +6,14 @@ dependencies:
     - field.field.node.news_article.body
     - field.field.node.news_article.field_external_link
     - field.field.node.news_article.field_featured_image
-    - field.field.node.news_article.field_image_gallery
     - field.field.node.news_article.field_news_date
-    - field.field.node.news_article.field_news_image
     - field.field.node.news_article.field_news_source
     - field.field.node.news_article.field_published_date
     - field.field.node.news_article.field_tags
-    - image.style.thumbnail
     - node.type.news_article
   module:
     - datetime
     - field_layout
-    - image
     - layout_discovery
     - media_library
     - path
@@ -54,14 +50,6 @@ content:
     region: content
     settings:
       media_types: {  }
-    third_party_settings: {  }
-  field_image_gallery:
-    type: image_image
-    weight: 50
-    region: content
-    settings:
-      progress_indicator: throbber
-      preview_image_style: thumbnail
     third_party_settings: {  }
   field_published_date:
     type: datetime_default
@@ -113,7 +101,6 @@ content:
 hidden:
   field_external_link: true
   field_news_date: true
-  field_news_image: true
   field_news_source: true
   promote: true
   sticky: true

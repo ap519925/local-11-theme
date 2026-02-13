@@ -1,0 +1,23 @@
+uuid: d53fcf9d-550e-4b02-972f-b2ea70cb0263
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:hero_overlay:89521010-91d0-4ea4-82fe-d10a66805df7'
+  module:
+    - block_content
+  theme:
+    - ibew_theme
+id: ibew_homepage_hero_overlay
+theme: ibew_theme
+region: homepage_hero_content
+weight: 0
+provider: null
+plugin: 'block_content:89521010-91d0-4ea4-82fe-d10a66805df7'
+settings:
+  id: 'block_content:89521010-91d0-4ea4-82fe-d10a66805df7'
+  label: 'Homepage Hero Overlay'
+  label_display: ''
+  provider: block_content
+  view_mode: full
+visibility: {  }

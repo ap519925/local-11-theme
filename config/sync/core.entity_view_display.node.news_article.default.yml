@@ -6,17 +6,13 @@ dependencies:
     - field.field.node.news_article.body
     - field.field.node.news_article.field_external_link
     - field.field.node.news_article.field_featured_image
-    - field.field.node.news_article.field_image_gallery
     - field.field.node.news_article.field_news_date
-    - field.field.node.news_article.field_news_image
     - field.field.node.news_article.field_news_source
     - field.field.node.news_article.field_published_date
     - field.field.node.news_article.field_tags
-    - image.style.large
     - node.type.news_article
   module:
     - datetime
-    - image
     - text
     - user
 id: node.news_article.default
@@ -38,17 +34,6 @@ content:
       link: true
     third_party_settings: {  }
     weight: 105
-    region: content
-  field_image_gallery:
-    type: image
-    label: hidden
-    settings:
-      image_link: file
-      image_style: large
-      image_loading:
-        attribute: lazy
-    third_party_settings: {  }
-    weight: 50
     region: content
   field_published_date:
     type: datetime_default
@@ -75,6 +60,5 @@ content:
 hidden:
   field_external_link: true
   field_news_date: true
-  field_news_image: true
   field_news_source: true
   search_api_excerpt: true

@@ -9,6 +9,15 @@
 <div class="ibew-page">
 	{% include '@ibew_theme/includes/header.html.twig' %}
 
+	{# Breadcrumbs #}
+	{% if breadcrumb %}
+		<div class="ibew-breadcrumb-wrapper bg-gray-50 border-b border-gray-200">
+			<div class="container py-3">
+				{% include '@ibew_theme/navigation/breadcrumb.html.twig' %}
+			</div>
+		</div>
+	{% endif %}
+
 	{# --- HERO SECTION (Parallax) --- #}
 	<section
 		class="ibew-parallax-hero">

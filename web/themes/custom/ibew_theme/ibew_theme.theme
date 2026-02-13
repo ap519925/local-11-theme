@@ -133,6 +133,27 @@ function ibew_theme_preprocess_page(&$variables) {
     $variables['#attached']['library'][] = 'ibew_theme/contact-page';
   }
 
+  // Generate breadcrumbs programmatically (bypass Canvas block management)
+  $breadcrumb_manager = \Drupal::service('breadcrumb');
+  $route_match = \Drupal::routeMatch();
+  $breadcrumb = $breadcrumb_manager->build($route_match);
+  
+  if ($breadcrumb) {
+    $variables['breadcrumb'] = [
+      '#theme' => 'breadcrumb',
+      '#links' => $breadcrumb->getLinks(),
+      '#cache' => [
+        'contexts' => $breadcrumb->getCacheContexts(),
+        'tags' => $breadcrumb->getCacheTags(),
+        'max-age' => $breadcrumb->getCacheMaxAge(),
+      ],
+    ];
+  }
+  $route_name = \Drupal::routeMatch()->getRouteName();
+  if ($route_name === 'ibew_contact.contact_page') {
+    $variables['#attached']['library'][] = 'ibew_theme/contact-page';
+  }
+
   // Manually embed Views to guarantee placement and bypass ghost blocks
   $variables['embedded_news_view'] = views_embed_view('homepage_news', 'block_1');
   $variables['embedded_events_view'] = views_embed_view('homepage_events', 'block_1');

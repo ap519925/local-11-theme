@@ -7,6 +7,7 @@ global-styling:
       css/contact-page.css: {}
       css/mobile-fixes.css: {}
       css/login-page.css: {}
+      css/breadcrumb.css: {}
   js:
     build/js/main.js: {}
     build/js/page-transitions.js: {}

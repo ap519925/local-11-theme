@@ -1,0 +1,70 @@
+/* Breadcrumb Styling */
+.ibew-breadcrumb-wrapper {
+    background: linear-gradient(to bottom, #f9fafb 0%, #f3f4f6 100%);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.ibew-breadcrumb {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.breadcrumb-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    gap: 0.5rem;
+}
+
+.breadcrumb-item {
+    display: flex;
+    align-items: center;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+}
+
+.breadcrumb-item a {
+    color: #4b5563;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.breadcrumb-item a:hover {
+    color: #d4af37;
+    /* IBEW Gold */
+}
+
+.breadcrumb-item svg {
+    margin: 0 0.5rem;
+    color: #9ca3af;
+    flex-shrink: 0;
+}
+
+.breadcrumb-item span[aria-current="page"] {
+    color: #111827;
+    font-weight: 500;
+}
+
+/* Dark mode support */
+html.dark .ibew-breadcrumb-wrapper {
+    background: linear-gradient(to bottom, #1f2937 0%, #111827 100%);
+    border-bottom-color: #374151;
+}
+
+html.dark .breadcrumb-item a {
+    color: #d1d5db;
+}
+
+html.dark .breadcrumb-item a:hover {
+    color: #fbbf24;
+}
+
+html.dark .breadcrumb-item svg {
+    color: #6b7280;
+}
+
+html.dark .breadcrumb-item span[aria-current="page"] {
+    color: #f3f4f6;
+}

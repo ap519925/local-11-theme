@@ -1,0 +1,28 @@
+{#
+/**
+ * @file
+ * Theme override for a breadcrumb trail.
+ */
+#}
+{% if breadcrumb %}
+	<nav class="ibew-breadcrumb" aria-label="Breadcrumb">
+		<ol class="breadcrumb-list flex flex-wrap items-center gap-2 text-sm m-0 p-0 list-none">
+			{% for item in breadcrumb %}
+				<li class="breadcrumb-item flex items-center">
+					{% if not loop.last %}
+						<a href="{{ item.url }}" class="text-gray-600 hover:text-ibew-gold transition-colors duration-200 no-underline">
+							{{ item.text }}
+						</a>
+						<svg class="mx-2 text-gray-400" width="16" height="16" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<polyline points="9 18 15 12 9 6"></polyline>
+						</svg>
+					{% else %}
+						<span class="text-gray-900 font-medium" aria-current="page">
+							{{ item.text }}
+						</span>
+					{% endif %}
+				</li>
+			{% endfor %}
+		</ol>
+	</nav>
+{% endif %}

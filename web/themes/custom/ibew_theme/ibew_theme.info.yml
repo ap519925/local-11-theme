@@ -11,6 +11,7 @@ regions:
   top_bar: 'Top Bar'
   header: Header
   primary_menu: 'Primary Menu'
+  breadcrumb: Breadcrumb
   homepage_hero: 'Homepage Hero (Background)'
   homepage_hero_content: 'Homepage Hero Content (Text)'
   homepage_about: 'Homepage About'

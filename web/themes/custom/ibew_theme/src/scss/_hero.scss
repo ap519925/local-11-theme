@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Hero Video Background Styles
+   Hero Styles (Video + Slider)
    ========================================================================== */
 
 /* Container for the video background */
@@ -49,6 +49,13 @@
 .ibew-hero {
     position: relative;
     overflow: hidden;
+    /* Fix potential gap below hero */
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+
+    /* Ensure height is not overly tall */
+    height: 80vh;
+    min-height: 500px;
 }
 
 /* Poster image fallback (shown while video loads) */
@@ -91,7 +98,6 @@
     }
 }
 
-/* Dark mode adjustments */
 /* Controls Fix: Ensure Splide arrows/pagination are above overlays */
 .splide__arrows,
 .splide__pagination,
@@ -107,14 +113,8 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
     transition: all 0.3s ease;
 }
+
 .splide__arrow:hover {
     background: rgba(255, 255, 255, 0.35) !important;
     transform: scale(1.1);
 }
-
-/* Fix potential gap below hero */
-.ibew-hero {
-    margin-bottom: 0 !important;
-    padding-bottom: 0 !important;
-}
-

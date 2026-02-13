@@ -8,33 +8,17 @@
 @import 'react/main.css';
 
 // Import components and theme-specific styling.
+// Import components and theme-specific styling.
 @import '~@splidejs/splide/dist/css/splide.min.css';
 @import '../../components/ibew-header/ibew-header';
+@import 'nav-menu';
+@import 'hero';
+@import 'breadcrumb';
+@import 'contact';
+@import 'login';
 @import 'frontpage';
 @import 'mobile-menu-animated';
-
-// Override/Reset Hero for Slider
-// Override/Reset Hero for Slider
-.ibew-hero {
-    padding: 0 !important;
-    background: none !important;
-    height: 65vh; // Reduced from 100vh
-    min-height: 500px; // Reduced from 700px
-
-    .ibew-hero__grid {
-        height: 100%;
-        margin: 0;
-        max-width: none;
-        padding: 0;
-        display: block; // Ensures the splide slider takes full width
-    }
-}
-
-.splide__slide {
-    height: 65vh; // Sync with parent height
-    min-height: 500px;
-    position: relative; // Ensure absolute children are positioned relative to slide
-}
+@import 'mobile-fixes';
 
 // Custom styles for IBEW Theme
 // Custom styles for IBEW Theme

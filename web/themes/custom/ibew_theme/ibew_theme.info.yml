@@ -4,6 +4,9 @@ description: 'A custom theme for IBEW based on Radix.'
 core_version_requirement: ^10 || ^11
 base theme: radix
 
+libraries:
+  - ibew_theme/global-styling
+
 ckeditor5-stylesheets:
   - css/ckeditor.css
 

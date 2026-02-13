@@ -3,12 +3,6 @@ global-styling:
   css:
     theme:
       build/css/main.css: {}
-      css/nav-menu.css: {}
-      css/contact-page.css: {}
-      css/mobile-fixes.css: {}
-      css/login-page.css: {}
-      css/hero-video.css: {}
-      css/breadcrumb.css: {}
   js:
     build/js/main.js: {}
     build/js/page-transitions.js: {}
@@ -18,14 +12,4 @@ global-styling:
   dependencies:
     - core/drupal
 
-login-page:
-  version: 1.0
-  css:
-    theme:
-      css/login-page.css: {}
 
-contact-page:
-  version: 1.0
-  css:
-    theme:
-      css/contact-page.css: {}

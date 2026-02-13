@@ -1,0 +1,40 @@
+uuid: e46c2f61-d9fa-4546-b810-877ad73a35f0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.hero_button.field_button_style
+    - field.field.paragraph.hero_button.field_link
+    - paragraphs.paragraphs_type.hero_button
+  module:
+    - field_layout
+    - link
+    - layout_discovery
+    - options
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
+id: paragraph.hero_button.default
+targetEntityType: paragraph
+bundle: hero_button
+mode: default
+content:
+  field_button_style:
+    type: options_select
+    weight: 1
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_link:
+    type: link_default
+    weight: 0
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

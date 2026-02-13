@@ -1,0 +1,38 @@
+uuid: 7bc0247e-587b-43a6-b909-ba6b34f77c91
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.hero_overlay
+    - field.storage.block_content.field_hero_logo
+  module:
+    - image
+id: block_content.hero_overlay.field_hero_logo
+field_name: field_hero_logo
+entity_type: block_content
+bundle: hero_overlay
+label: 'Logo Image'
+description: 'Upload a logo image to display centered in the hero section.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'png gif jpg jpeg svg webp'
+  max_filesize: ''
+  max_resolution: ''
+  min_resolution: ''
+  alt_field: true
+  alt_field_required: true
+  title_field: false
+  title_field_required: false
+  default_image:
+    uuid: ''
+    alt: ''
+    title: ''
+    width: null
+    height: null
+field_type: image

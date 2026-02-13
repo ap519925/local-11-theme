@@ -1,0 +1,13 @@
+uuid: 12345678-1234-1234-1234-123456789001
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+name: Homepage
+type: homepage
+description: 'Homepage with editable sections using paragraphs'
+help: ''
+new_revision: true
+preview_mode: 1
+display_submitted: false

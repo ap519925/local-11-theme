@@ -124,6 +124,7 @@
     justify-content: center;
     width: 100%;
 }
+
 /* ==========================================================================
    Refactored Hero Styles (No Inline)
    ========================================================================== */
@@ -156,3 +157,63 @@
     width: 100%;
 }
 
+/* Hero Logo - Auto-scaled to appropriate size */
+.hero-logo-wrapper {
+    max-width: 300px;
+    width: 100%;
+    margin: 0 auto;
+
+    /* Target any img nested inside */
+    img,
+    picture img,
+    .field--item img,
+    .field__item img {
+        width: 100% !important;
+        height: auto !important;
+        max-height: 120px !important;
+        object-fit: contain !important;
+        object-position: center !important;
+    }
+
+    /* SVG logos */
+    svg {
+        width: 100%;
+        height: auto;
+        max-height: 120px;
+    }
+}
+
+/* Responsive logo sizing */
+@media (max-width: 768px) {
+    .hero-logo-wrapper {
+        max-width: 200px;
+
+        img,
+        picture img,
+        .field--item img,
+        .field__item img {
+            max-height: 80px !important;
+        }
+
+        svg {
+            max-height: 80px;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-logo-wrapper {
+        max-width: 150px;
+
+        img,
+        picture img,
+        .field--item img,
+        .field__item img {
+            max-height: 60px !important;
+        }
+
+        svg {
+            max-height: 60px;
+        }
+    }
+}

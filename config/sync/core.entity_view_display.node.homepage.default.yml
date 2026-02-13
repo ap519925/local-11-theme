@@ -1,0 +1,26 @@
+uuid: 12345678-1234-1234-1234-123456789005
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.homepage.field_homepage_sections
+    - node.type.homepage
+  module:
+    - entity_reference_revisions
+id: node.homepage.default
+targetEntityType: node
+bundle: homepage
+mode: default
+content:
+  field_homepage_sections:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

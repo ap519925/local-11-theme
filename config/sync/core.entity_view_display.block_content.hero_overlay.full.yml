@@ -1,0 +1,56 @@
+uuid: 7bc0247e-587b-43a6-b909-ba6b34f77c99
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.hero_overlay
+    - field.field.block_content.hero_overlay.field_display_title
+    - field.field.block_content.hero_overlay.field_hero_actions
+    - field.field.block_content.hero_overlay.field_hero_description
+  module:
+    - entity_reference_revisions
+id: block_content.hero_overlay.full
+targetEntityType: block_content
+bundle: hero_overlay
+mode: full
+content:
+  field_display_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_hero_description:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_hero_actions:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_hero_logo:
+    type: image
+    label: hidden
+    settings:
+      image_style: ''
+      image_link: ''
+      svg_attributes:
+        width: null
+        height: null
+      svg_render_as_image: true
+    third_party_settings: {  }
+    weight: 4
+    region: content
+hidden:
+  search_api_excerpt: true

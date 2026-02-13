@@ -3,7 +3,7 @@
         'name' => 'ibew/drupal-project',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '2fd26b5b1dbaa732d6d67666d9a51ae3869abab1',
+        'reference' => '9d8ec9263f84d325134230392da8afdda59b6cc4',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -766,7 +766,7 @@
         'ibew/drupal-project' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '2fd26b5b1dbaa732d6d67666d9a51ae3869abab1',
+            'reference' => '9d8ec9263f84d325134230392da8afdda59b6cc4',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

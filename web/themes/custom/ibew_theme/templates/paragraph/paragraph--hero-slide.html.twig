@@ -67,7 +67,12 @@
       </div>
   {% else %}
       {# Default Image Slide #}
-      <div class="absolute inset-0 bg-cover bg-center ibew-parallax-bg" style="background-image: url('{{ content_url }}');"></div>
+      <img 
+         src="{{ content_url }}" 
+         alt="Hero Slide" 
+         class="absolute inset-0 w-full h-full object-cover ibew-parallax-bg" 
+         draggable="false"
+      />
   {% endif %}
 
   {# Helper Overlay for text readability #}

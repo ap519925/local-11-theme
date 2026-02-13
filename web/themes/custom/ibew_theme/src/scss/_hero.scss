@@ -54,7 +54,7 @@
     padding-bottom: 0 !important;
 
     /* Ensure height is not overly tall */
-    height: 80vh;
+    height: 60vh;
     min-height: 500px;
 }
 
@@ -118,3 +118,41 @@
     background: rgba(255, 255, 255, 0.35) !important;
     transform: scale(1.1);
 }
+
+/* Ensure buttons are centered in the hero content */
+.ibew-hero__actions {
+    justify-content: center;
+    width: 100%;
+}
+/* ==========================================================================
+   Refactored Hero Styles (No Inline)
+   ========================================================================== */
+
+.ibew-hero-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    pointer-events: none;
+    background-color: rgba(0, 0, 0, var(--hero-overlay-opacity, 0.6));
+    transition: background-color 0.3s ease;
+}
+
+.ibew-hero-content-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    pointer-events: none;
+}
+
+.ibew-hero-content-wrapper .container {
+    pointer-events: auto;
+    width: 100%;
+}
+

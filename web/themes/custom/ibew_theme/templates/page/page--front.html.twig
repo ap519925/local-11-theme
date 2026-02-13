@@ -32,7 +32,7 @@
 	</style>
 
 	<section
-		class="ibew-hero ibew-parallax-hero p-0 relative h-[80vh] min-h-[600px] overflow-hidden">
+		class="ibew-hero ibew-parallax-hero p-0 relative h-[60vh] min-h-[500px] overflow-hidden">
 
 		{# ===== HERO BACKGROUND (Video or Image Slider) ===== #}
 		{% if hero_video_enabled and hero_video_url %}
@@ -78,7 +78,7 @@
 			</div>
 
 			{# Video Overlay (configurable opacity) #}
-			<div class="absolute inset-0 z-10 pointer-events-none" style="background-color: rgba(0, 0, 0, {{ hero_video_overlay_opacity }});"></div>
+			<div class="ibew-hero-overlay" style="--hero-overlay-opacity: {{ hero_video_overlay_opacity }};"></div>
 		{% else %}
 			{# --- IMAGE SLIDER MODE (Default/Fallback) --- #}
 			{# Background Slider (Z-0) #}
@@ -88,14 +88,14 @@
 				{% endif %}
 			</div>
 			{# Global Overlay (Z-10) #}
-			<div class="absolute inset-0 z-10 pointer-events-none" style="background-color: rgba(0, 0, 0, 0.6);"></div>
+			<div class="ibew-hero-overlay"></div>
 		{% endif %}
 
 
 		{# Content Overlay (Z-20) #}
 		{% if page.homepage_hero_content %}
-			<div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 20; display: flex; align-items: center; justify-content: center; text-align: center; pointer-events: none;">
-				<div class="container" style="pointer-events: auto;">
+			<div class="ibew-hero-content-wrapper">
+				<div class="container">
 					<div class="ibew-region ibew-region--hero-content w-100">
 						{{ page.homepage_hero_content }}
 					</div>

@@ -198,10 +198,10 @@ h4,
 }
 
 /* --- Hero Section --- */
+/* --- Hero Section --- */
 .ibew-hero {
   position: relative;
-  height: 100vh;
-  min-height: 600px;
+  /* height defined in _hero.scss */
   background-color: $ibew-navy; // Fallback
   padding: 0;
 }

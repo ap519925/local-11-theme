@@ -48,30 +48,30 @@ settings:
         weight: 16
         enabled: false
       ibew_about_section:
-        enabled: true
         weight: 17
+        enabled: true
       ibew_cta_strip:
-        enabled: true
         weight: 18
+        enabled: true
       ibew_section:
-        enabled: true
         weight: 19
-      ibew_section_cta_grid:
         enabled: true
-        weight: 20
       ibew_section_contractors:
-        enabled: true
         weight: 21
+        enabled: true
+      ibew_section_cta_grid:
+        weight: 20
+        enabled: true
       ibew_section_events:
-        enabled: true
         weight: 22
+        enabled: true
       ibew_section_news:
-        enabled: true
         weight: 23
+        enabled: true
       ibew_section_news_events:
-        enabled: true
         weight: 24
-      ibew_stats_bar:
         enabled: true
+      ibew_stats_bar:
         weight: 25
+        enabled: true
 field_type: entity_reference_revisions

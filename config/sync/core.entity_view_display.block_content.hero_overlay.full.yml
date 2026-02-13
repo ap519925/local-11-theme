@@ -22,14 +22,6 @@ content:
     third_party_settings: {  }
     weight: 1
     region: content
-  field_hero_description:
-    type: string
-    label: hidden
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    weight: 2
-    region: content
   field_hero_actions:
     type: entity_reference_revisions_entity_view
     label: hidden
@@ -39,12 +31,20 @@ content:
     third_party_settings: {  }
     weight: 3
     region: content
+  field_hero_description:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
   field_hero_logo:
     type: image
     label: hidden
     settings:
-      image_style: ''
       image_link: ''
+      image_style: ''
       svg_attributes:
         width: null
         height: null

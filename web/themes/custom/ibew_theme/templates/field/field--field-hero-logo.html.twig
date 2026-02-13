@@ -1,0 +1,13 @@
+{#
+/**
+ * @file
+ * Theme override for the 'field_hero_logo' field.
+ */
+#}
+{% if not is_empty %}
+  <div class="hero-logo-wrapper hero-logo-debug">
+    {% for item in items %}
+      {{ item.content }}
+    {% endfor %}
+  </div>
+{% endif %}

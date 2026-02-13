@@ -6,7 +6,9 @@
 {% set video_type = '' %} {# 'file' or 'remote' #}
 
 {# Determine content type and URL #}
-{% if bundle == 'image' %}
+{% if paragraph.field_hero_image and not paragraph.field_hero_image.isEmpty() %}
+  {% set content_url = file_url(paragraph.field_hero_image.entity.uri.value) %}
+{% elseif bundle == 'image' %}
   {% set file_entity = media_entity.field_media_image.0.entity %}
   {% if file_entity %}
     {% set content_url = file_url(file_entity.uri.value) %}

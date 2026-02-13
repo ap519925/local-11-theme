@@ -43,7 +43,8 @@
                     allowfullscreen>
                  </iframe>
               {% elseif 'vimeo' in content_url %}
-                 {% set video_id = content_url|split('/')|last %}
+                 {% set vimeo_parts = content_url|trim('/')|split('/') %}
+                 {% set video_id = vimeo_parts|last %}
                  <iframe 
                     class="w-full h-full object-cover pointer-events-none" 
                     src="https://player.vimeo.com/video/{{ video_id }}?autoplay=1&loop=1&muted=1&background=1" 

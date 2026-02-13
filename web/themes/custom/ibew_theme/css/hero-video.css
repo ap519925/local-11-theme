@@ -92,6 +92,3 @@
 }
 
 /* Dark mode adjustments */
-html.dark .ibew-hero-video-wrapper {
-    filter: brightness(0.85);
-}

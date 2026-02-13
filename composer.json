@@ -32,6 +32,7 @@
         "drupal/project_browser": "^2.1",
         "drupal/radix": "^6.0",
         "drupal/search_api": "^1.40",
+        "drupal/twig_tweak": "^3.4",
         "drush/drush": "^13.0"
     },
     "require-dev": {

@@ -3,7 +3,7 @@
         'name' => 'ibew/drupal-project',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'b3a2c8204e4650a1d9be846cf10bdf718861b3d0',
+        'reference' => '2fd26b5b1dbaa732d6d67666d9a51ae3869abab1',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -682,6 +682,15 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
+        'drupal/twig_tweak' => array(
+            'pretty_version' => '3.4.1',
+            'version' => '3.4.1.0',
+            'reference' => '3.4.1',
+            'type' => 'drupal-module',
+            'install_path' => __DIR__ . '/../../web/modules/contrib/twig_tweak',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'drush/drush' => array(
             'pretty_version' => '13.7.1',
             'version' => '13.7.1.0',
@@ -757,7 +766,7 @@
         'ibew/drupal-project' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'b3a2c8204e4650a1d9be846cf10bdf718861b3d0',
+            'reference' => '2fd26b5b1dbaa732d6d67666d9a51ae3869abab1',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

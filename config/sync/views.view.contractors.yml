@@ -350,9 +350,9 @@ display:
           separator: ', '
           field_api_classes: false
         field_city:
-          id: field_email
-          table: node__field_email
-          field: field_email
+          id: field_city
+          table: node__field_city
+          field: field_city
           relationship: none
           group_type: group
           admin_label: ''
@@ -362,7 +362,7 @@ display:
           alter:
             alter_text: false
             text: ''
-            make_link: true
+            make_link: false
             path: ''
             absolute: false
             external: false
@@ -399,7 +399,7 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: email_mailto
+          type: string
           settings: {  }
           group_column: value
           group_columns: {  }

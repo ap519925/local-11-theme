@@ -1,0 +1,15 @@
+{#
+/**
+ * @file
+ * Theme override for the 'field_hero_actions' field.
+ */
+#}
+{% if not is_empty %}
+	<div class="hero-actions-container d-flex flex-wrap justify-content-center gap-4 align-items-center">
+		{% for item in items %}
+			<div class="hero-action-item d-flex">
+				{{ item.content }}
+			</div>
+		{% endfor %}
+	</div>
+{% endif %}

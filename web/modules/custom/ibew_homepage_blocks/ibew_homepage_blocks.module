@@ -93,8 +93,22 @@ use Drupal\Core\Session\AccountInterface;
  * Implements hook_block_content_access().
  */
 function ibew_homepage_blocks_block_content_access(BlockContentInterface $entity, $operation, AccountInterface $account) {
-  // Allow everyone to view the hero slider block content.
-  if ($operation === 'view' && $entity->bundle() === 'hero_slider') {
+  // Allow everyone to view the hero slider and hero overlay block content.
+  if ($operation === 'view' && (
+    $entity->bundle() === 'hero_slider' ||
+    $entity->bundle() === 'hero_overlay'
+  )) {
+    return AccessResult::allowed();
+  }
+  return AccessResult::neutral();
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_access() for paragraph entities.
+ */
+function ibew_homepage_blocks_paragraph_access($entity, $operation, $account) {
+  // Allow everyone to view hero_button paragraphs.
+  if ($operation === 'view' && $entity->bundle() === 'hero_button') {
     return AccessResult::allowed();
   }
   return AccessResult::neutral();

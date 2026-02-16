@@ -263,3 +263,158 @@
     transform: translateY(-2px);
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
 }
+
+/* Fix Button Stacking in Hero */
+/* Fix Button Stacking in Hero - Using new specific template class */
+.hero-actions-container {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 1.5rem !important;
+    justify-content: center !important;
+    align-items: center !important;
+    flex-direction: row !important;
+    width: 100%;
+    margin-top: 2rem !important;
+    /* Added user requested margin */
+}
+
+.hero-action-item {
+    display: flex !important;
+    width: auto !important;
+    flex: 0 0 auto !important;
+    /* Prevent shrinking or growing beyond content */
+}
+
+/* Ensure buttons inside don't stretch */
+.hero-action-item .btn,
+.hero-action-item a {
+    width: 280px !important;
+    /* FIXED uniform width */
+    min-width: 280px !important;
+    margin: 0 !important;
+    text-align: center;
+    justify-content: center;
+}
+
+/* --- Mobile Breakpoint for Hero Buttons --- */
+/* --- Mobile Breakpoint for Hero Buttons --- */
+@media (max-width: 768px) {
+
+    /* Allow Hero to grow with content on mobile but don't force full viewport height */
+    .ibew-hero {
+        height: auto !important;
+        min-height: 500px !important;
+        /* Reasonable minimum, not full viewport */
+        padding-top: 100px !important;
+        /* Keep header clearance */
+        padding-bottom: 2.5rem !important;
+    }
+
+    /* Reset absolute positioning for content wrapper on mobile so it flows naturally */
+    .ibew-hero-content-wrapper {
+        position: relative !important;
+        height: auto !important;
+        min-height: auto !important;
+        padding: 0 1rem !important;
+        transform: none !important;
+        top: 0 !important;
+        left: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        /* Center vertically in the available space */
+    }
+
+    .hero-actions-container {
+        flex-direction: column !important;
+        /* Stack vertically */
+        gap: 0.75rem !important;
+        margin-top: 0.5rem !important;
+        /* Minimal top margin */
+    }
+
+    .hero-action-item {
+        width: 100% !important;
+        justify-content: center;
+        flex: 1 1 auto !important;
+    }
+
+    .hero-action-item .btn,
+    .hero-action-item a {
+        width: 100% !important;
+        min-width: unset !important;
+        max-width: 100% !important;
+        padding: 0.75rem 0.5rem !important;
+        font-size: 1rem !important;
+        display: flex !important;
+        /* Force flex */
+        align-items: center !important;
+        /* Vertically align icon and text */
+        justify-content: center !important;
+        /* Horizontally align */
+        height: auto !important;
+        /* ensure it grows if text wraps */
+        min-height: 48px !important;
+        /* minimal touch target */
+    }
+
+    /* Adjust logo and text for mobile */
+    .ibew-region--hero-content h1 {
+        font-size: 2rem !important;
+        line-height: 1.1 !important;
+        margin-bottom: 0.5rem !important;
+    }
+
+    .ibew-region--hero-content p {
+        font-size: 1rem !important;
+        margin-bottom: 1rem !important;
+        /* Reduced from 1.5rem/mb-5 */
+        line-height: 1.4 !important;
+    }
+
+    /* Ensure Logo isn't too huge */
+    .hero-logo-wrapper {
+        margin-bottom: 0.5rem !important;
+        /* Reduce logo bottom margin */
+    }
+
+    .hero-logo-wrapper img,
+    .hero-logo-wrapper svg {
+        max-height: 70px !important;
+        width: auto !important;
+    }
+}
+
+.field--name-field-hero-actions .field__item {
+    display: flex;
+    width: auto;
+    /* Prevent 100% width stacking */
+}
+
+/* Ensure buttons don't stretch */
+.field--name-field-hero-actions .btn,
+.field--name-field-hero-actions a {
+    min-width: 180px;
+}
+
+/* Ensure Logo is centered */
+.hero-logo-wrapper {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: flex;
+    justify-content: center;
+}
+
+/* Typography Overrides for Hero Overlay */
+.ibew-region--hero-content h1 {
+    font-size: clamp(2.5rem, 5vw, 5rem);
+    /* Responsive large font */
+    line-height: 1.1;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+}
+
+.ibew-region--hero-content p {
+    font-size: clamp(1.2rem, 2vw, 1.75rem);
+    /* Responsive larger text */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}

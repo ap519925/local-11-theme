@@ -162,6 +162,10 @@ class HeroContentBlock extends BlockBase
                     'style' => 'ghost',
                 ],
             ],
+            '#cache' => [
+                'tags' => ['config:ibew_homepage_blocks.hero_content'],
+                'contexts' => ['user'],
+            ],
         ];
     }
 

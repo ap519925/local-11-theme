@@ -3,7 +3,7 @@
         'name' => 'ibew/drupal-project',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '9d8ec9263f84d325134230392da8afdda59b6cc4',
+        'reference' => '3b973797eaec66170e939e3ba2629fdcb7ce79a0',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -529,6 +529,15 @@
                 0 => '11.3.3',
             ),
         ),
+        'drupal/crop' => array(
+            'pretty_version' => '2.5.0',
+            'version' => '2.5.0.0',
+            'reference' => '8.x-2.5',
+            'type' => 'drupal-module',
+            'install_path' => __DIR__ . '/../../web/modules/contrib/crop',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'drupal/ctools' => array(
             'pretty_version' => '4.1.0',
             'version' => '4.1.0.0',
@@ -766,7 +775,7 @@
         'ibew/drupal-project' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '9d8ec9263f84d325134230392da8afdda59b6cc4',
+            'reference' => '3b973797eaec66170e939e3ba2629fdcb7ce79a0',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

@@ -8,29 +8,27 @@
 {% set description = content.field_hero_description|field_value %}
 {% set logo = content.field_hero_logo|field_value %}
 
-<div class="d-flex flex-column align-items-center justify-content-center text-center h-100 px-3">
-  
-  {# Logo Image - displayed above title, auto-scaled to appropriate size #}
-  {% if logo %}
-    <div class="hero-logo-wrapper mb-4">
-      {{ content.field_hero_logo }}
-    </div>
-  {% endif %}
-  
+<div
+	class="d-flex flex-column align-items-center justify-content-center text-center h-100 px-3">
+
+	{# Logo Image - displayed above title, auto-scaled to appropriate size #}
+	<div class="hero-logo-wrapper mb-4 mx-auto" style="order: -9999 !important;">
+		{{ content.field_hero_logo }}
+	</div>
 
 
-  <h1 class="font-oswald fw-bold text-white mb-3 text-uppercase display-4 drop-shadow-lg" style="letter-spacing: 0.05em;">
-    {{ title }}
-  </h1>
+	<h1 class="font-oswald fw-bold text-white mb-3 text-uppercase display-2 drop-shadow-lg" style="letter-spacing: 0.05em;">
+		{{ title }}
+	</h1>
 
-  <p class="text-white fs-5 mb-5 font-sans drop-shadow-md mx-auto fw-light" style="max-width: 700px; opacity: 0.9;">
-    {{ description }}
-  </p>
+	<p class="text-white fs-3 mb-5 font-sans drop-shadow-md mx-auto fw-light" style="max-width: 800px; opacity: 0.9;">
+		{{ description }}
+	</p>
 
-  {% if content.field_hero_actions %}
-    <div class="d-flex flex-wrap gap-3 justify-content-center">
-      {{ content.field_hero_actions }}
-    </div>
-  {% endif %}
+	{% if content.field_hero_actions %}
+		<div class="hero-actions-wrapper d-flex justify-content-center">
+			{{ content.field_hero_actions }}
+		</div>
+	{% endif %}
 
 </div>

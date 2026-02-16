@@ -34,11 +34,9 @@ body {
         overflow-x: hidden;
     }
 
-    /* Header top bar - hide items that don't fit on mobile */
+    /* Header top bar - hide on mobile */
     .ibew-header__top {
-        flex-wrap: wrap;
-        padding: 0.5rem 1rem;
-        gap: 0.5rem;
+        display: none !important;
     }
 
     .ibew-header__top-item {
@@ -76,11 +74,10 @@ body {
         font-size: 0.65rem;
     }
 
-    /* Hero sections */
-    .ibew-hero,
-    [class*="hero"] {
+    /* Hero sections - exclude main hero */
+    /* [class*="hero"]:not(.ibew-hero) {
         padding: 3rem 1rem;
-    }
+    } */
 
     .ibew-hero h1,
     [class*="hero"] h1 {

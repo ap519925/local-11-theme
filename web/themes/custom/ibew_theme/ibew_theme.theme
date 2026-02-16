@@ -515,4 +515,40 @@ function ibew_theme_preprocess_paragraph(&$variables) {
   elseif ($bundle == 'ibew_section_events') {
     $variables['embedded_events_view'] = views_embed_view('homepage_events', 'block_1');
   }
+  elseif ($bundle == 'hero_button') {
+    $variables['hero_btn_url'] = '';
+    $variables['hero_btn_title'] = '';
+    $variables['hero_btn_target'] = '';
+    // Default class
+    $variables['hero_btn_class'] = 'ibew-btn-lg ibew-btn--gold';
+
+    if ($paragraph->hasField('field_link') && !$paragraph->field_link->isEmpty()) {
+      $link_item = $paragraph->field_link->first();
+      // Safely get URL - allow access for all users when viewing
+      try {
+        $url_obj = $link_item->getUrl();
+        // Always allow the URL for view operation - don't check access for anonymous users
+        $variables['hero_btn_url'] = $url_obj->toString();
+      } catch (\Exception $e) {
+        // Log or ignore invalid links
+      }
+      $variables['hero_btn_title'] = $link_item->title;
+      
+      // Target
+      $options = $link_item->options;
+      if (!empty($options['attributes']['target'])) {
+         $variables['hero_btn_target'] = $options['attributes']['target'];
+      }
+    }
+
+    // Button style
+    if ($paragraph->hasField('field_button_style') && !$paragraph->field_button_style->isEmpty()) {
+      $style = $paragraph->field_button_style->value;
+      if ($style == 'blue') {
+        $variables['hero_btn_class'] = 'ibew-btn-lg ibew-btn--blue';
+      } elseif ($style == 'outline') {
+        $variables['hero_btn_class'] = 'ibew-btn-lg border-2 border-white text-white bg-transparent hover:bg-white/10 backdrop-blur-sm';
+      }
+    }
+  }
 }

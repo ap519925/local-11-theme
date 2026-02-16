@@ -3,11 +3,15 @@ langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.node.teaser
+    - field.storage.node.field_email
+    - field.storage.node.field_phone
+    - field.storage.node.field_service_areas
+    - field.storage.node.field_specialties
     - node.type.contractor_profile
-    - taxonomy.vocabulary.contractor_specialties
+    - system.menu.main
   module:
     - node
-    - taxonomy
     - user
 id: contractors
 label: Contractors
@@ -613,9 +617,13 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user
         - 'user.node_grants:view'
-      tags: {  }
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_email'
+        - 'config:field.storage.node.field_phone'
+        - 'config:field.storage.node.field_service_areas'
+        - 'config:field.storage.node.field_specialties'
   page_1:
     id: page_1
     display_title: Page
@@ -631,6 +639,7 @@ display:
         title: Contractors
         description: 'Find NECA contractors'
         weight: 0
+        enabled: false
         expanded: false
         menu_name: main
         parent: ''
@@ -642,6 +651,10 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
-        - user
         - 'user.node_grants:view'
-      tags: {  }
+        - user.permissions
+      tags:
+        - 'config:field.storage.node.field_email'
+        - 'config:field.storage.node.field_phone'
+        - 'config:field.storage.node.field_service_areas'
+        - 'config:field.storage.node.field_specialties'

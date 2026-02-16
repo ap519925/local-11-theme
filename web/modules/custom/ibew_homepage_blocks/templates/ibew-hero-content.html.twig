@@ -1,21 +1,28 @@
+{# DEBUG CUSTOM BLOCK #}
+<div style="border: 5px solid green; background: white; color: black; position: relative; z-index: 9999;">DEBUG CUSTOM BLOCK</div>
 <div class="ibew-hero__lead">
-  {% if eyebrow %}
-    <span class="ibew-pill">{{ eyebrow }}</span>
-  {% endif %}
-  
-  {% if title %}
-    <h1>{{ title }}</h1>
-  {% endif %}
-  
-  {% if description %}
-    <p>{{ description }}</p>
-  {% endif %}
-  
-  <div class="d-flex gap-3 flex-wrap">
-    {% for link in links %}
-      {% if link.title and link.url %}
-        <a class="ibew-cta ibew-cta--{{ link.style }}" href="{{ link.url }}">{{ link.title }}</a>
-      {% endif %}
-    {% endfor %}
-  </div>
+	{% if eyebrow %}
+		<span class="ibew-pill">{{ eyebrow }}</span>
+	{% endif %}
+
+	{% if title %}
+		<h1>{{ title }}</h1>
+	{% endif %}
+
+	{% if description %}
+		<p>{{ description }}</p>
+	{% endif %}
+
+	<div class="d-flex gap-3 flex-wrap">
+		{% for link in links %}
+			{% if link.title and link.url %}
+				{# Use ibew-btn classes for proper styling #}
+				{% set btn_class = 'ibew-btn-lg ibew-btn--gold' %}
+				{% if link.style == 'ghost' %}
+					{% set btn_class = 'ibew-btn-lg ibew-btn--outline text-white border-white hover:bg-white/20' %}
+				{% endif %}
+				<a class="btn {{ btn_class }}" href="{{ link.url }}">{{ link.title }}</a>
+			{% endif %}
+		{% endfor %}
+	</div>
 </div>

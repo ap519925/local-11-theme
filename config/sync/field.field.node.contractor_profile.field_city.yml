@@ -1,0 +1,19 @@
+uuid: 0l1j5k9h-6i89-1j2l-5k4g-8l1m9j0k2l3m
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_city
+    - node.type.contractor_profile
+id: node.contractor_profile.field_city
+field_name: field_city
+entity_type: node
+bundle: contractor_profile
+label: City
+description: 'City of the contractor'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text

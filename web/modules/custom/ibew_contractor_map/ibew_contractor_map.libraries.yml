@@ -1,0 +1,10 @@
+contractor-map:
+  version: 1.0.0
+  css:
+    theme:
+      css/contractor-map.css: {}
+  js:
+    js/contractor-map.js: {}
+  dependencies:
+    - core/drupal
+    - core/drupalSettings

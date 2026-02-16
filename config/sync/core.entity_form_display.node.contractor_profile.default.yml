@@ -4,17 +4,25 @@ status: true
 dependencies:
   config:
     - field.field.node.contractor_profile.body
+    - field.field.node.contractor_profile.field_city
     - field.field.node.contractor_profile.field_contact_person
     - field.field.node.contractor_profile.field_email
+    - field.field.node.contractor_profile.field_geolocation
     - field.field.node.contractor_profile.field_image
+    - field.field.node.contractor_profile.field_latitude
+    - field.field.node.contractor_profile.field_longitude
     - field.field.node.contractor_profile.field_phone
     - field.field.node.contractor_profile.field_service_areas
     - field.field.node.contractor_profile.field_specialties
+    - field.field.node.contractor_profile.field_state
+    - field.field.node.contractor_profile.field_street_address
     - field.field.node.contractor_profile.field_website
+    - field.field.node.contractor_profile.field_zip
     - image.style.thumbnail
     - node.type.contractor_profile
   module:
     - field_layout
+    - geolocation
     - image
     - layout_discovery
     - link
@@ -46,6 +54,14 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_city:
+    type: string_textfield
+    weight: 129
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_contact_person:
     type: string_textfield
     weight: 123
@@ -62,6 +78,36 @@ content:
       placeholder: ''
       size: 60
     third_party_settings: {  }
+  field_geolocation:
+    type: geolocation_googlegeocoding
+    weight: 135
+    region: content
+    settings:
+      default_longitude: '-73.0877'
+      default_latitude: '41.6032'
+      auto_client_location: '0'
+      auto_client_location_marker: '0'
+      populate_address_field: '1'
+      target_id_field: ''
+      address_field: field_street_address
+      city_field: field_city
+      state_field: field_state
+      zip_field: field_zip
+      country_field: ''
+      settings:
+        widget: 'map'
+        map: 8
+        height: '400'
+        scrollwheel: 1
+        disableAutoPan: 0
+        zoomControl: 1
+        mapTypeControl: 0
+        streetViewControl: 0
+        fullscreenControl: 0
+        mapTypeId: roadmap
+        style: ''
+        uiOverrides: ''
+    third_party_settings: {  }
   field_image:
     type: image_image
     weight: 122
@@ -69,6 +115,20 @@ content:
     settings:
       progress_indicator: throbber
       preview_image_style: thumbnail
+    third_party_settings: {  }
+  field_latitude:
+    type: number
+    weight: 130
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  field_longitude:
+    type: number
+    weight: 131
+    region: content
+    settings:
+      placeholder: ''
     third_party_settings: {  }
   field_phone:
     type: string_textfield
@@ -92,6 +152,22 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_state:
+    type: string_textfield
+    weight: 132
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_street_address:
+    type: string_textfield
+    weight: 133
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_website:
     type: link_default
     weight: 126
@@ -99,6 +175,14 @@ content:
     settings:
       placeholder_url: ''
       placeholder_title: ''
+    third_party_settings: {  }
+  field_zip:
+    type: string_textfield
+    weight: 134
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   path:
     type: path

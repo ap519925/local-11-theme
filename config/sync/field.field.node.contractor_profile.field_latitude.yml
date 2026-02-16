@@ -1,0 +1,19 @@
+uuid: 3o4m8n2l-9l12-4m5o-8n7j-1o4p2m3n5o6p
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_latitude
+    - node.type.contractor_profile
+id: node.contractor_profile.field_latitude
+field_name: field_latitude
+entity_type: node
+bundle: contractor_profile
+label: Latitude
+description: 'Latitude coordinate for map display'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: float

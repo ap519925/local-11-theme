@@ -15,8 +15,8 @@ class ComposerStaticInitfb63943c2bfcce591c3d91c2bd4309f6
         '606a39d89246991a373564698c2d8383' => __DIR__ . '/..' . '/symfony/polyfill-php85/bootstrap.php',
         '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
-        '8825ede83f2f289127722d4e842cf7e8' => __DIR__ . '/..' . '/symfony/polyfill-intl-grapheme/bootstrap.php',
         '9d2b9fc6db0f153a0a149fefb182415e' => __DIR__ . '/..' . '/symfony/polyfill-php84/bootstrap.php',
+        '8825ede83f2f289127722d4e842cf7e8' => __DIR__ . '/..' . '/symfony/polyfill-intl-grapheme/bootstrap.php',
         'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         '89efb1254ef2d1c5d80096acd12c4098' => __DIR__ . '/..' . '/twig/twig/src/Resources/core.php',
@@ -41,12 +41,14 @@ class ComposerStaticInitfb63943c2bfcce591c3d91c2bd4309f6
         '062120a429d7568eacd495a8c34fcf09' => __DIR__ . '/..' . '/open-telemetry/sdk/Common/Dev/Compatibility/_load.php',
         '88e3b63cfb48eb8ea316a8a85a5f5c5f' => __DIR__ . '/..' . '/open-telemetry/sdk/_autoload.php',
         'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
+        '9c67151ae59aff4788964ce8eb2a0f43' => __DIR__ . '/..' . '/clue/stream-filter/src/functions_include.php',
         'ad155f8f1cf0d418fe49e248db8c661b' => __DIR__ . '/..' . '/react/promise/src/functions_include.php',
         '0d59ee240a4cd96ddbb4ff164fccea4d' => __DIR__ . '/..' . '/symfony/polyfill-php73/bootstrap.php',
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
         '47e1160838b5e5a10346ac4084b58c23' => __DIR__ . '/..' . '/laravel/prompts/src/helpers.php',
         '157bbd0180425c7142fbaf1b1646bec3' => __DIR__ . '/..' . '/open-telemetry/exporter-otlp/_register.php',
         '61ba3e92ef91a7a0f1cc260ebd9290e4' => __DIR__ . '/..' . '/openai-php/client/src/OpenAI.php',
+        '8cff32064859f4559445b89279f3199c' => __DIR__ . '/..' . '/php-http/message/src/filters.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
     );
 
@@ -186,6 +188,7 @@ class ComposerStaticInitfb63943c2bfcce591c3d91c2bd4309f6
         array (
             'Http\\Promise\\' => 13,
             'Http\\Message\\MultipartStream\\' => 29,
+            'Http\\Message\\' => 13,
             'Http\\Discovery\\' => 15,
             'Http\\Client\\' => 12,
             'Http\\Adapter\\Guzzle7\\' => 21,
@@ -198,6 +201,7 @@ class ComposerStaticInitfb63943c2bfcce591c3d91c2bd4309f6
             'Grasmash\\YamlCli\\' => 17,
             'Grasmash\\Expander\\' => 18,
             'Google\\Protobuf\\' => 16,
+            'Geocoder\\' => 9,
             'GPBMetadata\\Opentelemetry\\' => 26,
             'GPBMetadata\\Google\\Protobuf\\' => 28,
         ),
@@ -244,6 +248,7 @@ class ComposerStaticInitfb63943c2bfcce591c3d91c2bd4309f6
             'Composer\\CaBundle\\' => 18,
             'Composer\\' => 9,
             'ColinODell\\PsrTestLogger\\' => 25,
+            'Clue\\StreamFilter\\' => 18,
         ),
         'B' =>
         array (
@@ -626,6 +631,10 @@ class ComposerStaticInitfb63943c2bfcce591c3d91c2bd4309f6
         array (
             0 => __DIR__ . '/..' . '/php-http/multipart-stream-builder/src',
         ),
+        'Http\\Message\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/php-http/message/src',
+        ),
         'Http\\Discovery\\' =>
         array (
             0 => __DIR__ . '/..' . '/php-http/discovery/src',
@@ -661,6 +670,10 @@ class ComposerStaticInitfb63943c2bfcce591c3d91c2bd4309f6
         'Google\\Protobuf\\' =>
         array (
             0 => __DIR__ . '/..' . '/google/protobuf/src/Google/Protobuf',
+        ),
+        'Geocoder\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/willdurand/geocoder',
         ),
         'GPBMetadata\\Opentelemetry\\' =>
         array (
@@ -811,6 +824,10 @@ class ComposerStaticInitfb63943c2bfcce591c3d91c2bd4309f6
         array (
             0 => __DIR__ . '/..' . '/colinodell/psr-testlogger/src',
         ),
+        'Clue\\StreamFilter\\' =>
+        array (
+            0 => __DIR__ . '/..' . '/clue/stream-filter/src',
+        ),
         'Brick\\Math\\' =>
         array (
             0 => __DIR__ . '/..' . '/brick/math/src',
@@ -843,6 +860,13 @@ class ComposerStaticInitfb63943c2bfcce591c3d91c2bd4309f6
             'WebDriver' =>
             array (
                 0 => __DIR__ . '/..' . '/lullabot/php-webdriver/lib',
+            ),
+        ),
+        'S' =>
+        array (
+            'Stiphle' =>
+            array (
+                0 => __DIR__ . '/..' . '/davedevelopment/stiphle/src',
             ),
         ),
         'C' =>
@@ -2164,6 +2188,7 @@ class ComposerStaticInitfb63943c2bfcce591c3d91c2bd4309f6
         'TheSeer\\Tokenizer\\XMLSerializer' => __DIR__ . '/..' . '/theseer/tokenizer/src/XMLSerializer.php',
         'UnhandledMatchError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
         'ValueError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/ValueError.php',
+        'geoPHP' => __DIR__ . '/..' . '/itamair/geophp/geoPHP.inc',
         'staabm\\SideEffectsDetector\\SideEffect' => __DIR__ . '/..' . '/staabm/side-effects-detector/lib/SideEffect.php',
         'staabm\\SideEffectsDetector\\SideEffectsDetector' => __DIR__ . '/..' . '/staabm/side-effects-detector/lib/SideEffectsDetector.php',
     );

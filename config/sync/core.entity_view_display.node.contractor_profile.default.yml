@@ -4,15 +4,23 @@ status: true
 dependencies:
   config:
     - field.field.node.contractor_profile.body
+    - field.field.node.contractor_profile.field_city
     - field.field.node.contractor_profile.field_contact_person
     - field.field.node.contractor_profile.field_email
+    - field.field.node.contractor_profile.field_geolocation
     - field.field.node.contractor_profile.field_image
+    - field.field.node.contractor_profile.field_latitude
+    - field.field.node.contractor_profile.field_longitude
     - field.field.node.contractor_profile.field_phone
     - field.field.node.contractor_profile.field_service_areas
     - field.field.node.contractor_profile.field_specialties
+    - field.field.node.contractor_profile.field_state
+    - field.field.node.contractor_profile.field_street_address
     - field.field.node.contractor_profile.field_website
+    - field.field.node.contractor_profile.field_zip
     - node.type.contractor_profile
   module:
+    - geolocation
     - image
     - link
     - text
@@ -29,6 +37,14 @@ content:
     third_party_settings: {  }
     weight: 101
     region: content
+  field_city:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 109
+    region: content
   field_contact_person:
     type: string
     label: above
@@ -44,6 +60,31 @@ content:
     third_party_settings: {  }
     weight: 105
     region: content
+  field_geolocation:
+    type: geolocation_googlemaps_thumbnail
+    label: hidden
+    settings:
+      map_wrapper_id: ''
+      map_settings:
+        height: '400'
+        width: '100%'
+        type: ROADMAP
+        zoom: '10'
+        scrollwheel: 1
+        disableAutoPan: 0
+        zoomControl: 1
+        mapTypeControl: 0
+        streetViewControl: 0
+        fullscreenControl: 0
+        no_show: 0
+        use_overrides: 0
+        info_field: ''
+        marker_icon_path: ''
+        marker_clustering: 0
+        client_location_indicator: 0
+    third_party_settings: {  }
+    weight: 115
+    region: content
   field_image:
     type: image
     label: above
@@ -54,6 +95,28 @@ content:
         attribute: lazy
     third_party_settings: {  }
     weight: 102
+    region: content
+  field_latitude:
+    type: number_decimal
+    label: above
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 6
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 110
+    region: content
+  field_longitude:
+    type: number_decimal
+    label: above
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 6
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 111
     region: content
   field_phone:
     type: string
@@ -78,6 +141,22 @@ content:
     third_party_settings: {  }
     weight: 107
     region: content
+  field_state:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 112
+    region: content
+  field_street_address:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 113
+    region: content
   field_website:
     type: link
     label: above
@@ -89,6 +168,14 @@ content:
       target: ''
     third_party_settings: {  }
     weight: 106
+    region: content
+  field_zip:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 114
     region: content
   links:
     settings: {  }

@@ -1,0 +1,146 @@
+<?php
+
+/**
+ * @file
+ * IBEW Contractor Map module file.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\node\NodeInterface;
+
+/**
+ * Implements hook_help().
+ */
+function ibew_contractor_map_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.ibew_contractor_map':
+      return '<p>IBEW Contractor Map adds map functionality to the contractor search page.</p>';
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function ibew_contractor_map_theme() {
+  return [
+    'contractor_map_container' => [
+      'template' => 'contractor-map-container',
+      'variables' => [
+        'contractors' => [],
+        'map_id' => 'contractor-map',
+      ],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_page_attachments().
+ */
+function ibew_contractor_map_page_attachments(array &$page) {
+  $route_name = \Drupal::routeMatch()->getRouteName();
+  
+  // Only add libraries on the contractors page.
+  if ($route_name === 'view.contractors.page_1') {
+    // Add Google Maps API - REPLACE YOUR_API_KEY with your actual key.
+    $page['#attached']['html_head'][] = [
+      [
+        '#tag' => 'script',
+        '#attributes' => [
+          'src' => 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCqTSadVXSdi1U8HJEHVEPQx2CxGNSSMjY&callback=initContractorMap',
+          'async' => TRUE,
+          'defer' => TRUE,
+        ],
+      ],
+      'google_maps_api',
+    ];
+    
+    $page['#attached']['library'][] = 'ibew_contractor_map/contractor-map';
+    
+    // Get contractor data and pass to JavaScript.
+    $contractors = _ibew_contractor_map_get_contractor_data();
+    
+    $page['#attached']['drupalSettings']['ibewContractorMap']['contractors'] = $contractors;
+  }
+}
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function ibew_contractor_map_preprocess_page(&$variables) {
+  $route_name = \Drupal::routeMatch()->getRouteName();
+  
+  // Add map container to contractors page.
+  if ($route_name === 'view.contractors.page_1') {
+    $contractors = _ibew_contractor_map_get_contractor_data();
+    
+    // Add the map container after the main content.
+    $variables['page']['content']['contractor_map'] = [
+      '#markup' => '<div id="contractor-map" style="height: 600px; width: 100%;"></div>',
+      '#attached' => [
+        'library' => [
+          'ibew_contractor_map/contractor-map',
+        ],
+        'drupalSettings' => [
+          'ibewContractorMap' => [
+            'contractors' => $contractors,
+          ],
+        ],
+      ],
+    ];
+  }
+}
+
+/**
+ * Get contractor data for the map.
+ */
+function _ibew_contractor_map_get_contractor_data() {
+  $contractors = [];
+  
+  $query = \Drupal::entityTypeManager()
+    ->getStorage('node')
+    ->getQuery()
+    ->accessCheck(FALSE)
+    ->condition('type', 'contractor_profile')
+    ->condition('status', NodeInterface::PUBLISHED);
+
+  $nids = $query->execute();
+
+  if (!empty($nids)) {
+    $nodes = \Drupal::entityTypeManager()
+      ->getStorage('node')
+      ->loadMultiple($nids);
+
+    foreach ($nodes as $node) {
+      $lat = $node->get('field_latitude')->value;
+      $lng = $node->get('field_longitude')->value;
+
+      if ($lat && $lng) {
+        $address = '';
+        $street = $node->get('field_street_address')->value;
+        $city = $node->get('field_city')->value;
+        $state = $node->get('field_state')->value;
+        $zip = $node->get('field_zip')->value;
+
+        if ($street || $city || $state || $zip) {
+          $address_parts = array_filter([$street, $city, $state, $zip]);
+          $address = implode(', ', $address_parts);
+        }
+
+        $phone = $node->get('field_phone')->value;
+        $website = $node->get('field_website')->uri;
+
+        $contractors[] = [
+          'id' => $node->id(),
+          'title' => $node->getTitle(),
+          'lat' => (float) $lat,
+          'lng' => (float) $lng,
+          'address' => $address,
+          'phone' => $phone,
+          'website' => $website,
+        ];
+      }
+    }
+  }
+  
+  return $contractors;
+}

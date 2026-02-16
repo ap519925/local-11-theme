@@ -29,6 +29,17 @@
 		.ibew-region--hero-content p {
 			text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 		}
+		.ibew-region--hero-content h2 {
+			font-size: 3.5rem;
+
+		}
+		html.dark #about p {
+			font-size: 1.5rem;
+		}
+		.text-primary {
+			color: #849bc0 !important;
+
+		}
 	</style>
 
 	<section
@@ -40,37 +51,13 @@
 			<div class="ibew-hero-video-wrapper ibew-parallax-bg absolute inset-0 w-full h-[120%] -top-[10%] z-0 overflow-hidden">
 				{% if hero_video_type == 'youtube' %}
 					{# YouTube Embed as Background #}
-					<iframe
-						class="ibew-hero-video-iframe"
-						src="https://www.youtube.com/embed/{{ hero_video_url }}?autoplay=1&mute=1&loop=1&playlist={{ hero_video_url }}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&origin={{ url('<front>')|render }}"
-						frameborder="0"
-						allow="autoplay; encrypted-media"
-						allowfullscreen
-						title="Hero Background Video"
-						loading="eager"
-					></iframe>
+					<iframe class="ibew-hero-video-iframe" src="https://www.youtube.com/embed/{{ hero_video_url }}?autoplay=1&mute=1&loop=1&playlist={{ hero_video_url }}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1&origin={{ url('<front>')|render }}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen title="Hero Background Video" loading="eager"></iframe>
 				{% elseif hero_video_type == 'vimeo' %}
 					{# Vimeo Embed as Background #}
-					<iframe
-						class="ibew-hero-video-iframe"
-						src="https://player.vimeo.com/video/{{ hero_video_url }}?autoplay=1&loop=1&muted=1&background=1&controls=0&playsinline=1"
-						frameborder="0"
-						allow="autoplay; encrypted-media"
-						allowfullscreen
-						title="Hero Background Video"
-						loading="eager"
-					></iframe>
+					<iframe class="ibew-hero-video-iframe" src="https://player.vimeo.com/video/{{ hero_video_url }}?autoplay=1&loop=1&muted=1&background=1&controls=0&playsinline=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen title="Hero Background Video" loading="eager"></iframe>
 				{% else %}
 					{# Direct MP4/WebM Video #}
-					<video
-						class="ibew-hero-video"
-						autoplay
-						muted
-						loop
-						playsinline
-						preload="auto"
-						{% if hero_video_poster %}poster="{{ hero_video_poster }}"{% endif %}
-					>
+					<video class="ibew-hero-video" autoplay muted loop playsinline preload="auto" {% if hero_video_poster %} poster="{{ hero_video_poster }}" {% endif %}>
 						<source src="{{ hero_video_url }}" type="video/mp4">
 						{{ 'Your browser does not support HTML5 video.'|t }}
 					</video>
@@ -82,8 +69,7 @@
 		{% else %}
 			{# --- IMAGE SLIDER MODE (Default/Fallback) --- #}
 			{# Background Slider (Z-0) #}
-			<div class="absolute inset-0 w-full h-[120%] -top-[10%] z-0 ibew-parallax-bg">
-				{% if page.homepage_hero %}
+				<div class="absolute inset-0 w-full h-[120%] -top-[10%] z-0 ibew-parallax-bg"> {% if page.homepage_hero %}
 					{{ page.homepage_hero }}
 				{% endif %}
 			</div>
@@ -132,7 +118,7 @@
 
 						{# Right Column: Text Content #}
 						<div class="col-lg-5 text-start ps-lg-5">
-							<h2 class="display-5 fw-bold font-oswald text-uppercase text-white mb-4">LOREM IPSUM DOLOR</h2>
+							<h2 class="display-5 fw-bold font-oswald text-uppercase text-white mb-4">ABOUT IBEW LOCAL 90</h2>
 
 							<div class="text-gray-200 space-y-4 text-lg font-light leading-relaxed">
 								<p>
@@ -165,7 +151,9 @@
 						class="row gx-3"> {# Left Column: Recent News (Col-9) #}
 						<div class="col-lg-8">
 							<div class="d-flex justify-content-between align-items-end mb-4">
-								<h2 class="display-6 fw-bold font-oswald text-uppercase text-dark mb-0">Latest News</h2>
+								<h2 class="display-6 fw-bold font-oswald text-uppercase text-dark mb-0">
+									IBEW 90 News and Updates</h2>
+
 							</div>
 
 							<div class="ibew-region ibew-region--news">
@@ -232,14 +220,14 @@
 
 		{# 5. Contact / CTA - REMOVED PER REQUEST #}
 		{# 
-																																																		      {% if page.homepage_contact %}
-																																																		            <section id="contact" class="ibew-section py-16 bg-gray-50 w-100">
-																																																		              <div class="ibew-region ibew-region--contact w-100">
-																																																		                  {{ page.homepage_contact }}
-																																																		              </div>
-																																																		            </section>
-																																																		          {% endif %}
-																																																		          #}
+																																																																				      {% if page.homepage_contact %}
+																																																																				            <section id="contact" class="ibew-section py-16 bg-gray-50 w-100">
+																																																																				              <div class="ibew-region ibew-region--contact w-100">
+																																																																				                  {{ page.homepage_contact }}
+																																																																				              </div>
+																																																																				            </section>
+																																																																				          {% endif %}
+																																																																				          #}
 
 		{# --- New CTA Section --- #}
 		{# --- New CTA Section (Parallax) --- #}

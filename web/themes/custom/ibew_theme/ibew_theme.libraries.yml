@@ -9,6 +9,7 @@ global-styling:
     build/js/parallax-hero.js: {}
     js/nav-menu.js: {}
     js/login-page.js: {}
+    js/global.js: {}
   dependencies:
     - core/drupal
 

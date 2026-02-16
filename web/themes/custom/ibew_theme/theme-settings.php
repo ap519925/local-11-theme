@@ -198,42 +198,49 @@ function ibew_theme_form_system_theme_settings_alter(&$form, FormStateInterface 
     $form['ibew_colors']['light_mode'] = [
         '#type' => 'details',
         '#title' => t('Light Mode Colors'),
-        '#open' => FALSE,
+        '#open' => TRUE,
     ];
 
     $form['ibew_colors']['light_mode']['ibew_light_primary'] = [
         '#type' => 'color',
         '#title' => t('Primary Color'),
-        '#default_value' => theme_get_setting('ibew_light_primary') ?? '#1e293b',
-        '#description' => t('Default: #1e293b'),
+        '#default_value' => theme_get_setting('ibew_light_primary') ?? '#313F6B',
+        '#description' => t('Default: #313F6B (Dark Blue)'),
     ];
 
     $form['ibew_colors']['light_mode']['ibew_light_secondary'] = [
         '#type' => 'color',
         '#title' => t('Secondary Color'),
-        '#default_value' => theme_get_setting('ibew_light_secondary') ?? '#3b82f6',
-        '#description' => t('Default: #3b82f6'),
+        '#default_value' => theme_get_setting('ibew_light_secondary') ?? '#983A54',
+        '#description' => t('Default: #983A54 (Dark Raspberry)'),
+    ];
+
+    $form['ibew_colors']['light_mode']['ibew_light_tertiary'] = [
+        '#type' => 'color',
+        '#title' => t('Tertiary Color'),
+        '#default_value' => theme_get_setting('ibew_light_tertiary') ?? '#E27859',
+        '#description' => t('Default: #E27859 (Terra Cotta)'),
     ];
 
     $form['ibew_colors']['light_mode']['ibew_light_accent'] = [
         '#type' => 'color',
         '#title' => t('Accent Color'),
-        '#default_value' => theme_get_setting('ibew_light_accent') ?? '#f59e0b',
-        '#description' => t('Default: #f59e0b'),
+        '#default_value' => theme_get_setting('ibew_light_accent') ?? '#CFA655',
+        '#description' => t('Default: #CFA655 (Gold)'),
     ];
 
     $form['ibew_colors']['light_mode']['ibew_light_bg'] = [
         '#type' => 'color',
         '#title' => t('Background Color'),
-        '#default_value' => theme_get_setting('ibew_light_bg') ?? '#ffffff',
-        '#description' => t('Default: #ffffff'),
+        '#default_value' => theme_get_setting('ibew_light_bg') ?? '#FEFEFE',
+        '#description' => t('Default: #FEFEFE (Off-White)'),
     ];
 
     $form['ibew_colors']['light_mode']['ibew_light_card_bg'] = [
         '#type' => 'color',
         '#title' => t('Card Background Color'),
-        '#default_value' => theme_get_setting('ibew_light_card_bg') ?? '#f3f4f6',
-        '#description' => t('Default: #f3f4f6'),
+        '#default_value' => theme_get_setting('ibew_light_card_bg') ?? '#E8DFC1',
+        '#description' => t('Default: #E8DFC1 (Beige/Cream)'),
     ];
 
     $form['ibew_colors']['light_mode']['ibew_light_text'] = [
@@ -262,6 +269,13 @@ function ibew_theme_form_system_theme_settings_alter(&$form, FormStateInterface 
         '#title' => t('Secondary Color'),
         '#default_value' => theme_get_setting('ibew_dark_secondary') ?? '#3b82f6',
         '#description' => t('Default: #3b82f6'),
+    ];
+
+    $form['ibew_colors']['dark_mode']['ibew_dark_tertiary'] = [
+        '#type' => 'color',
+        '#title' => t('Tertiary Color'),
+        '#default_value' => theme_get_setting('ibew_dark_tertiary') ?? '#E27859',
+        '#description' => t('Default: #E27859'),
     ];
 
     $form['ibew_colors']['dark_mode']['ibew_dark_accent'] = [

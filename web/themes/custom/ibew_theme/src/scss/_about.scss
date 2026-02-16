@@ -1,0 +1,147 @@
+/* ==========================================================================
+   About Page Styles
+   ========================================================================== */
+
+.ibew-about-hero {
+    position: relative;
+    height: 50vh;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    color: white;
+    text-align: center;
+}
+
+.ibew-about-hero__bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120%;
+    /* Parallax Effect space */
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+    transition: transform 0.5s cubic-bezier(0, 0, 0, 1);
+}
+
+.ibew-about-hero__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(30, 58, 95, 0.7);
+    /* IBEW Blue overlay */
+    z-index: 1;
+}
+
+.ibew-about-hero__content {
+    position: relative;
+    z-index: 2;
+    padding: 0 1rem;
+}
+
+.ibew-about-hero__title {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(3rem, 5vw, 5rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.ibew-about-hero__subtitle {
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    font-weight: 300;
+    max-width: 800px;
+    margin: 0 auto;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.ibew-about-content {
+    padding: 4rem 0;
+    background-color: #fff;
+}
+
+html.dark .ibew-about-content {
+    background-color: var(--ibew-bg-dark, #1f2937);
+    color: var(--ibew-text-dark, #f3f4f6);
+}
+
+.ibew-about-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+
+    @media (min-width: 992px) {
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+    }
+}
+
+.ibew-about-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.ibew-about-text h2 {
+    font-family: 'Oswald', sans-serif;
+    color: #1e3a5f;
+    /* IBEW Blue */
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+}
+
+html.dark .ibew-about-text h2 {
+    color: #f7c948;
+    /* IBEW Gold in dark mode */
+}
+
+.ibew-about-image img {
+    border-radius: 8px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s ease;
+}
+
+.ibew-about-image img:hover {
+    transform: translateY(-5px);
+}
+
+/* History Timeline / Stats Section Styles */
+.ibew-about-stats {
+    background-color: #f8f9fa;
+    padding: 3rem 0;
+    margin-top: 3rem;
+    border-radius: 8px;
+}
+
+html.dark .ibew-about-stats {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.ibew-stat-item {
+    text-align: center;
+    padding: 1rem;
+}
+
+.ibew-stat-number {
+    display: block;
+    font-family: 'Oswald', sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #f7c948;
+    /* IBEW Gold */
+}
+
+.ibew-stat-label {
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}

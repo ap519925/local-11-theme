@@ -1,0 +1,337 @@
+{# page--contractors.html.twig #}
+{{ attach_library('ibew_theme/leaflet') }}
+
+<div class="ibew-page bg-gray-100 text-gray-900 min-h-screen d-flex flex-column">
+
+	{% include '@ibew_theme/includes/header.html.twig' %}
+
+	{# Main Split Layout #}
+	<div
+		class="flex-grow-1 d-flex flex-column flex-lg-row overflow-hidden relative" style="height: calc(100vh - 80px);">
+
+		{# LEFT COLUMN: Scrollable List #}
+		<div
+			class="w-100 w-lg-50 w-xl-40 h-100 overflow-auto bg-gray-50 position-relative z-10 shadow-lg">
+
+			{# Mobile Filter Toggle / Header #}
+			<div class="sticky-top bg-white border-bottom p-3 p-md-4 shadow-sm z-20">
+				<h1 class="font-oswald text-2xl md:text-3xl fw-bold text-uppercase text-ibew-navy mb-2">
+					Find a Contractor
+				</h1>
+				<p class="text-muted small mb-3">
+					{{ 'Connect with our network of qualified, licensed, and NECA-signatory electrical contractors.'|t }}
+				</p>
+
+				{# Search/Filter Placeholder - The Exposed Form from the View will render below #}
+				<div class="d-flex gap-2">
+					<button class="btn btn-primary d-lg-none w-100" type="button" data-bs-toggle="collapse" data-bs-target="#mobileMap" aria-expanded="false" aria-controls="mobileMap">
+						<i class="bi bi-map me-2"></i>
+						Show Map
+					</button>
+				</div>
+			</div>
+
+			{# Scrollable Content Area #}
+			<div class="p-3 p-md-4 ibew-contractors-list">
+				{% if page.content %}
+					{# 
+																									   The View content will be rendered here.
+																									   We need to ensure the view grid classes don't break the layout.
+																									   We'll handle that via CSS adjustments in the <style> block below. 
+																									#}
+					{{ page.content }}
+				{% else %}
+					<div class="alert alert-info">
+						No contractors found.
+					</div>
+				{% endif %}
+			</div>
+
+			{% include '@ibew_theme/includes/footer.html.twig' %}
+		</div>
+
+		{# RIGHT COLUMN: Map #}
+		{# Hidden on mobile by default, togglable or stacked #}
+		<div class="w-100 w-lg-50 w-xl-60 h-100 position-relative bg-secondary d-none d-lg-block" id="desktopMapContainer">
+			<div id="contractorMap" class="w-100 h-100 z-0"></div>
+
+			{# Floating Map Controls or Legend could go here #}
+			<div class="position-absolute bottom-0 start-0 m-4 p-3 bg-white rounded shadow-sm z-10" style="max-width: 250px;">
+				<h6 class="fw-bold text-ibew-navy mb-1 small text-uppercase">IBEW Local 90</h6>
+				<p class="text-muted small mb-0">Contractor Coverage Area</p>
+			</div>
+		</div>
+
+	</div>
+
+</div>
+
+{# Load Leaflet CSS/JS from CDN if not in library #}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+<style>
+	/* Layout Overrides for the Airbnb Style */
+
+	/* Target the specific View Grid implementation */
+	.ibew-contractors-list .views-view-grid {
+		display: block !important; /* Reset table/grid behavior */
+	}
+
+	.ibew-contractors-list .views-row {
+		display: block !important;
+		width: 100% !important;
+		margin-bottom: 1rem;
+	}
+
+	/* If using Bootstrap Grid Cols (e.g. col-md-4), force them to full width in this context */
+	.ibew-contractors-list [class*="col-"] {
+		width: 100% !important;
+		flex: 0 0 100% !important;
+		max-width: 100% !important;
+	}
+
+	/* On very wide screens, allow 2 columns */
+	@media(min-width: 1600px) {
+		.ibew-contractors-list .row {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			gap: 1rem;
+		}
+		.ibew-contractors-list [class*="col-"] {
+			width: auto !important;
+			flex: auto !important;
+			max-width: none !important;
+		}
+	}
+
+
+	/* Adjust Card Styles for Compact List */
+	.ibew-contractor-card {
+		transition: all 0.2s ease-in-out;
+		border: 1px solid rgba(0, 0, 0, 0.05);
+	}
+
+	.ibew-contractor-card:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08) !important;
+		border-color: var(--ibew-primary);
+	}
+
+	/* Map Marker Popup Styling */
+	.leaflet-popup-content-wrapper {
+		border-radius: 0.5rem;
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+		padding: 0;
+		overflow: hidden;
+	}
+	.leaflet-popup-content {
+		margin: 0;
+	}
+	.contractor-popup {
+		width: 200px;
+	}
+	.contractor-popup h4 {
+		font-family: 'Oswald', sans-serif;
+		font-size: 1rem;
+		margin-bottom: 0.25rem;
+		color: #313F6B;
+	}
+
+</style>
+
+<script>
+	document.addEventListener('DOMContentLoaded', function () { // Initialize Map centered on Connecticut
+var map = L.map('contractorMap').setView([
+41.50, -72.80
+], 9); // Wallingford/New Haven center
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
+
+// Dynamic Data from DOM
+var contractors = [];
+var cards = document.querySelectorAll('.ibew-card[data-name]');
+
+// Simple Connecticut Cities Geocoding Dictionary
+// We use this to map the text "Service Areas" to a point on the map.
+var cityCoords = {
+'Wallingford': [
+41.4570, -72.8232
+],
+'New Haven': [
+41.3083, -72.9279
+],
+'Hamden': [
+41.3976, -72.8953
+],
+'North Haven': [
+41.3916, -72.8596
+],
+'Meriden': [
+41.5381, -72.8070
+],
+'Waterbury': [
+41.5582, -73.0515
+],
+'Middletown': [
+41.5623, -72.6506
+],
+'Hartford': [
+41.7658, -72.6734
+],
+'Bridgeport': [
+41.1792, -73.1913
+],
+'Stamford': [
+41.0534, -73.5387
+],
+'Danbury': [
+41.3948, -73.4540
+],
+'New Britain': [
+41.6675, -72.7834
+],
+'Torrington': [
+41.8084, -73.1213
+],
+'Milford': [
+41.2222, -73.0658
+],
+'Norwalk': [
+41.1177, -73.4082
+],
+'Shelton': [
+41.3142, -73.0905
+],
+'Trumbull': [
+41.2602, -73.2014
+],
+'West Haven': [
+41.2723, -72.9461
+],
+'East Haven': [
+41.2829, -72.8687
+],
+'Branford': [
+41.2778, -72.8123
+],
+'Guilford': [
+41.2873, -72.6754
+],
+'Madison': [
+41.2784, -72.5830
+],
+'Clinton': [
+41.2771, -72.5290
+],
+'Old Saybrook': [
+41.2913, -72.3787
+],
+'Cheshire': [41.4988, -72.9015]
+};
+
+cards.forEach(function (card) {
+var name = card.getAttribute('data-name');
+var phone = card.getAttribute('data-phone');
+var areas = card.getAttribute('data-service-areas') || '';
+
+// Find a matching city in the service areas string
+var lat = 41.50,
+lng = -72.80; // Default center
+var foundLoc = false;
+
+for (var city in cityCoords) { // Simple includes check - in production maybe use regex for whole word
+if (areas.includes(city) || name.includes(city) || (areas === '' && ! foundLoc)) { // Should probably randomize slightly if multiple at same spot
+var baseCity = cityCoords[city];
+// Add slight jitter so they don't overlap perfectly
+lat = baseCity[0] + (Math.random() * 0.005 - 0.0025);
+lng = baseCity[1] + (Math.random() * 0.005 - 0.0025);
+foundLoc = true;
+break;
+}
+}
+
+contractors.push({
+name: name,
+phone: phone,
+lat: lat,
+lng: lng,
+marker: null, // Will hold the Leaflet marker object
+card: card // Link back to the DOM element
+});
+});
+
+// Custom Icon
+var markerIcon = L.icon({
+iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
+iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
+shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+iconSize: [
+25, 41
+],
+iconAnchor: [
+12, 41
+],
+popupAnchor: [
+1, -34
+],
+shadowSize: [41, 41]
+});
+
+// Add Markers
+contractors.forEach(function (c) { // Skip if no legitimate location found (optional, for now we map all)
+
+var popupContent = `
+				<div class="contractor-popup p-3">
+					<h4 class="fw-bold">${
+c.name
+}</h4>
+					<p class="mb-1 text-muted small"><i class="bi bi-geo-alt-fill me-1"></i> CT Service Area</p>
+					<div class="mb-2">
+						<a href="tel:${
+c.phone
+}" class="text-decoration-none fw-bold small d-flex align-items-center gap-1">
+							<i class="bi bi-telephone-fill text-primary"></i> ${
+c.phone
+}
+						</a>
+					</div>
+					<a href="#" class="btn btn-sm btn-primary w-100 py-1" style="font-size: 0.75rem;">View Profile</a>
+				</div>
+			`;
+
+var marker = L.marker([
+c.lat, c.lng
+], {icon: markerIcon}).addTo(map);
+marker.bindPopup(popupContent);
+
+// Link Marker <-> Data Object
+c.marker = marker;
+
+// Highlight card on marker hover
+marker.on('mouseover', function () {
+c.card.classList.add('border-primary');
+c.card.classList.add('shadow-lg');
+c.card.style.borderColor = 'var(--ibew-primary)';
+// Scroll into view if needed?
+// c.card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+});
+marker.on('mouseout', function () {
+c.card.classList.remove('border-primary');
+c.card.classList.remove('shadow-lg');
+c.card.style.borderColor = '';
+});
+});
+
+// Add Interactivity: Hover Card -> Toggle Marker
+// Note: The previous loop handled extracting data, now we add listeners to the rows
+contractors.forEach(function (c) {
+c.card.addEventListener('mouseenter', function () {
+if (c.marker) {
+c.marker.openPopup();
+c.marker.setOpacity(1);
+}
+});
+});
+});
+</script>

@@ -37,16 +37,18 @@ function ibew_theme_preprocess_html(&$variables) {
 
   // --- Inject Color Scheme CSS Variables ---
   // Retrieve Light Mode Settings
-  $light_primary = theme_get_setting('ibew_light_primary') ?? '#1e293b';
-  $light_secondary = theme_get_setting('ibew_light_secondary') ?? '#3b82f6';
-  $light_accent = theme_get_setting('ibew_light_accent') ?? '#f59e0b';
-  $light_bg = theme_get_setting('ibew_light_bg') ?? '#ffffff';
-  $light_card_bg = theme_get_setting('ibew_light_card_bg') ?? '#f3f4f6';
+  $light_primary = theme_get_setting('ibew_light_primary') ?? '#313F6B';
+  $light_secondary = theme_get_setting('ibew_light_secondary') ?? '#983A54';
+  $light_tertiary = theme_get_setting('ibew_light_tertiary') ?? '#E27859';
+  $light_accent = theme_get_setting('ibew_light_accent') ?? '#CFA655';
+  $light_bg = theme_get_setting('ibew_light_bg') ?? '#FEFEFE';
+  $light_card_bg = theme_get_setting('ibew_light_card_bg') ?? '#E8DFC1';
   $light_text = theme_get_setting('ibew_light_text') ?? '#1f2937';
 
   // Retrieve Dark Mode Settings
   $dark_primary = theme_get_setting('ibew_dark_primary') ?? '#1e293b';
   $dark_secondary = theme_get_setting('ibew_dark_secondary') ?? '#3b82f6';
+  $dark_tertiary = theme_get_setting('ibew_dark_tertiary') ?? '#E27859';
   $dark_accent = theme_get_setting('ibew_dark_accent') ?? '#f59e0b';
   $dark_bg = theme_get_setting('ibew_dark_bg') ?? '#1f2937';
   $dark_card_bg = theme_get_setting('ibew_dark_card_bg') ?? '#3e4c63';
@@ -58,6 +60,7 @@ function ibew_theme_preprocess_html(&$variables) {
     :root {
       --ibew-primary: {$light_primary} !important;
       --ibew-secondary: {$light_secondary} !important;
+      --ibew-tertiary: {$light_tertiary} !important;
       --ibew-accent: {$light_accent} !important;
       --ibew-accent-hover: {$light_accent} !important;
       --ibew-bg-light: {$light_bg} !important; /* Maps to body bg in light mode */
@@ -81,6 +84,7 @@ function ibew_theme_preprocess_html(&$variables) {
     html.dark {
       --ibew-primary: {$dark_primary} !important;
       --ibew-secondary: {$dark_secondary} !important;
+      --ibew-tertiary: {$dark_tertiary} !important;
       --ibew-accent: {$dark_accent} !important;
       --ibew-accent-hover: {$dark_accent} !important;
       --ibew-bg-light: {$dark_bg} !important; /* Maps to body bg in dark mode */
@@ -333,6 +337,9 @@ function ibew_theme_theme_suggestions_page_alter(array &$suggestions, array $var
   if ($alias == '/join') {
     $suggestions[] = 'page__join';
   }
+  if ($alias == '/styleguide') {
+    $suggestions[] = 'page__styleguide';
+  }
 
   // Add template suggestion for contact page route
   $route_name = \Drupal::routeMatch()->getRouteName();
@@ -550,5 +557,28 @@ function ibew_theme_preprocess_paragraph(&$variables) {
         $variables['hero_btn_class'] = 'ibew-btn-lg border-2 border-white text-white bg-transparent hover:bg-white/10 backdrop-blur-sm';
       }
     }
+  }
+}
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function ibew_theme_preprocess_node(&$variables) {
+  $node = $variables['node'];
+  
+  // Check if we are on the homepage
+  $is_front = \Drupal::service('path.matcher')->isFrontPage();
+  
+  // If on homepage and node is an event, verify view mode and override URL
+  if ($is_front && $node->getType() == 'ibew_event') {
+      // Set the URL to the main events page
+      // Create a URL object from the path
+      try {
+        $variables['url'] = \Drupal\Core\Url::fromUserInput('/events')->toString();
+      }
+      catch (\Exception $e) {
+          // Fallback if route doesn't exist
+          $variables['url'] = '/events'; 
+      }
   }
 }

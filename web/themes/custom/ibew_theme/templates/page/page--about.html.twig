@@ -1,0 +1,61 @@
+{#
+/**
+ * @file
+ * About page template.
+ */
+#}
+<a id="main-content" tabindex="-1"></a>
+
+<div class="ibew-page">
+	{% include '@ibew_theme/includes/header.html.twig' %}
+
+	{# Breadcrumbs #}
+	{% if breadcrumb %}
+		<div class="ibew-breadcrumb-wrapper bg-gray-50 border-b border-gray-200">
+			<div class="container py-3">
+				{% include '@ibew_theme/navigation/breadcrumb.html.twig' %}
+			</div>
+		</div>
+	{% endif %}
+
+	{# --- HERO SECTION --- #}
+	<section
+		class="ibew-about-hero">
+		{# Background Image #}
+		{% if node.field_hero_image.entity.uri.value %}
+			<div class="ibew-about-hero__bg" style="background-image: url('{{ file_url(node.field_hero_image.entity.uri.value) }}');"></div>
+		{% else %}
+			<div class="ibew-about-hero__bg" style="background-image: url('/themes/custom/ibew_theme/screenshot.jpg');"></div>
+		{% endif %}
+
+		<div class="ibew-about-hero__overlay"></div>
+
+		<div class="container ibew-about-hero__content">
+			<h1 class="ibew-about-hero__title">
+				{% if node.field_display_title.value %}
+					{{ node.field_display_title.value }}
+				{% else %}
+					{{ 'About Us'|t }}
+				{% endif %}
+			</h1>
+			<p class="ibew-about-hero__subtitle">
+				{% if node.field_hero_description.value %}
+					{{ node.field_hero_description.value }}
+				{% else %}
+					{{ "Empowering the electrical industry through skill, safety, and brotherhood since 1892."|t }}
+				{% endif %}
+			</p>
+			<div class="w-24 h-1 bg-yellow-400 mx-auto mt-8 rounded-full"></div>
+		</div>
+	</section>
+
+	<main class="ibew-about-content">
+		<div
+			class="container">
+			{# Render the main content (Paragraphs, Body, etc.) #}
+			{{ page.content }}
+		</div>
+	</main>
+
+	{% include '@ibew_theme/includes/footer.html.twig' %}
+</div>

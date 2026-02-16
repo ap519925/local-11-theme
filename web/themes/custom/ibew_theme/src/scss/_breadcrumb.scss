@@ -25,31 +25,54 @@
     line-height: 1.25rem;
 }
 
+/* Breadcrumb Link Styling with Animated Underline Effect */
 .breadcrumb-item a {
     color: #4b5563;
     text-decoration: none;
-    transition: color 0.2s ease;
+    position: relative;
+    padding: 0.25rem 0.5rem;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+    font-weight: 500;
+}
+
+.breadcrumb-item a:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 50%;
+    background-color: #d4af37;
+    /* IBEW Gold */
+    transition: all 0.3s ease;
+    opacity: 0;
 }
 
 .breadcrumb-item a:hover {
-    color: #d4af37;
-    /* IBEW Gold */
+    color: #1e3a5f;
+    /* IBEW Blue */
+    background-color: rgba(30, 58, 95, 0.05);
+    /* Subtle background on hover */
 }
 
-.breadcrumb-item svg {
-    margin: 0 0.5rem;
-    color: #9ca3af;
-    flex-shrink: 0;
+.breadcrumb-item a:hover:after {
+    width: calc(100% - 1rem);
+    /* 0.5rem padding on each side */
+    left: 0.5rem;
+    opacity: 1;
 }
 
 .breadcrumb-item span[aria-current="page"] {
     color: #111827;
-    font-weight: 500;
+    font-weight: 600;
+    padding: 0.25rem 0.5rem;
+    /* Match spacing */
 }
 
 /* Dark mode support */
 html.dark .ibew-breadcrumb-wrapper {
-    background: linear-gradient(to bottom, #1f2937 0%, #111827 100%);
+    background: #1f2f46;
     border-bottom-color: #374151;
 }
 

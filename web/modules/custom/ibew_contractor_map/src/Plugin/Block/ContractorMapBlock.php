@@ -87,6 +87,19 @@ class ContractorMapBlock extends BlockBase
                     $phone = $node->get('field_phone')->value;
                     $website = $node->get('field_website')->uri;
 
+                    // Get image URL if available.
+                    $image_url = '';
+                    $image_field = $node->get('field_image');
+                    if (!$image_field->isEmpty()) {
+                        $image_item = $image_field->first();
+                        if ($image_item) {
+                            $image_entity = $image_item->entity;
+                            if ($image_entity) {
+                                $image_url = $image_entity->createFileUrl();
+                            }
+                        }
+                    }
+
                     // Build popup content.
                     $popup_content = '<h4>' . $node->getTitle() . '</h4>';
                     if ($address) {
@@ -107,6 +120,7 @@ class ContractorMapBlock extends BlockBase
                         'address' => $address,
                         'phone' => $phone,
                         'website' => $website,
+                        'image' => $image_url,
                         'popupContent' => $popup_content,
                     ];
                 }

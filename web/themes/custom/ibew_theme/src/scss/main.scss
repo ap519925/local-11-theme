@@ -128,6 +128,44 @@ body,
     height: auto !important;
 }
 
+// ADMIN TOOLBAR FIX
+// Allow admin toolbar dropdowns to display outside overflow constraints
+#toolbar-item-administration-tray,
+#toolbar-bar,
+.toolbar-tray,
+.toolbar-menu,
+.toolbar-menu__item,
+.gin-toolbar-bar,
+.gin-sidebar {
+    overflow: visible !important;
+    z-index: 99999 !important;
+}
+
+// Ensure contextual links and quick edit are also visible
+.contextual-region,
+.contextual {
+    z-index: 9999 !important;
+}
+
+// Specific fix for vertical toolbar submenus
+.toolbar-tray-vertical {
+    z-index: 99999 !important;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+}
+
+// Remove conflict with theme z-indicies
+.ibew-page,
+.layout-container {
+    z-index: 1;
+    /* reset to low value */
+    position: relative;
+}
+
+// Fix for submenus being clipped
+.toolbar-menu__sub {
+    z-index: 100000 !important;
+}
+
 // Enforce sticky nav with high specificity
 .ibew-nav {
     position: -webkit-sticky !important;

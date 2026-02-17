@@ -4,7 +4,7 @@
 
 /* Page Container */
 .page-contractors {
-    background-color: #f8f9fa;
+    background-color: #152a45;
 
     .ibew-contractors-hero {
         background: linear-gradient(135deg, #1e3a5f 0%, #152a45 100%);
@@ -29,7 +29,6 @@
 
 /* Filters Section */
 .contractors-filters {
-    background: white;
     border-radius: 0.5rem;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     padding: 1.5rem;
@@ -104,7 +103,7 @@
 
 /* Contractor Card */
 .ibew-contractor-card {
-    background: white;
+    background: #152a45;
     border-radius: 0.5rem;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -371,7 +370,7 @@
 .contractor-list-item {
     padding: 1rem;
     margin-bottom: 0.75rem;
-    background: #f8f9fa;
+    background: #152a45;
     border-radius: 0.375rem;
     cursor: pointer;
     transition: all 0.2s ease;

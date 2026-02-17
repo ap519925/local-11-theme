@@ -61,17 +61,17 @@ html.dark {
   .h5,
   .h6,
   .text-dark {
-    color: #ffffff !important;
+    color: #ffffff;
   }
 
   p,
   .text-body,
   .text-secondary {
-    color: #e5e7eb !important; // Gray 200
+    color: #e5e7eb; // Gray 200
   }
 
   .text-muted {
-    color: #9ca3af !important; // Gray 400 - Readable on Dark
+    color: #9ca3af; // Gray 400 - Readable on Dark
   }
 
   .card,
@@ -81,23 +81,23 @@ html.dark {
   .bg-gray-50,
   .ibew-page {
     background-color: #1f2937; // Gray 800
-    color: #f3f4f6 !important;
+    color: #f3f4f6;
     border-color: #374151; // Gray 700
   }
 
   // Targeted Fix for About Section
   #about {
-    color: #f3f4f6 !important;
+    color: #f3f4f6;
 
     p,
     div:not(.btn),
     span,
     li {
-      color: #f3f4f6 !important;
+      color: #f3f4f6;
     }
 
     .btn {
-      color: #111827 !important;
+      color: #111827;
     }
 
     .row {
@@ -133,7 +133,7 @@ html.dark {
 .bg-gray-900,
 .bg-primary,
 .ibew-footer {
-  color: #fff !important;
+  color: #fff;
 
   p,
   li,
@@ -148,7 +148,7 @@ html.dark {
   }
 
   .text-muted {
-    color: #9ca3af !important;
+    color: #9ca3af;
     /* Lighter gray for muted text on dark bg */
   }
 }

@@ -175,7 +175,7 @@
 										<div class="bg-primary text-white rounded p-2">
 											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewbox="0 0 16 16"><path d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v8A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-8A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1h-3zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5z"/></svg>
 										</div>
-										<h3 class="h5 fw-bold font-oswald mb-0 text-dark">LOREM IPSUM</h3>
+										<h3 class="h5 fw-bold font-oswald mb-0 text-dark">Contractors</h3>
 									</div>
 									<p class="small text-muted mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
 
@@ -197,6 +197,15 @@
 							<div class="ibew-region ibew-region--events">
 								{{ embedded_events_view }}
 							</div>
+
+							<div class="mt-5">
+								<div class="bg-white p-3 rounded-4 shadow-sm border border-light">
+									<h3 class="h6 fw-bold text-uppercase text-muted mb-3 font-oswald">Updates from @IBEW</h3>
+									<a class="twitter-timeline" data-height="600" href="https://twitter.com/IBEW?ref_src=twsrc%5Etfw">Tweets by IBEW</a>
+									<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+								</div>
+							</div>
+
 						</div>
 
 					</div>
@@ -220,14 +229,14 @@
 
 		{# 5. Contact / CTA - REMOVED PER REQUEST #}
 		{# 
-																																																																				      {% if page.homepage_contact %}
-																																																																				            <section id="contact" class="ibew-section py-16 bg-gray-50 w-100">
-																																																																				              <div class="ibew-region ibew-region--contact w-100">
-																																																																				                  {{ page.homepage_contact }}
-																																																																				              </div>
-																																																																				            </section>
-																																																																				          {% endif %}
-																																																																				          #}
+																																																																																						      {% if page.homepage_contact %}
+																																																																																						            <section id="contact" class="ibew-section py-16 bg-gray-50 w-100">
+																																																																																						              <div class="ibew-region ibew-region--contact w-100">
+																																																																																						                  {{ page.homepage_contact }}
+																																																																																						              </div>
+																																																																																						            </section>
+																																																																																						          {% endif %}
+																																																																																						          #}
 
 		{# --- New CTA Section --- #}
 		{# --- New CTA Section (Parallax) --- #}
@@ -240,30 +249,30 @@
 
 			<div class="container relative z-10 text-center">
 				<h2 class="display-4 fw-bold font-oswald text-uppercase mb-5 text-shadow-md">
-					LOREM IPSUM DOLOR SIT?
+					Use the IBEW Local 90 Website to Find What You Need
 				</h2>
 
 				<div
 					class="ibew-cta-grid grid grid-cols-1 md:grid-cols-3 gap-6">
 					<!-- Prospective Members -->
 					<div class="ibew-cta-card bg-white/10 backdrop-blur-sm border border-white/20 p-8 rounded-2xl hover:bg-white/20 transition-all duration-300">
-						<h3 class="font-oswald text-2xl font-bold mb-3 text-white uppercase text-shadow-sm">Lorem Ipsum</h3>
+						<h3 class="font-oswald text-2xl font-bold mb-3 text-white uppercase text-shadow-sm">Prospective Members</h3>
 						<p class="text-white/90 mb-6 min-h-[60px] font-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-						<a href="/join" class="btn w-full py-3 fw-bold text-uppercase font-oswald tracking-wide shadow-lg hover:shadow-xl transition-all" style="background-color: #cc9c42; color: #1e3a5f; border: none;">Lorem Ipsum</a>
+						<a href="/join" class="btn w-full py-3 fw-bold text-uppercase font-oswald tracking-wide shadow-lg hover:shadow-xl transition-all" style="background-color: #cc9c42; color: #1e3a5f; border: none;">Join</a>
 					</div>
 
 					<!-- Contractors -->
 					<div class="ibew-cta-card bg-white/10 backdrop-blur-sm border border-white/20 p-8 rounded-2xl hover:bg-white/20 transition-all duration-300">
-						<h3 class="font-oswald text-2xl font-bold mb-3 text-white uppercase text-shadow-sm">Dolor Sit Amet</h3>
+						<h3 class="font-oswald text-2xl font-bold mb-3 text-white uppercase text-shadow-sm">Contractors</h3>
 						<p class="text-white/90 mb-6 min-h-[60px] font-light">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-						<a href="/contractors" class="btn w-full py-3 fw-bold text-uppercase font-oswald tracking-wide shadow-lg hover:shadow-xl transition-all" style="background-color: #465a8c; color: white; border: none;">Dolor Sit</a>
+						<a href="/contractors" class="btn w-full py-3 fw-bold text-uppercase font-oswald tracking-wide shadow-lg hover:shadow-xl transition-all" style="background-color: #465a8c; color: white; border: none;">Contractor Information</a>
 					</div>
 
 					<!-- Training -->
 					<div class="ibew-cta-card bg-white/10 backdrop-blur-sm border border-white/20 p-8 rounded-2xl hover:bg-white/20 transition-all duration-300">
-						<h3 class="font-oswald text-2xl font-bold mb-3 text-white uppercase text-shadow-sm">Consectetur</h3>
+						<h3 class="font-oswald text-2xl font-bold mb-3 text-white uppercase text-shadow-sm">Training Opportunities</h3>
 						<p class="text-white/90 mb-6 min-h-[60px] font-light">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-						<a href="/training" class="btn w-full py-3 fw-bold text-uppercase font-oswald tracking-wide shadow-lg hover:shadow-xl transition-all" style="background-color: #9e373f; color: white; border: none;">Adipiscing</a>
+						<a href="/training" class="btn w-full py-3 fw-bold text-uppercase font-oswald tracking-wide shadow-lg hover:shadow-xl transition-all" style="background-color: #9e373f; color: white; border: none;">IBEW Training</a>
 					</div>
 				</div>
 			</div>

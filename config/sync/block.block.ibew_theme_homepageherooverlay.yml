@@ -16,8 +16,8 @@ provider: null
 plugin: 'block_content:89521010-91d0-4ea4-82fe-d10a66805df7'
 settings:
   id: 'block_content:89521010-91d0-4ea4-82fe-d10a66805df7'
-  label: 'Homepage Hero Overlay'
-  label_display: visible
+  label: 'IBEW LOCAL 90'
+  label_display: '0'
   provider: block_content
   view_mode: full
 visibility: {  }

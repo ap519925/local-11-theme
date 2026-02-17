@@ -58,14 +58,14 @@ function ibew_theme_preprocess_html(&$variables) {
   $custom_css = "
     /* LIGHT MODE (Default) */
     :root {
-      --ibew-primary: {$light_primary} !important;
-      --ibew-secondary: {$light_secondary} !important;
-      --ibew-tertiary: {$light_tertiary} !important;
-      --ibew-accent: {$light_accent} !important;
-      --ibew-accent-hover: {$light_accent} !important;
-      --ibew-bg-light: {$light_bg} !important; /* Maps to body bg in light mode */
-      --ibew-text-dark: {$light_text} !important;
-      --ibew-card-bg: {$light_card_bg} !important;
+      --ibew-primary: {$light_primary};
+      --ibew-secondary: {$light_secondary};
+      --ibew-tertiary: {$light_tertiary};
+      --ibew-accent: {$light_accent};
+      --ibew-accent-hover: {$light_accent};
+      --ibew-bg-light: {$light_bg}; /* Maps to body bg in light mode */
+      --ibew-text-dark: {$light_text};
+      --ibew-card-bg: {$light_card_bg};
     }
     
     body {
@@ -82,14 +82,14 @@ function ibew_theme_preprocess_html(&$variables) {
 
     /* DARK MODE OVERRIDES */
     html.dark {
-      --ibew-primary: {$dark_primary} !important;
-      --ibew-secondary: {$dark_secondary} !important;
-      --ibew-tertiary: {$dark_tertiary} !important;
-      --ibew-accent: {$dark_accent} !important;
-      --ibew-accent-hover: {$dark_accent} !important;
-      --ibew-bg-light: {$dark_bg} !important; /* Maps to body bg in dark mode */
-      --ibew-text-dark: {$dark_text} !important;
-      --ibew-card-bg: {$dark_card_bg} !important;
+      --ibew-primary: {$dark_primary};
+      --ibew-secondary: {$dark_secondary};
+      --ibew-tertiary: {$dark_tertiary};
+      --ibew-accent: {$dark_accent};
+      --ibew-accent-hover: {$dark_accent};
+      --ibew-bg-light: {$dark_bg}; /* Maps to body bg in dark mode */
+      --ibew-text-dark: {$dark_text};
+      --ibew-card-bg: {$dark_card_bg};
     }
 
     /* Ensure Dark Mode variables apply when class is present */

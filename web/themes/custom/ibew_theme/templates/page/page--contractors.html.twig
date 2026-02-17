@@ -1,5 +1,5 @@
 {# page--contractors.html.twig #}
-{{ attach_library('ibew_theme/leaflet') }}
+
 
 <div class="ibew-page bg-gray-100 text-gray-900 min-h-screen d-flex flex-column">
 
@@ -11,11 +11,12 @@
 
 		{# LEFT COLUMN: Scrollable List #}
 		<div
-			class="w-100 w-lg-50 w-xl-40 h-100 overflow-auto bg-gray-50 position-relative z-10 shadow-lg d-flex flex-column">
+			class="w-100 w-lg-50 w-xl-40 h-100 overflow-auto bg-dark position-relative z-10 shadow-lg d-flex flex-column">
 
 			{# Sticky Header Area with Breadcrumb #}
 			<div
-				class="sticky-top bg-white border-bottom p-3 p-md-4 shadow-sm z-20">
+				class="sticky-top bg-dark border-bottom p-3 p-md-4 shadow-sm z-20">
+
 				{# Breadcrumb #}
 				<nav aria-label="breadcrumb" class="mb-3">
 					<ol class="breadcrumb mb-0 small text-uppercase font-weight-bold opacity-75">
@@ -26,7 +27,7 @@
 					</ol>
 				</nav>
 
-				<h1 class="font-oswald text-2xl md:text-3xl fw-bold text-uppercase text-ibew-navy mb-2">
+				<h1 class="font-oswald text-2xl md:text-3xl fw-bold text-uppercase text-white mb-2">
 					Find a Contractor
 				</h1>
 				<p class="text-muted small mb-3">
@@ -46,10 +47,10 @@
 			<div class="p-3 p-md-4 ibew-contractors-list flex-grow-1">
 				{% if page.content %}
 					{# 
-																																																												   The View content will be rendered here.
-																																																												   We need to ensure the view grid classes don't break the layout.
-																																																												   We'll handle that via CSS adjustments in the <style> block below. 
-																																																												#}
+																																																																																																																																																																																																																																																																															   The View content will be rendered here.
+																																																																																																																																																																																																																																																																															   We need to ensure the view grid classes don't break the layout.
+																																																																																																																																																																																																																																																																															   We'll handle that via CSS adjustments in the <style> block below. 
+																																																																																																																																																																																																																																																																															#}
 					{{ page.content }}
 				{% else %}
 					<div class="alert alert-info">
@@ -59,7 +60,7 @@
 			</div>
 
 			{# Minimal Footer / Copyright #}
-			<div class="p-3 border-top bg-white text-center small text-muted">
+			<div class="p-3 border-top bg-dark text-center small text-muted">
 				&copy;
 				{{ 'now'|date('Y') }}
 				IBEW Local 90. All Rights Reserved.
@@ -68,11 +69,13 @@
 
 		{# RIGHT COLUMN: Map #}
 		{# Hidden on mobile by default, togglable or stacked #}
-		<div class="w-100 w-lg-50 w-xl-60 h-100 position-relative bg-secondary d-none d-lg-block" id="desktopMapContainer">
-			<div id="contractorMap" class="w-100 h-100 z-0"></div>
+		<div class="w-100 w-lg-50 w-xl-60 h-100 position-relative bg-gray-200 d-none d-lg-block" id="desktopMapContainer" style="min-height: 600px;">
+			<div id="contractorMap" class="w-100 h-100 z-0 text-center d-flex align-items-center justify-content-center text-muted" style="min-height: 600px;">
+				<span>Loading Map...</span>
+			</div>
 
 			{# Floating Map Controls or Legend could go here #}
-			<div class="position-absolute bottom-0 start-0 m-4 p-3 bg-white rounded shadow-sm z-10" style="max-width: 250px;">
+			<div class="position-absolute bottom-0 start-0 m-4 p-3 rounded shadow-sm z-10" style="max-width: 250px;">
 				<h6 class="fw-bold text-ibew-navy mb-1 small text-uppercase">IBEW Local 90</h6>
 				<p class="text-muted small mb-0">Contractor Location Map</p>
 			</div>
@@ -82,22 +85,94 @@
 
 </div>
 
-{# Load Leaflet CSS/JS from CDN if not in library #}
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-
+{# Google Maps API is loaded via the module or theme #}
 <style>
-	/* Layout Overrides for the Airbnb Style */
+	/* Google Map specific overrides */
+	#contractorMap img {
+		max-width: none;
+	}
 
+	/* The main info window container - scoped to the map ID for specificity */
+	#contractorMap .gm-style-iw,
+	#contractorMap .gm-style-iw-c,
+	#contractorMap .gm-style-iw-d {
+		background-color: #ffffff;
+		color: #000000;
+		font-family: 'Inter', sans-serif;
+		padding: 0;
+	}
+
+	/* The tail/arrow of the info window */
+	#contractorMap .gm-style-iw-tc::after,
+	#contractorMap .gm-style-iw-tc::before {
+		background-color: #ffffff;
+	}
+
+	/* Close button */
+	#contractorMap .gm-ui-hover-effect {
+		background-color: rgba(255, 255, 255, 0.8);
+		border-radius: 50%;
+	}
+	#contractorMap .gm-ui-hover-effect img {
+		filter: invert(1); /* Ensure X is visible if it was white */
+	}
+
+	/* Internal Content Wrapper */
+	#contractorMap .contractor-info-window {
+		background-color: #ffffff;
+		color: #333333;
+		padding: 0;
+	}
+
+	/* Reset text colors inside the map to dark, using natural specificity */
+	#contractorMap .contractor-info-window * {
+		color: #333333;
+		text-shadow: none;
+	}
+
+	#contractorMap .contractor-info-window h4 {
+		color: #1e3a5f;
+		font-weight: 700;
+	}
+
+	#contractorMap .contractor-info-window p,
+	#contractorMap .contractor-info-window span,
+	#contractorMap .contractor-info-window div {
+		color: #333333;
+	}
+
+	/* Links should be distinct */
+	#contractorMap .contractor-info-window a {
+		color: #1e3a5f;
+	}
+
+	/* Buttons */
+	#contractorMap .contractor-info-window a.btn,
+	#contractorMap .contractor-info-window a[style*="background"] {
+		color: #ffffff !important; /* Only keeping important where inline styles might compete */
+	}
+
+	/* Layout Overrides for the Airbnb Style */
 	/* Target the specific View Grid implementation */
 	.ibew-contractors-list .views-view-grid {
 		display: block !important; /* Reset table/grid behavior */
 	}
 
-	.ibew-contractors-list .views-row {
+	/* Force grid items/rows to full width */
+	.ibew-contractors-list .views-row,
+	.ibew-contractors-list .views-col {
 		display: block !important;
 		width: 100% !important;
 		margin-bottom: 1rem;
+	}
+
+	/* Reset internal containers that might constrain width */
+	.ibew-contractors-list .container,
+	.ibew-contractors-list .container-fluid {
+		width: 100% !important;
+		max-width: none !important;
+		padding-left: 0 !important;
+		padding-right: 0 !important;
 	}
 
 	/* If using Bootstrap Grid Cols (e.g. col-md-4), force them to full width in this context */
@@ -121,272 +196,34 @@
 		}
 	}
 
+	/* Adjust Card Styles for Compact List and Fix Readability */
+	.ibew-contractor-card,
+	.ibew-contractor-card .card-body,
+	.ibew-contractor-card .card-img-top {
+		border-color: rgba(0, 0, 0, 0.1) !important;
+	}
 
-	/* Adjust Card Styles for Compact List */
-	.ibew-contractor-card {
-		transition: all 0.2s ease-in-out;
-		border: 1px solid rgba(0, 0, 0, 0.05);
+	.ibew-contractor-card h3,
+	.ibew-contractor-card a:not(.btn),
+	.ibew-contractor-card div,
+	.ibew-contractor-card p,
+	.ibew-contractor-card span {}
+
+	.ibew-contractor-card a:not(.btn) {
+		text-decoration: none;
 	}
 
 	.ibew-contractor-card:hover {
 		transform: translateY(-2px);
 		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08) !important;
-		border-color: var(--ibew-primary);
+		border-color: var(--ibew-primary) !important;
 	}
 
-	/* Map Marker Popup Styling */
-	.leaflet-popup-content-wrapper {
-		border-radius: 0.5rem;
-		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-		padding: 0;
-		overflow: hidden;
+	/* HIDE Unwanted Homepage Blocks that might be in the content region */
+	/* We specifically target likely IDs or classes for the About Section */
+	.block-ibew-about-section,
+	[id*="about-section"],
+	[class*="about-section"] {
+		display: none !important;
 	}
-	.leaflet-popup-content {
-		margin: 0;
-	}
-	.contractor-popup {
-		width: 200px;
-	}
-	.contractor-popup h4 {
-		font-family: 'Oswald', sans-serif;
-		font-size: 1rem;
-		margin-bottom: 0.25rem;
-		color: #313F6B;
-	}
-
-	/* CUSTOM MAP STYLING */
-	/* Standard colorful map - no filters needed for "Google Maps" look */
-	.leaflet-tile-pane {
-		filter: none;
-	}
-
-	/* Default markers are already blue/standard. We can keep them or tint them. 
-	   Let's keep them standard to match the map or slight hue shift if needed.
-	   Removing filter for now to ensure visibility. */
-	.leaflet-marker-icon {
-		filter: none;
-	}
-
 </style>
-
-<script>
-	document.addEventListener('DOMContentLoaded', function () { // Initialize Map centered on Connecticut
-var map = L.map('contractorMap').setView([
-41.50, -72.80
-], 9);
-// Wallingford/New Haven center
-
-// Use OpenStreetMap Standard (looks like Google Maps)
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-maxZoom: 19
-}).addTo(map);
-
-// Dynamic Data from DOM
-var contractors = [];
-var cards = document.querySelectorAll('.ibew-card[data-name]');
-
-// Simple Connecticut Cities Geocoding Dictionary
-// We use this to map the text "Service Areas" to a point on the map.
-'Middlebury' : [
-41.5273, -73.1287
-],
-'Shelton' : [
-41.3142, -73.0905
-],
-'West Haven' : [
-41.2723, -72.9461
-],
-'Danbury' : [
-41.3948, -73.4540
-],
-'Foxborough' : [
-42.0654, -71.2478
-], // MA
-'Hartford' : [
-41.7658, -72.6734
-],
-'Guilford' : [
-41.2873, -72.6754
-],
-'Lebanon' : [
-41.6360, -72.2470
-],
-'Hamden' : [
-41.3976, -72.8953
-],
-'New Haven' : [
-41.3083, -72.9279
-],
-'Worcester' : [
-42.2626, -71.8023
-], // MA
-'Manchester' : [
-41.7759, -72.5215
-],
-'Lancaster' : [
-40.0379, -76.3055
-], // PA
-'Waterford' : [
-41.3543, -72.1648
-],
-'Farmington' : [
-41.7198, -72.8320
-],
-'North Haven' : [
-41.3916, -72.8596
-],
-'Westbrook' : [
-43.6763, -70.3683
-], // ME
-'Wallingford' : [
-41.4570, -72.8232
-],
-'Durham' : [
-41.4820, -72.6845
-],
-'Greenwich' : [
-41.0262, -73.6282
-],
-'Killingworth' : [
-41.3653, -72.5693
-],
-'Cheshire' : [
-41.4988, -72.9015
-],
-'Milford' : [
-41.2222, -73.0658
-],
-'Waltham' : [
-42.3765, -71.2356
-], // MA
-'Shoemakersville' : [
-40.4908, -75.9529
-], // PA
-'Vernon' : [
-41.8569, -72.4827
-],
-'Billerica' : [
-42.5584, -71.2689
-], // MA
-'Southington' : [
-41.6005, -72.8795
-],
-'Stratford' : [
-41.1845, -73.1332
-],
-'Iron Mountain' : [
-41.4570, -72.8232
-], // Remapped
-'San Jose' : [
-41.4570, -72.8232
-], // Remapped
-'Woodmere' : [41.4570, -72.8232] // Remapped
-};
-
-cards.forEach(function (card) {
-var name = card.getAttribute('data-name');
-var phone = card.getAttribute('data-phone');
-var areas = card.getAttribute('data-service-areas') || '';
-
-// Find a matching city in the service areas string
-var lat = 41.50,
-lng = -72.80; // Default center
-var foundLoc = false;
-
-for (var city in cityCoords) { // Simple includes check - in production maybe use regex for whole word
-if (areas.includes(city) || name.includes(city) || (areas === '' && ! foundLoc)) { // Should probably randomize slightly if multiple at same spot
-var baseCity = cityCoords[city];
-// Add slight jitter so they don't overlap perfectly
-lat = baseCity[0] + (Math.random() * 0.005 - 0.0025);
-lng = baseCity[1] + (Math.random() * 0.005 - 0.0025);
-foundLoc = true;
-break;
-}
-}
-
-contractors.push({
-name: name,
-phone: phone,
-lat: lat,
-lng: lng,
-marker: null, // Will hold the Leaflet marker object
-card: card // Link back to the DOM element
-});
-});
-
-// Custom Icon
-var markerIcon = L.icon({
-iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
-iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
-shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
-iconSize: [
-25, 41
-],
-iconAnchor: [
-12, 41
-],
-popupAnchor: [
-1, -34
-],
-shadowSize: [41, 41]
-});
-
-// Add Markers
-contractors.forEach(function (c) { // Skip if no legitimate location found (optional, for now we map all)
-
-var popupContent = `
-				<div class="contractor-popup p-3">
-					<h4 class="fw-bold">${
-c.name
-}</h4>
-					<p class="mb-1 text-muted small"><i class="bi bi-geo-alt-fill me-1"></i> CT Service Area</p>
-					<div class="mb-2">
-						<a href="tel:${
-c.phone
-}" class="text-decoration-none fw-bold small d-flex align-items-center gap-1">
-							<i class="bi bi-telephone-fill text-primary"></i> ${
-c.phone
-}
-						</a>
-					</div>
-					<a href="#" class="btn btn-sm btn-primary w-100 py-1" style="font-size: 0.75rem;">View Profile</a>
-				</div>
-			`;
-
-var marker = L.marker([
-c.lat, c.lng
-], {icon: markerIcon}).addTo(map);
-marker.bindPopup(popupContent);
-
-// Link Marker <-> Data Object
-c.marker = marker;
-
-// Highlight card on marker hover
-marker.on('mouseover', function () {
-c.card.classList.add('border-primary');
-c.card.classList.add('shadow-lg');
-c.card.style.borderColor = 'var(--ibew-primary)';
-// Scroll into view if needed?
-// c.card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-});
-marker.on('mouseout', function () {
-c.card.classList.remove('border-primary');
-c.card.classList.remove('shadow-lg');
-c.card.style.borderColor = '';
-});
-});
-
-// Add Interactivity: Hover Card -> Toggle Marker
-// Note: The previous loop handled extracting data, now we add listeners to the rows
-contractors.forEach(function (c) {
-c.card.addEventListener('mouseenter', function () {
-if (c.marker) {
-c.marker.openPopup();
-c.marker.setOpacity(1);
-}
-});
-});
-}
-);
-</script>

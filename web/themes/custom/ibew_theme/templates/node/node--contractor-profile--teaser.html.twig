@@ -1,26 +1,28 @@
 <article
-	class="card ibew-card h-100 p-0 overflow-hidden d-flex flex-column border-0 shadow-sm rounded-4" data-name="{{ label }}" data-phone="{{ node.field_phone.value }}" data-service-areas="{{ node.field_service_areas.value }}">
+	class="card ibew-contractor-card ibew-card h-100 p-0 overflow-hidden d-flex flex-column border-0 shadow-sm rounded-4 html-clean-card" style="background-color: #ffffff !important; color: #1f2937 !important;" data-name="{{ label }}" data-phone="{{ node.field_phone.value }}" data-service-areas="{{ node.field_service_areas.value|render|striptags|trim }}">
 
 	{# Image/Logo Section #}
-	<div class="card-img-top position-relative bg-light w-100 d-flex align-items-center justify-content-center p-4 border-bottom" style="height: 200px;">
+	<div class="card-img-top position-relative w-100 d-flex align-items-center justify-content-center border-bottom" style="height: 180px; background: linear-gradient(135deg, #1e3a5f 0%, #2d4a6f 100%) !important;">
 		{% if node.field_image.entity %}
 			{% set image_url = file_url(node.field_image.entity.uri.value) %}
 			<img src="{{ image_url }}" alt="{{ node.field_image.alt }}" class="img-fluid" style="max-height: 100%; max-width: 100%; object-fit: contain;">
 		{% else %}
-			{# Placeholder Icon #}
-			<div class="text-secondary opacity-25">
-				<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-briefcase-fill" viewbox="0 0 16 16">
+			{# Placeholder with Icon and Company Name #}
+			<div class="text-center p-3">
+				<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="#ffffff" class="opacity-50 mb-2" viewbox="0 0 16 16">
 					<path d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v1.384l7.614 2.03a1.5 1.5 0 0 0 .772 0L16 5.884V4.5A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1h-3zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5z"/>
 					<path d="M0 12.5A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5V6.85L8.129 8.947a.5.5 0 0 1-.258 0L0 6.85v5.65z"/>
 				</svg>
+				<p class="text-white opacity-75 small text-uppercase fw-bold m-0">{{ label }}</p>
 			</div>
 		{% endif %}
 	</div>
 
-	<div class="card-body p-4 d-flex flex-column flex-grow-1 bg-white">
+	<div
+		class="card-body p-4 d-flex flex-column flex-grow-1 bg-white">
 		{# Specialties Badges #}
-		{# Direct access to referenced entities labels #}
-			<div class="d-flex flex-wrap gap-1 mb-2"> {% for item in node.field_specialties %}
+		<div class="d-flex flex-wrap gap-1 mb-2">
+			{% for item in node.field_specialties %}
 				<span class="badge bg-secondary text-white rounded-1 px-2 py-1 text-uppercase" style="font-size: 0.7rem;">
 					{{ item.entity.label }}
 				</span>

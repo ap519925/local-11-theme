@@ -7,7 +7,6 @@ dependencies:
     - field.field.node.contractor_profile.field_city
     - field.field.node.contractor_profile.field_contact_person
     - field.field.node.contractor_profile.field_email
-    - field.field.node.contractor_profile.field_geolocation
     - field.field.node.contractor_profile.field_image
     - field.field.node.contractor_profile.field_latitude
     - field.field.node.contractor_profile.field_longitude
@@ -20,7 +19,6 @@ dependencies:
     - field.field.node.contractor_profile.field_zip
     - node.type.contractor_profile
   module:
-    - geolocation
     - image
     - link
     - text
@@ -59,31 +57,6 @@ content:
     settings: {  }
     third_party_settings: {  }
     weight: 105
-    region: content
-  field_geolocation:
-    type: geolocation_googlemaps_thumbnail
-    label: hidden
-    settings:
-      map_wrapper_id: ''
-      map_settings:
-        height: '400'
-        width: '100%'
-        type: ROADMAP
-        zoom: '10'
-        scrollwheel: 1
-        disableAutoPan: 0
-        zoomControl: 1
-        mapTypeControl: 0
-        streetViewControl: 0
-        fullscreenControl: 0
-        no_show: 0
-        use_overrides: 0
-        info_field: ''
-        marker_icon_path: ''
-        marker_clustering: 0
-        client_location_indicator: 0
-    third_party_settings: {  }
-    weight: 115
     region: content
   field_image:
     type: image

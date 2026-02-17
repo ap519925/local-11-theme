@@ -456,3 +456,62 @@
         }
     }
 }
+
+/* Views Row - Full Width Cards */
+.view-contractors .views-row {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 0 1rem 0;
+    padding: 1.25rem;
+    background: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    box-sizing: border-box;
+    display: block;
+    float: none;
+
+    &:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .views-field-title {
+        font-family: 'Oswald', sans-serif;
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #1e3a5f;
+        margin-bottom: 0.75rem;
+        text-transform: uppercase;
+
+        a {
+            color: inherit;
+            text-decoration: none;
+
+            &:hover {
+                color: #f7c948;
+            }
+        }
+    }
+
+    .views-field {
+        margin-bottom: 0.5rem;
+    }
+
+    .views-field-field-street-address,
+    .views-field-field-city,
+    .views-field-field-state,
+    .views-field-field-zip {
+        display: block;
+        color: #6c757d;
+        font-size: 0.875rem;
+    }
+
+    .views-field-field-phone a,
+    .views-field-field-website a {
+        color: #0066cc;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}

@@ -797,7 +797,19 @@ html {
   margin-bottom: 0.35rem;
 }
 
-.ibew-form input,
+
+/* ==========================================================================
+   General Page Overrides (Moved from inline styles)
+   ========================================================================== */
+
+html.dark #about p {
+  font-size: 1.5rem;
+}
+
+.text-primary {
+  color: #849bc0 !important;
+}
+
 .ibew-form select,
 .ibew-form textarea {
   width: 100%;

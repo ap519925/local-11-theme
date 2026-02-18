@@ -3,7 +3,9 @@
 namespace Drupal\ibew_contractor_map\Plugin\Block;
 
 use Drupal\Core\Block\BlockBase;
-use Drupal\node\NodeInterface;
+use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\ibew_contractor_map\Service\ContractorDataService;
 
 /**
  * Provides a contractor map block.
@@ -14,8 +16,46 @@ use Drupal\node\NodeInterface;
  *   category = @Translation("IBEW")
  * )
  */
-class ContractorMapBlock extends BlockBase
+class ContractorMapBlock extends BlockBase implements ContainerFactoryPluginInterface
 {
+
+    /**
+     * The contractor data service.
+     *
+     * @var \Drupal\ibew_contractor_map\Service\ContractorDataService
+     */
+    protected $contractorDataService;
+
+    /**
+     * Constructs a new ContractorMapBlock.
+     *
+     * @param array $configuration
+     *   A configuration array containing information about the plugin instance.
+     * @param string $plugin_id
+     *   The plugin_id for the plugin instance.
+     * @param mixed $plugin_definition
+     *   The plugin implementation definition.
+     * @param \Drupal\ibew_contractor_map\Service\ContractorDataService $contractor_data_service
+     *   The contractor data service.
+     */
+    public function __construct(array $configuration, $plugin_id, $plugin_definition, ContractorDataService $contractor_data_service)
+    {
+        parent::__construct($configuration, $plugin_id, $plugin_definition);
+        $this->contractorDataService = $contractor_data_service;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition)
+    {
+        return new static(
+            $configuration,
+            $plugin_id,
+            $plugin_definition,
+            $container->get('ibew_contractor_map.contractor_data_service')
+        );
+    }
 
     /**
      * {@inheritdoc}
@@ -49,85 +89,7 @@ class ContractorMapBlock extends BlockBase
      */
     protected function getContractorData()
     {
-        $contractors = [];
-
-        // Query for published contractor profiles with coordinates.
-        $query = \Drupal::entityTypeManager()
-            ->getStorage('node')
-            ->getQuery()
-            ->accessCheck(FALSE)
-            ->condition('type', 'contractor_profile')
-            ->condition('status', NodeInterface::PUBLISHED);
-
-        $nids = $query->execute();
-
-        if (!empty($nids)) {
-            $nodes = \Drupal::entityTypeManager()
-                ->getStorage('node')
-                ->loadMultiple($nids);
-
-            foreach ($nodes as $node) {
-                // Get coordinate values.
-                $lat = $node->get('field_latitude')->value;
-                $lng = $node->get('field_longitude')->value;
-
-                // Only add contractors with coordinates.
-                if ($lat && $lng) {
-                    $address = '';
-                    $street = $node->get('field_street_address')->value;
-                    $city = $node->get('field_city')->value;
-                    $state = $node->get('field_state')->value;
-                    $zip = $node->get('field_zip')->value;
-
-                    if ($street || $city || $state || $zip) {
-                        $address_parts = array_filter([$street, $city, $state, $zip]);
-                        $address = implode(', ', $address_parts);
-                    }
-
-                    $phone = $node->get('field_phone')->value;
-                    $website = $node->get('field_website')->uri;
-
-                    // Get image URL if available.
-                    $image_url = '';
-                    $image_field = $node->get('field_image');
-                    if (!$image_field->isEmpty()) {
-                        $image_item = $image_field->first();
-                        if ($image_item) {
-                            $image_entity = $image_item->entity;
-                            if ($image_entity) {
-                                $image_url = $image_entity->createFileUrl();
-                            }
-                        }
-                    }
-
-                    // Build popup content.
-                    $popup_content = '<h4>' . $node->getTitle() . '</h4>';
-                    if ($address) {
-                        $popup_content .= '<div class="popup-address">' . $address . '</div>';
-                    }
-                    if ($phone) {
-                        $popup_content .= '<div class="popup-phone"><a href="tel:' . $phone . '">' . $phone . '</a></div>';
-                    }
-                    if ($website) {
-                        $popup_content .= '<div class="popup-link"><a href="' . $website . '" target="_blank">Visit Website</a></div>';
-                    }
-
-                    $contractors[] = [
-                        'id' => $node->id(),
-                        'title' => $node->getTitle(),
-                        'lat' => (float) $lat,
-                        'lng' => (float) $lng,
-                        'address' => $address,
-                        'phone' => $phone,
-                        'website' => $website,
-                        'image' => $image_url,
-                        'popupContent' => $popup_content,
-                    ];
-                }
-            }
-        }
-
-        return $contractors;
+        return $this->contractorDataService->getContractorData();
     }
 
 }

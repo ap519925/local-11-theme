@@ -1,0 +1,4 @@
+services:
+  ibew_contractor_map.contractor_data_service:
+    class: Drupal\ibew_contractor_map\Service\ContractorDataService
+    arguments: ['@entity_type.manager']

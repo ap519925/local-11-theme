@@ -19,7 +19,7 @@
 				{% if link.style == 'ghost' %}
 					{% set btn_class = 'ibew-btn-lg ibew-btn--outline text-white border-white hover:bg-white/20' %}
 				{% endif %}
-				<a class="btn {{ btn_class }}" href="{{ link.url }}">{{ link.title }}</a>
+				<a class="btn {{ btn_class }}" href="{{ link.url }}">{{ link.title|escape('html') }}</a>
 			{% endif %}
 		{% endfor %}
 	</div>

@@ -1,14 +1,12 @@
 favicon:
-  mimetype: image/png
-  path: 'public://theme_logo_0.png'
-  use_default: false
+  use_default: true
 features:
   comment_user_picture: true
   comment_user_verification: true
   favicon: true
   node_user_picture: true
 logo:
-  path: 'public://Untitled.png'
+  path: 'public://Untitled_1.png'
   use_default: false
 top_bar_show: true
 top_bar_address: '2 N Plains Industrial Rd, Wallingford, CT 06492'
@@ -16,10 +14,10 @@ top_bar_phone: 1-800-562-2590
 top_bar_email: info@ibewlocal90.org
 top_bar_join_link: 'https://JoinIBEWCT.org'
 top_bar_join_text: JoinIBEWCT.org
-social_facebook: 'https://www.facebook.com/'
-social_twitter: 'http://www.x.com'
+social_facebook: ''
+social_twitter: ''
 social_linkedin: ''
-social_instagram: 'http://www.instagram.com'
+social_instagram: ''
 ibew_light_primary: '#1e293b'
 ibew_light_secondary: '#3b82f6'
 ibew_light_accent: '#f59e0b'
@@ -32,9 +30,13 @@ ibew_dark_accent: '#f59e0b'
 ibew_dark_bg: '#1f2937'
 ibew_dark_card_bg: '#3e4c63'
 ibew_dark_text: '#f3f4f6'
-ibew_primary_color: '#1e293b'
-ibew_secondary_color: '#3b82f6'
-ibew_accent_color: '#f59e0b'
-ibew_bg_color: '#1f2937'
-ibew_card_bg_color: '#3e4c63'
-ibew_text_color: '#f3f4f6'
+hero_video_enabled: true
+hero_video_source: url
+hero_video_url: 'https://www.youtube.com/watch?v=MJkNUnGz394'
+hero_video_upload: {  }
+hero_video_overlay_opacity: 0
+hero_video_poster: ''
+logo_preview: ''
+favicon_preview: ''
+ibew_light_tertiary: '#e27859'
+ibew_dark_tertiary: '#e27859'

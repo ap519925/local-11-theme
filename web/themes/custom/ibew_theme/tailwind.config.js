@@ -15,7 +15,12 @@ module.exports = {
                 'ibew-cream': '#E8DFC1',
                 'ibew-raspberry': '#983A54',
                 'ibew-orange': '#E27859',
-            }
+            },
+            fontFamily: {
+                'oswald': ['Oswald', 'sans-serif'],
+                'sans': ['"Open Sans"', 'sans-serif'],
+                'serif': ['Merriweather', 'serif'],
+            },
         },
     },
     plugins: [],

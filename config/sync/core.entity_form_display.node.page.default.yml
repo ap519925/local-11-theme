@@ -4,9 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.node.page.body
-    - field.field.node.page.field_content_canvas
     - field.field.node.page.field_image
-    - field.field.node.page.field_image_gallery
     - field.field.node.page.field_page_sections
     - field.field.node.page.layout_builder__layout
     - image.style.thumbnail
@@ -49,14 +47,6 @@ content:
   field_image:
     type: image_image
     weight: 121
-    region: content
-    settings:
-      progress_indicator: throbber
-      preview_image_style: thumbnail
-    third_party_settings: {  }
-  field_image_gallery:
-    type: image_image
-    weight: 50
     region: content
     settings:
       progress_indicator: throbber
@@ -126,5 +116,4 @@ content:
       placeholder: ''
     third_party_settings: {  }
 hidden:
-  field_content_canvas: true
   layout_builder__layout: true

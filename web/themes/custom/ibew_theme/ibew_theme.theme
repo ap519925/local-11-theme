@@ -37,16 +37,18 @@ function ibew_theme_preprocess_html(&$variables) {
 
   // --- Inject Color Scheme CSS Variables ---
   // Retrieve Light Mode Settings
-  $light_primary = theme_get_setting('ibew_light_primary') ?? '#1e293b';
-  $light_secondary = theme_get_setting('ibew_light_secondary') ?? '#3b82f6';
-  $light_accent = theme_get_setting('ibew_light_accent') ?? '#f59e0b';
-  $light_bg = theme_get_setting('ibew_light_bg') ?? '#ffffff';
-  $light_card_bg = theme_get_setting('ibew_light_card_bg') ?? '#f3f4f6';
+  $light_primary = theme_get_setting('ibew_light_primary') ?? '#313F6B';
+  $light_secondary = theme_get_setting('ibew_light_secondary') ?? '#983A54';
+  $light_tertiary = theme_get_setting('ibew_light_tertiary') ?? '#E27859';
+  $light_accent = theme_get_setting('ibew_light_accent') ?? '#CFA655';
+  $light_bg = theme_get_setting('ibew_light_bg') ?? '#FEFEFE';
+  $light_card_bg = theme_get_setting('ibew_light_card_bg') ?? '#E8DFC1';
   $light_text = theme_get_setting('ibew_light_text') ?? '#1f2937';
 
   // Retrieve Dark Mode Settings
   $dark_primary = theme_get_setting('ibew_dark_primary') ?? '#1e293b';
   $dark_secondary = theme_get_setting('ibew_dark_secondary') ?? '#3b82f6';
+  $dark_tertiary = theme_get_setting('ibew_dark_tertiary') ?? '#E27859';
   $dark_accent = theme_get_setting('ibew_dark_accent') ?? '#f59e0b';
   $dark_bg = theme_get_setting('ibew_dark_bg') ?? '#1f2937';
   $dark_card_bg = theme_get_setting('ibew_dark_card_bg') ?? '#3e4c63';
@@ -56,13 +58,14 @@ function ibew_theme_preprocess_html(&$variables) {
   $custom_css = "
     /* LIGHT MODE (Default) */
     :root {
-      --ibew-primary: {$light_primary} !important;
-      --ibew-secondary: {$light_secondary} !important;
-      --ibew-accent: {$light_accent} !important;
-      --ibew-accent-hover: {$light_accent} !important;
-      --ibew-bg-light: {$light_bg} !important; /* Maps to body bg in light mode */
-      --ibew-text-dark: {$light_text} !important;
-      --ibew-card-bg: {$light_card_bg} !important;
+      --ibew-primary: {$light_primary};
+      --ibew-secondary: {$light_secondary};
+      --ibew-tertiary: {$light_tertiary};
+      --ibew-accent: {$light_accent};
+      --ibew-accent-hover: {$light_accent};
+      --ibew-bg-light: {$light_bg}; /* Maps to body bg in light mode */
+      --ibew-text-dark: {$light_text};
+      --ibew-card-bg: {$light_card_bg};
     }
     
     body {
@@ -79,13 +82,14 @@ function ibew_theme_preprocess_html(&$variables) {
 
     /* DARK MODE OVERRIDES */
     html.dark {
-      --ibew-primary: {$dark_primary} !important;
-      --ibew-secondary: {$dark_secondary} !important;
-      --ibew-accent: {$dark_accent} !important;
-      --ibew-accent-hover: {$dark_accent} !important;
-      --ibew-bg-light: {$dark_bg} !important; /* Maps to body bg in dark mode */
-      --ibew-text-dark: {$dark_text} !important;
-      --ibew-card-bg: {$dark_card_bg} !important;
+      --ibew-primary: {$dark_primary};
+      --ibew-secondary: {$dark_secondary};
+      --ibew-tertiary: {$dark_tertiary};
+      --ibew-accent: {$dark_accent};
+      --ibew-accent-hover: {$dark_accent};
+      --ibew-bg-light: {$dark_bg}; /* Maps to body bg in dark mode */
+      --ibew-text-dark: {$dark_text};
+      --ibew-card-bg: {$dark_card_bg};
     }
 
     /* Ensure Dark Mode variables apply when class is present */
@@ -107,8 +111,11 @@ function ibew_theme_preprocess_html(&$variables) {
       '#tag' => 'style',
       '#value' => $custom_css,
     ],
-    'ibew-theme-colors'
+    'ibew-theme-colors',
   ];
+  
+  // Attach admin overrides globally to catch toolbar issues on frontend
+  $variables['page']['#attached']['library'][] = 'ibew_theme/admin-overrides';
 }
 
 /**
@@ -128,6 +135,41 @@ function ibew_theme_preprocess_page(&$variables) {
   }
 
   // Attach contact page styling
+  $route_name = \Drupal::routeMatch()->getRouteName();
+  if ($route_name === 'ibew_contact.contact_page') {
+    $variables['#attached']['library'][] = 'ibew_theme/contact-page';
+  }
+
+  // Generate breadcrumbs programmatically (bypass Canvas block management)
+  $breadcrumb_manager = \Drupal::service('breadcrumb');
+  $route_match = \Drupal::routeMatch();
+  $breadcrumb = $breadcrumb_manager->build($route_match);
+  
+  if ($breadcrumb) {
+    $links = $breadcrumb->getLinks();
+    $breadcrumb_items = [];
+    
+    foreach ($links as $link) {
+      $breadcrumb_items[] = [
+        'text' => $link->getText(),
+        'url' => $link->getUrl()->toString(),
+      ];
+    }
+    
+    // Add current page title as the last breadcrumb item (no link)
+    $request = \Drupal::request();
+    $title = \Drupal::service('title_resolver')->getTitle($request, $route_match->getRouteObject());
+    if ($title) {
+      $breadcrumb_items[] = [
+        'text' => $title,
+        'url' => '',
+      ];
+    }
+    
+    if (!empty($breadcrumb_items)) {
+      $variables['breadcrumb'] = $breadcrumb_items;
+    }
+  }
   $route_name = \Drupal::routeMatch()->getRouteName();
   if ($route_name === 'ibew_contact.contact_page') {
     $variables['#attached']['library'][] = 'ibew_theme/contact-page';
@@ -156,6 +198,50 @@ function ibew_theme_preprocess_page(&$variables) {
   $variables['social_twitter'] = theme_get_setting('social_twitter') ?: '#';
   $variables['social_linkedin'] = theme_get_setting('social_linkedin') ?: '#';
   $variables['social_instagram'] = theme_get_setting('social_instagram') ?: '#';
+
+  // --- Hero Video Background Settings ---
+  $hero_video_enabled = theme_get_setting('hero_video_enabled') ?? FALSE;
+  $variables['hero_video_enabled'] = $hero_video_enabled;
+
+  if ($hero_video_enabled) {
+    $video_source = theme_get_setting('hero_video_source') ?? 'url';
+    $video_url = '';
+    $video_type = 'mp4'; // 'mp4', 'youtube', 'vimeo'
+
+    if ($video_source === 'upload') {
+      // Resolve the uploaded file to a URL
+      $fids = theme_get_setting('hero_video_upload');
+      if (!empty($fids)) {
+        $fid = is_array($fids) ? reset($fids) : $fids;
+        if ($fid) {
+          $file = \Drupal\file\Entity\File::load($fid);
+          if ($file) {
+            $video_url = \Drupal::service('file_url_generator')->generateAbsoluteString($file->getFileUri());
+          }
+        }
+      }
+    }
+    else {
+      $video_url = theme_get_setting('hero_video_url') ?? '';
+    }
+
+    // Detect YouTube or Vimeo URLs
+    if (!empty($video_url)) {
+      if (preg_match('/(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/', $video_url, $matches)) {
+        $video_type = 'youtube';
+        $video_url = $matches[1]; // Extract just the YouTube ID
+      }
+      elseif (preg_match('/vimeo\.com\/(?:video\/)?(\d+)/', $video_url, $matches)) {
+        $video_type = 'vimeo';
+        $video_url = $matches[1]; // Extract just the Vimeo ID
+      }
+    }
+
+    $variables['hero_video_url'] = $video_url;
+    $variables['hero_video_type'] = $video_type;
+    $variables['hero_video_overlay_opacity'] = (theme_get_setting('hero_video_overlay_opacity') ?? 50) / 100;
+    $variables['hero_video_poster'] = theme_get_setting('hero_video_poster') ?? '';
+  }
 
   // LOAD MAIN MENU PROGRAMMATICALLY (Global Navigation)
   // This ensures the menu is available on EVERY page, regardless of block layout.
@@ -253,6 +339,9 @@ function ibew_theme_theme_suggestions_page_alter(array &$suggestions, array $var
   }
   if ($alias == '/join') {
     $suggestions[] = 'page__join';
+  }
+  if ($alias == '/styleguide') {
+    $suggestions[] = 'page__styleguide';
   }
 
   // Add template suggestion for contact page route
@@ -435,5 +524,64 @@ function ibew_theme_preprocess_paragraph(&$variables) {
   }
   elseif ($bundle == 'ibew_section_events') {
     $variables['embedded_events_view'] = views_embed_view('homepage_events', 'block_1');
+  }
+  elseif ($bundle == 'hero_button') {
+    $variables['hero_btn_url'] = '';
+    $variables['hero_btn_title'] = '';
+    $variables['hero_btn_target'] = '';
+    // Default class
+    $variables['hero_btn_class'] = 'ibew-btn-lg ibew-btn--gold';
+
+    if ($paragraph->hasField('field_link') && !$paragraph->field_link->isEmpty()) {
+      $link_item = $paragraph->field_link->first();
+      // Safely get URL - allow access for all users when viewing
+      try {
+        $url_obj = $link_item->getUrl();
+        // Always allow the URL for view operation - don't check access for anonymous users
+        $variables['hero_btn_url'] = $url_obj->toString();
+      } catch (\Exception $e) {
+        // Log or ignore invalid links
+      }
+      $variables['hero_btn_title'] = $link_item->title;
+      
+      // Target
+      $options = $link_item->options;
+      if (!empty($options['attributes']['target'])) {
+         $variables['hero_btn_target'] = $options['attributes']['target'];
+      }
+    }
+
+    // Button style
+    if ($paragraph->hasField('field_button_style') && !$paragraph->field_button_style->isEmpty()) {
+      $style = $paragraph->field_button_style->value;
+      if ($style == 'blue') {
+        $variables['hero_btn_class'] = 'ibew-btn-lg ibew-btn--blue';
+      } elseif ($style == 'outline') {
+        $variables['hero_btn_class'] = 'ibew-btn-lg border-2 border-white text-white bg-transparent hover:bg-white/10 backdrop-blur-sm';
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function ibew_theme_preprocess_node(&$variables) {
+  $node = $variables['node'];
+  
+  // Check if we are on the homepage
+  $is_front = \Drupal::service('path.matcher')->isFrontPage();
+  
+  // If on homepage and node is an event, verify view mode and override URL
+  if ($is_front && $node->getType() == 'ibew_event') {
+      // Set the URL to the main events page
+      // Create a URL object from the path
+      try {
+        $variables['url'] = \Drupal\Core\Url::fromUserInput('/events')->toString();
+      }
+      catch (\Exception $e) {
+          // Fallback if route doesn't exist
+          $variables['url'] = '/events'; 
+      }
   }
 }

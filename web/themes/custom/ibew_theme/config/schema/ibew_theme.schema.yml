@@ -3,19 +3,6 @@ ibew_theme.settings:
   type: theme_settings
   label: 'Local 11 Settings'
   mapping:
-    canvas:
-      type: mapping
-      label: 'Drupal Canvas Settings'
-      mapping:
-        use_canvas:
-          type: boolean
-          label: 'Use Drupal Canvas'
-        editable:
-          type: sequence
-          label: 'Editable Regions'
-          sequence:
-            type: boolean
-            label: 'Region Status'
     top_bar_show:
       type: boolean
       label: 'Show Top Bar'
@@ -54,6 +41,9 @@ ibew_theme.settings:
     ibew_light_secondary:
       type: string
       label: 'Light Mode Secondary Color'
+    ibew_light_tertiary:
+      type: string
+      label: 'Light Mode Tertiary Color'
     ibew_light_accent:
       type: string
       label: 'Light Mode Accent Color'
@@ -74,6 +64,9 @@ ibew_theme.settings:
     ibew_dark_secondary:
       type: string
       label: 'Dark Mode Secondary Color'
+    ibew_dark_tertiary:
+      type: string
+      label: 'Dark Mode Tertiary Color'
     ibew_dark_accent:
       type: string
       label: 'Dark Mode Accent Color'
@@ -86,3 +79,34 @@ ibew_theme.settings:
     ibew_dark_text:
       type: string
       label: 'Dark Mode Text Color'
+    
+    # Core Theme Settings artifacts
+    logo_preview:
+      type: ignore
+      label: 'Logo Preview'
+    favicon_preview:
+      type: ignore
+      label: 'Favicon Preview'
+
+    # Hero Video Background Settings
+    hero_video_enabled:
+      type: boolean
+      label: 'Enable Video Background'
+    hero_video_source:
+      type: string
+      label: 'Video Source Type'
+    hero_video_url:
+      type: string
+      label: 'Video URL'
+    hero_video_upload:
+      type: sequence
+      label: 'Uploaded Video File ID'
+      sequence:
+        type: integer
+        label: 'File ID'
+    hero_video_overlay_opacity:
+      type: integer
+      label: 'Video Overlay Darkness'
+    hero_video_poster:
+      type: string
+      label: 'Fallback Poster Image URL'

@@ -1,0 +1,20 @@
+uuid: dd18cd41-7035-409b-b878-0b4f90339968
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - ibew_theme
+id: ibew_theme_breadcrumbs
+theme: ibew_theme
+region: breadcrumb
+weight: 0
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  label_display: '0'
+  provider: system
+visibility: {  }

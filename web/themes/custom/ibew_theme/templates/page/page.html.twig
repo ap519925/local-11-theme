@@ -3,6 +3,15 @@
 
 	{% include '@ibew_theme/includes/header.html.twig' %}
 
+	{# Breadcrumbs #}
+	{% if breadcrumb %}
+		<div class="ibew-breadcrumb-wrapper bg-gray-50 border-b border-gray-200">
+			<div class="container py-3">
+				{% include '@ibew_theme/navigation/breadcrumb.html.twig' %}
+			</div>
+		</div>
+	{% endif %}
+
 	{# --- HERO SECTION (Parallax) --- #}
 	<section
 		class="ibew-parallax-hero relative py-32 overflow-hidden">
@@ -49,7 +58,7 @@
 
 				{# Sidebar Column #}
 				<div class="col-lg-4">
-					<div class="card border-0 shadow-lg bg-ibew-navy text-white h-100">
+					<div class="card border-0 shadow-lg text-white h-100">
 						<div class="card-body p-8">
 							<h3 class="h4 fw-bold mb-4 border-bottom border-gray-600 pb-3">Contact Information</h3>
 

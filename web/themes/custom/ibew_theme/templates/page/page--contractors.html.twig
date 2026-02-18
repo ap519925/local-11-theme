@@ -1,0 +1,326 @@
+{# page--contractors.html.twig #}
+
+
+<div class="ibew-page bg-gray-100 text-gray-900 min-h-screen d-flex flex-column">
+
+	{% include '@ibew_theme/includes/header.html.twig' %}
+
+	{# Main Split Layout #}
+	<div
+		class="flex-grow-1 d-flex flex-column flex-lg-row overflow-hidden relative" style="height: calc(100vh - 80px);">
+
+		{# LEFT COLUMN: Scrollable List #}
+		<div
+			class="w-100 w-lg-50 w-xl-40 h-100 overflow-auto bg-dark position-relative z-10 shadow-lg d-flex flex-column">
+
+			{# Sticky Header Area with Breadcrumb #}
+			<div
+				class="sticky-top bg-dark border-bottom p-3 p-md-4 shadow-sm z-20">
+
+				{# Breadcrumb #}
+				<nav aria-label="breadcrumb" class="mb-3">
+					<ol class="breadcrumb mb-0 small text-uppercase font-weight-bold opacity-75">
+						<li class="breadcrumb-item">
+							<a href="/" class="text-decoration-none text-muted">Home</a>
+						</li>
+						<li class="breadcrumb-item active" aria-current="page">Contractors</li>
+					</ol>
+				</nav>
+
+				<h1 class="font-oswald text-2xl md:text-3xl fw-bold text-uppercase text-white mb-2">
+					Find a Contractor
+				</h1>
+				<p class="text-muted small mb-3">
+					{{ 'Connect with our network of qualified, licensed, and NECA-signatory electrical contractors.'|t }}
+				</p>
+
+				{# Search/Filter Placeholder - The Exposed Form from the View will render below #}
+				<div class="d-flex gap-2">
+					<button class="btn btn-primary d-lg-none w-100" type="button" data-bs-toggle="collapse" data-bs-target="#mobileMap" aria-expanded="false" aria-controls="mobileMap">
+						<i class="bi bi-map me-2"></i>
+						Show Map
+					</button>
+				</div>
+			</div>
+
+			{# Scrollable Content Area #}
+			<div class="p-3 p-md-4 ibew-contractors-list flex-grow-1">
+				{% if page.content %}
+					{# 
+																																																																																																																																																																																																																																																																																														   The View content will be rendered here.
+																																																																																																																																																																																																																																																																																														   We need to ensure the view grid classes don't break the layout.
+																																																																																																																																																																																																																																																																																														   We'll handle that via CSS adjustments in the <style> block below. 
+																																																																																																																																																																																																																																																																																														#}
+					{{ page.content }}
+				{% else %}
+					<div class="alert alert-info">
+						No contractors found.
+					</div>
+				{% endif %}
+			</div>
+
+			{# Minimal Footer / Copyright #}
+			<div class="p-3 border-top bg-dark text-center small text-muted">
+				&copy;
+				{{ 'now'|date('Y') }}
+				IBEW Local 90. All Rights Reserved.
+			</div>
+		</div>
+
+		{# RIGHT COLUMN: Map #}
+		{# Hidden on mobile by default, togglable or stacked #}
+		<div class="w-100 w-lg-50 w-xl-60 h-100 position-relative bg-gray-200 d-none d-lg-block" id="desktopMapContainer" style="min-height: 600px;">
+			<div id="contractorMap" class="w-100 h-100 z-0 text-center d-flex align-items-center justify-content-center text-muted" style="min-height: 600px;">
+				<span>Loading Map...</span>
+			</div>
+
+			{# Floating Map Controls or Legend could go here #}
+			<div class="position-absolute bottom-0 start-0 m-4 p-3 rounded shadow-sm z-10" style="max-width: 250px;">
+				<h6 class="fw-bold text-ibew-navy mb-1 small text-uppercase">IBEW Local 90</h6>
+				<p class="text-muted small mb-0">Contractor Location Map</p>
+			</div>
+		</div>
+
+	</div>
+
+</div>
+
+{# Google Maps API is loaded via the module or theme #}
+<style>
+	/* Google Map specific overrides */
+	#contractorMap img {
+		max-width: none;
+	}
+
+	/* The main info window container - scoped to the map ID for specificity */
+	#contractorMap .gm-style-iw,
+	#contractorMap .gm-style-iw-c,
+	#contractorMap .gm-style-iw-d {
+		background-color: #ffffff;
+		color: #000000;
+		font-family: 'Inter', sans-serif;
+		padding: 0;
+	}
+
+	/* The tail/arrow of the info window */
+	#contractorMap .gm-style-iw-tc::after,
+	#contractorMap .gm-style-iw-tc::before {
+		background-color: #ffffff;
+	}
+
+	/* Close button */
+	#contractorMap .gm-ui-hover-effect {
+		background-color: rgba(255, 255, 255, 0.8);
+		border-radius: 50%;
+	}
+	#contractorMap .gm-ui-hover-effect img {
+		filter: invert(1); /* Ensure X is visible if it was white */
+	}
+
+	/* Internal Content Wrapper */
+	#contractorMap .contractor-info-window {
+		background-color: #ffffff;
+		color: #333333;
+		padding: 0;
+	}
+
+	/* Reset text colors inside the map to dark, using natural specificity */
+	#contractorMap .contractor-info-window * {
+		color: #333333;
+		text-shadow: none;
+	}
+
+	#contractorMap .contractor-info-window h4 {
+		color: #1e3a5f;
+		font-weight: 700;
+	}
+
+	#contractorMap .contractor-info-window p,
+	#contractorMap .contractor-info-window span,
+	#contractorMap .contractor-info-window div {
+		color: #333333;
+	}
+
+	/* Links should be distinct */
+	#contractorMap .contractor-info-window a {
+		color: #1e3a5f;
+	}
+
+	/* Buttons */
+	#contractorMap .contractor-info-window a.btn,
+	#contractorMap .contractor-info-window a[style*="background"] {
+		color: #ffffff !important;
+	}
+
+	/* Layout Overrides for the Airbnb Style */
+	.ibew-contractors-list .views-view-grid {
+		display: block !important;
+	}
+
+	/* Force grid items/rows to full width */
+	.ibew-contractors-list .views-row,
+	.ibew-contractors-list .views-col {
+		display: block !important;
+		width: 100% !important;
+		margin-bottom: 1rem;
+	}
+
+	/* Reset internal containers */
+	.ibew-contractors-list .container,
+	.ibew-contractors-list .container-fluid {
+		width: 100% !important;
+		max-width: none !important;
+		padding-left: 0 !important;
+		padding-right: 0 !important;
+	}
+
+	/* Force cols to full width */
+	.ibew-contractors-list [class*="col-"] {
+		width: 100% !important;
+		flex: 0 0 100% !important;
+		max-width: 100% !important;
+	}
+
+	/* On very wide screens, allow 2 columns */
+	@media(min-width: 1600px) {
+		.ibew-contractors-list .row {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			gap: 1rem;
+		}
+		.ibew-contractors-list [class*="col-"] {
+			width: auto !important;
+			flex: auto !important;
+			max-width: none !important;
+		}
+	}
+
+	/* Contractor Card Contrast Fixes */
+	.ibew-contractor-card,
+	.ibew-contractor-card .card-body {
+		background: #1e3a5f !important;
+		border-color: rgba(255, 255, 255, 0.08) !important;
+		color: #ffffff !important;
+	}
+
+	.ibew-contractor-card a:not(.btn) {
+		text-decoration: none;
+		color: #f7c948 !important;
+	}
+
+	.ibew-contractor-card:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3) !important;
+		border-color: #f7c948 !important;
+	}
+
+	/* Remove white from all view wrappers */
+	.ibew-contractors-list .views-view-grid,
+	.ibew-contractors-list .row,
+	.ibew-contractors-list .views-row,
+	.ibew-contractors-list .views-col,
+	.ibew-contractors-list .col,
+	.ibew-contractors-list .container,
+	.ibew-contractors-list .container-fluid {
+		background: transparent !important;
+		box-shadow: none !important;
+	}
+	.ibew-contractors-list .views-row {
+		padding: 0 !important;
+		border: none !important;
+	}
+
+	/* ========================================================
+	   SEARCH/FILTER FORM STYLING FOR DARK PANEL
+	   ======================================================== */
+	/* All labels white on dark bg */
+	.ibew-contractors-list label,
+	.sticky-top label,
+	.ibew-contractors-list .form-item label,
+	.sticky-top .form-item label {
+		color: #ffffff !important;
+		font-weight: 600 !important;
+		font-size: 0.8rem !important;
+		text-transform: uppercase !important;
+		letter-spacing: 0.05em !important;
+		margin-bottom: 0.375rem !important;
+	}
+
+	/* Form inputs styled for dark bg */
+	.ibew-contractors-list input[type="text"],
+	.ibew-contractors-list input[type="search"],
+	.ibew-contractors-list select,
+	.sticky-top input[type="text"],
+	.sticky-top input[type="search"],
+	.sticky-top select,
+	.ibew-contractors-list .form-control,
+	.sticky-top .form-control,
+	.ibew-contractors-list .form-select,
+	.sticky-top .form-select {
+		background-color: rgba(255, 255, 255, 0.1) !important;
+		border: 1px solid rgba(255, 255, 255, 0.25) !important;
+		color: #ffffff !important;
+		border-radius: 0.5rem !important;
+		padding: 0.5rem 0.75rem !important;
+	}
+	.ibew-contractors-list input::placeholder,
+	.sticky-top input::placeholder {
+		color: rgba(255, 255, 255, 0.5) !important;
+	}
+
+	/* Submit buttons */
+	.ibew-contractors-list input[type="submit"],
+	.ibew-contractors-list .form-submit,
+	.sticky-top input[type="submit"],
+	.sticky-top .form-submit {
+		background-color: #f7c948 !important;
+		color: #1e3a5f !important;
+		border: none !important;
+		font-weight: 700 !important;
+		text-transform: uppercase !important;
+		border-radius: 0.5rem !important;
+		padding: 0.5rem 1.5rem !important;
+		cursor: pointer !important;
+		transition: all 0.2s ease !important;
+		margin-top: 1rem !important;
+		margin-bottom: 1rem !important;
+		display: inline-block !important;
+	}
+	.ibew-contractors-list input[type="submit"]:hover,
+	.sticky-top input[type="submit"]:hover {
+		background-color: #e5b83a !important;
+		transform: translateY(-1px) !important;
+	}
+
+	/* ALL text in the left dark panel must be readable */
+	.ibew-contractors-list .text-muted {
+		color: rgba(255, 255, 255, 0.65) !important;
+	}
+
+	/* Breadcrumbs - white text */
+	.breadcrumb-item,
+	.breadcrumb-item a {
+		color: rgba(255, 255, 255, 0.7) !important;
+		text-decoration: none !important;
+	}
+	.breadcrumb-item.active {
+		color: #ffffff !important;
+		font-weight: 600 !important;
+	}
+	.breadcrumb-item a:hover {
+		color: #f7c948 !important;
+	}
+
+	/* Page description text */
+	.ibew-contractors-list p,
+	.sticky-top p {
+		color: rgba(255, 255, 255, 0.8) !important;
+	}
+
+	/* HIDE Unwanted Homepage Blocks */
+	.block-ibew-about-section,
+	[id*="about-section"],
+	[class*="about-section"] {
+		display: none !important;
+	}
+</style>

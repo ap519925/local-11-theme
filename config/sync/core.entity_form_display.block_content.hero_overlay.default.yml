@@ -1,0 +1,69 @@
+uuid: 7bc0247e-587b-43a6-b909-ba6b34f77c97
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.hero_overlay
+    - field.field.block_content.hero_overlay.field_display_title
+    - field.field.block_content.hero_overlay.field_hero_actions
+    - field.field.block_content.hero_overlay.field_hero_description
+  module:
+    - field_layout
+    - link
+    - layout_discovery
+    - paragraphs
+third_party_settings:
+  field_layout:
+    id: layout_onecol
+    settings:
+      label: ''
+id: block_content.hero_overlay.default
+targetEntityType: block_content
+bundle: hero_overlay
+mode: default
+content:
+  field_display_title:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_hero_actions:
+    type: entity_reference_paragraphs
+    weight: 3
+    region: content
+    settings:
+      title: Button
+      title_plural: Buttons
+      edit_mode: open
+      add_mode: dropdown
+      form_display_mode: default
+      default_paragraph_type: ''
+    third_party_settings: {  }
+  field_hero_description:
+    type: string_textarea
+    weight: 2
+    region: content
+    settings:
+      rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+  field_hero_logo:
+    type: image_image
+    weight: 4
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+  info:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden: {  }

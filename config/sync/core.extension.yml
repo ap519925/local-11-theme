@@ -1,6 +1,8 @@
 _core:
   default_config_hash: 4GIX5Esnc_umpXUBj4IIocRX7Mt5fPhm4AgXfE3E56E
 module:
+  admin_toolbar: 0
+  admin_toolbar_tools: 0
   ai: 0
   ai_api_explorer: 0
   ai_assistant_api: 0
@@ -15,13 +17,12 @@ module:
   block: 0
   block_content: 0
   breakpoint: 0
-  canvas: 0
-  canvas_dev_mode: 0
   ckeditor5: 0
   comment: 0
   config: 0
   contact: 0
   contextual: 0
+  crop: 0
   ctools: 0
   ctools_block: 0
   ctools_entity_mask: 0
@@ -32,6 +33,7 @@ module:
   dynamic_page_cache: 0
   editor: 0
   entity_reference_revisions: 0
+  entity_usage: 0
   environment_indicator: 0
   field: 0
   field_group: 0
@@ -45,10 +47,14 @@ module:
   help: 0
   history: 0
   hover_on: 0
-  ibew_canvas_helper: 0
   ibew_contact: 0
+  ibew_contractor_map: 0
   ibew_homepage_blocks: 0
+  ibew_login_redirect: 0
   image: 0
+  jquery_ui: 0
+  jquery_ui_autocomplete: 0
+  jquery_ui_menu: 0
   key: 0
   layout_builder: 0
   layout_discovery: 0
@@ -63,9 +69,11 @@ module:
   node: 0
   options: 0
   page_cache: 0
+  paragraphs_library: 0
   paragraphs_type_permissions: 0
   path: 0
   path_alias: 0
+  photoswipe: 0
   project_browser: 0
   project_browser_source_example: 0
   responsive_image: 0
@@ -91,5 +99,4 @@ theme:
   radix: 0
   ibew_theme: 0
   gin: 0
-  canvas_stark: 0
 profile: standard

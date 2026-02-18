@@ -1,0 +1,9 @@
+name: IBEW Contractor Map
+description: Adds map functionality to contractor search page
+core_version_requirement: ^11
+package: IBEW
+version: 1.0.0
+type: module
+dependencies:
+  - drupal:node
+  - drupal:views

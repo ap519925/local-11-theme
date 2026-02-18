@@ -1,0 +1,23 @@
+uuid: 0e3331f3-577c-424a-aaad-31da08c0ca3d
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:718a6d73-9cba-4afc-a534-3d4c09d97f37'
+  module:
+    - block_content
+  theme:
+    - ibew_theme
+id: ibew_homepage_stats
+theme: ibew_theme
+region: homepage_stats
+weight: 0
+provider: null
+plugin: 'block_content:718a6d73-9cba-4afc-a534-3d4c09d97f37'
+settings:
+  id: 'block_content:718a6d73-9cba-4afc-a534-3d4c09d97f37'
+  label: 'Homepage Stats Bar'
+  label_display: ''
+  provider: block_content
+  view_mode: full
+visibility: {  }

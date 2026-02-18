@@ -1,0 +1,20 @@
+uuid: 1m2k6l0i-7j90-2k3m-6l5h-9m2n0k1l3m4n
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_state
+    - node.type.contractor_profile
+id: node.contractor_profile.field_state
+field_name: field_state
+entity_type: node
+bundle: contractor_profile
+label: State
+description: 'State of the contractor'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text

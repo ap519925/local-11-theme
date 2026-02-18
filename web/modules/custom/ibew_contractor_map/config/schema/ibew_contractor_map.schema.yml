@@ -1,0 +1,22 @@
+ibew_contractor_map.settings:
+  type: config_object
+  label: 'IBEW Contractor Map settings'
+  mapping:
+    google_maps_api_key:
+      type: string
+      label: 'Google Maps API Key'
+    auto_geocode:
+      type: boolean
+      label: 'Enable auto-geocoding'
+    default_zoom:
+      type: integer
+      label: 'Default map zoom level'
+    default_lat:
+      type: float
+      label: 'Default center latitude'
+    default_lng:
+      type: float
+      label: 'Default center longitude'
+    map_height:
+      type: integer
+      label: 'Map height in pixels'

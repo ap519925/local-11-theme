@@ -1,0 +1,9 @@
+ibew_contractor_map.settings:
+  path: '/admin/config/ibew/contractor-map'
+  defaults:
+    _form: '\Drupal\ibew_contractor_map\Form\ContractorMapSettingsForm'
+    _title: 'IBEW Contractor Map Settings'
+  requirements:
+    _permission: 'administer site configuration'
+  options:
+    _admin_route: TRUE

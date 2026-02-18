@@ -9,6 +9,15 @@
 <div class="ibew-page bg-gray-100 text-gray-900 min-h-screen">
 	{% include '@ibew_theme/includes/header.html.twig' %}
 
+	{# Breadcrumbs #}
+	{% if breadcrumb %}
+		<div class="ibew-breadcrumb-wrapper bg-gray-50 border-b border-gray-200">
+			<div class="container py-3">
+				{% include '@ibew_theme/navigation/breadcrumb.html.twig' %}
+			</div>
+		</div>
+	{% endif %}
+
 	{# Page Header #}
 	<section class="bg-gradient-to-r from-ibew-navy to-ibew-blue text-white py-16 relative overflow-hidden">
 		<div class="absolute inset-0 z-0" style="background-image: url('/themes/custom/ibew_theme/screenshot.jpg'); background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover; mix-blend-mode: overlay; opacity: 0.2;"></div>
@@ -250,7 +259,16 @@ article.url
 }
 
 function formatDate(dateString) {
-const date = new Date(dateString);
+let date;
+// Handle raw UNIX timestamps (seconds) from old cached responses
+if (!isNaN(dateString) && Number(dateString) > 1000000000) {
+date = new Date(Number(dateString) * 1000);
+} else {
+date = new Date(dateString);
+}
+if (isNaN(date.getTime())) {
+return 'Date unavailable';
+}
 return date.toLocaleDateString('en-US', {
 year: 'numeric',
 month: 'long',

@@ -1,0 +1,77 @@
+uuid: 12345678-1234-1234-1234-123456789003
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_homepage_sections
+    - node.type.homepage
+    - paragraphs.paragraphs_type.ibew_about_section
+    - paragraphs.paragraphs_type.ibew_cta_strip
+    - paragraphs.paragraphs_type.ibew_section
+    - paragraphs.paragraphs_type.ibew_section_cta_grid
+    - paragraphs.paragraphs_type.ibew_section_contractors
+    - paragraphs.paragraphs_type.ibew_section_events
+    - paragraphs.paragraphs_type.ibew_section_news
+    - paragraphs.paragraphs_type.ibew_section_news_events
+    - paragraphs.paragraphs_type.ibew_stats_bar
+  module:
+    - entity_reference_revisions
+id: node.homepage.field_homepage_sections
+field_name: field_homepage_sections
+entity_type: node
+bundle: homepage
+label: Sections
+description: 'Add sections to the homepage using paragraphs'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      ibew_about_section: ibew_about_section
+      ibew_cta_strip: ibew_cta_strip
+      ibew_section: ibew_section
+      ibew_section_cta_grid: ibew_section_cta_grid
+      ibew_section_contractors: ibew_section_contractors
+      ibew_section_events: ibew_section_events
+      ibew_section_news: ibew_section_news
+      ibew_section_news_events: ibew_section_news_events
+      ibew_stats_bar: ibew_stats_bar
+    negate: 0
+    target_bundles_drag_drop:
+      hero_button:
+        weight: 15
+        enabled: false
+      hero_slide:
+        weight: 16
+        enabled: false
+      ibew_about_section:
+        weight: 17
+        enabled: true
+      ibew_cta_strip:
+        weight: 18
+        enabled: true
+      ibew_section:
+        weight: 19
+        enabled: true
+      ibew_section_contractors:
+        weight: 21
+        enabled: true
+      ibew_section_cta_grid:
+        weight: 20
+        enabled: true
+      ibew_section_events:
+        weight: 22
+        enabled: true
+      ibew_section_news:
+        weight: 23
+        enabled: true
+      ibew_section_news_events:
+        weight: 24
+        enabled: true
+      ibew_stats_bar:
+        weight: 25
+        enabled: true
+field_type: entity_reference_revisions

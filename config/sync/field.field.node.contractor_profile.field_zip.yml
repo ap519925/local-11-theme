@@ -1,0 +1,20 @@
+uuid: 2n3l7m1k-8k01-3l4n-7m6i-0n3o1l2m4n5o
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_zip
+    - node.type.contractor_profile
+id: node.contractor_profile.field_zip
+field_name: field_zip
+entity_type: node
+bundle: contractor_profile
+label: 'ZIP Code'
+description: 'ZIP code of the contractor'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text

@@ -3,27 +3,20 @@ global-styling:
   css:
     theme:
       build/css/main.css: {}
-      css/nav-menu.css: {}
-      css/contact-page.css: {}
-      css/mobile-fixes.css: {}
-      css/login-page.css: {}
   js:
     build/js/main.js: {}
     build/js/page-transitions.js: {}
     build/js/parallax-hero.js: {}
     js/nav-menu.js: {}
     js/login-page.js: {}
+    js/global.js: {}
   dependencies:
     - core/drupal
+    - core/jquery
 
-login-page:
+
+admin-overrides:
   version: 1.0
   css:
     theme:
-      css/login-page.css: {}
-
-contact-page:
-  version: 1.0
-  css:
-    theme:
-      css/contact-page.css: {}
+      css/admin-overrides.css: { weight: 1000 }

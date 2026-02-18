@@ -1,0 +1,20 @@
+uuid: 9k0i4j8g-5h78-0i1k-4j3f-7k0l8i9j1k2l
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_street_address
+    - node.type.contractor_profile
+id: node.contractor_profile.field_street_address
+field_name: field_street_address
+entity_type: node
+bundle: contractor_profile
+label: 'Street Address'
+description: 'Street address of the contractor'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text

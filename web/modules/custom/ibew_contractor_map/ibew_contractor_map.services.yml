@@ -1,0 +1,8 @@
+services:
+  ibew_contractor_map.contractor_data_service:
+    class: Drupal\ibew_contractor_map\Service\ContractorDataService
+    arguments: ['@entity_type.manager', '@config.factory']
+
+  ibew_contractor_map.geocoding_service:
+    class: Drupal\ibew_contractor_map\Service\GeocodingService
+    arguments: ['@http_client', '@config.factory', '@logger.factory']

@@ -2,31 +2,23 @@
 /**
  * @file
  * Theme implementation for 'Hero Button' paragraph type.
+ * Note: Variables are populated in ibew_theme_preprocess_paragraph().
  */
 #}
-{% set link = content.field_link.0 %}
-{% set style = content.field_button_style[0]['#markup']|default('gold') %}
-{% set url = link['#url'] %}
-{% set title = link['#title'] %}
+{% if hero_btn_url and hero_btn_title %}
+	<a
+		href="{{ hero_btn_url }}" {% if hero_btn_target %} target="{{ hero_btn_target }}" {% endif %} class="btn {{ hero_btn_class }} gap-2 inline-flex items-center justify-center">
 
-{# Map style selection to CSS classes #}
-{% set btn_class = 'ibew-btn-lg ibew-btn--gold' %}
-
-{% if style == 'blue' %}
-  {% set btn_class = 'ibew-btn-lg ibew-btn--blue' %}
-{% elseif style == 'outline' %}
-  {# Transparent white outline style #}
-  {% set btn_class = 'ibew-btn-lg border-2 border-white text-white bg-transparent hover:bg-white/10 backdrop-blur-sm' %}
+		{# Simple icon logic based on title keywords or just generic #}
+		{% if 'Join' in hero_btn_title %}
+			<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewbox="0 0 16 16"><path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg>
+		{% elseif 'Contractor' in hero_btn_title %}
+			<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewbox="0 0 16 16"><path d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v8A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-8A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1h-3zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5z"/></svg>
+		{% elseif 'Member' in hero_btn_title or 'Login' in hero_btn_title %}
+			<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-circle" viewbox="0 0 16 16"><path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/><path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/></svg>
+		{% elseif 'Project' in hero_btn_title %}
+			<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewbox="0 0 16 16"><path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zM1.5 2a.5.5 0 0 0-.5.5v12a.5.5 0 0 0 .5.5h12a.5.5 0 0 0 .5-.5V2a.5.5 0 0 0-.5-.5H1.5z"/></svg>
+		{% endif %}
+		{{ hero_btn_title|escape('html') }}
+	</a>
 {% endif %}
-
-<a href="{{ url }}" class="{{ btn_class }} gap-2 inline-flex items-center justify-center">
-  {# Simple icon logic based on title keywords or just generic #}
-  {% if 'Join' in title %}
-     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/></svg> 
-  {% elseif 'Contractor' in title %}
-     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v8A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-8A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1h-3zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5z"/></svg>
-  {% elseif 'Project' in title %}
-     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h5.5L14 4.5zM1.5 2a.5.5 0 0 0-.5.5v12a.5.5 0 0 0 .5.5h12a.5.5 0 0 0 .5-.5V2a.5.5 0 0 0-.5-.5H1.5z"/></svg>
-  {% endif %}
-  {{ title }}
-</a>

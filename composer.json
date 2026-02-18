@@ -20,10 +20,14 @@
         "drupal/core-project-message": "^11.0",
         "drupal/core-recipe-unpack": "^11.3",
         "drupal/core-recommended": "^11.0",
+        "drupal/crop": "^2.5",
         "drupal/devel": "^5.1",
         "drupal/environment_indicator": "^4.0",
         "drupal/field_group": "^4.0",
         "drupal/fontawesome": "^3.0",
+        "drupal/geocoder": "^4.30",
+        "drupal/geofield": "^10.3",
+        "drupal/geolocation": "^3.14",
         "drupal/gin": "^5",
         "drupal/gin_login": "^2.1",
         "drupal/navigation_extra_tools": "^1.0",
@@ -32,6 +36,7 @@
         "drupal/project_browser": "^2.1",
         "drupal/radix": "^6.0",
         "drupal/search_api": "^1.40",
+        "drupal/twig_tweak": "^3.4",
         "drush/drush": "^13.0"
     },
     "require-dev": {
@@ -62,16 +67,36 @@
             }
         },
         "installer-paths": {
-            "recipes/{$name}": ["type:drupal-recipe"],
-            "web/core": ["type:drupal-core"],
-            "web/libraries/{$name}": ["type:drupal-library"],
-            "web/modules/contrib/{$name}": ["type:drupal-module"],
-            "web/profiles/contrib/{$name}": ["type:drupal-profile"],
-            "web/themes/contrib/{$name}": ["type:drupal-theme"],
-            "drush/Commands/contrib/{$name}": ["type:drupal-drush"],
-            "web/modules/custom/{$name}": ["type:drupal-custom-module"],
-            "web/profiles/custom/{$name}": ["type:drupal-custom-profile"],
-            "web/themes/custom/{$name}": ["type:drupal-custom-theme"]
+            "recipes/{$name}": [
+                "type:drupal-recipe"
+            ],
+            "web/core": [
+                "type:drupal-core"
+            ],
+            "web/libraries/{$name}": [
+                "type:drupal-library"
+            ],
+            "web/modules/contrib/{$name}": [
+                "type:drupal-module"
+            ],
+            "web/profiles/contrib/{$name}": [
+                "type:drupal-profile"
+            ],
+            "web/themes/contrib/{$name}": [
+                "type:drupal-theme"
+            ],
+            "drush/Commands/contrib/{$name}": [
+                "type:drupal-drush"
+            ],
+            "web/modules/custom/{$name}": [
+                "type:drupal-custom-module"
+            ],
+            "web/profiles/custom/{$name}": [
+                "type:drupal-custom-profile"
+            ],
+            "web/themes/custom/{$name}": [
+                "type:drupal-custom-theme"
+            ]
         },
         "drupal-core-project-message": {
             "include-keys": [

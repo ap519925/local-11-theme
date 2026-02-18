@@ -1,19 +1,82 @@
 {# paragraph--hero-slide.html.twig #}
 {% set media_entity = paragraph.field_hero_media.0.entity %}
-{% if media_entity %}
+{% set bundle = media_entity.bundle() %}
+{% set content_url = '' %}
+{% set is_video = false %}
+{% set video_type = '' %} {# 'file' or 'remote' #}
+
+{# Determine content type and URL #}
+{% if paragraph.field_hero_image and not paragraph.field_hero_image.isEmpty() %}
+  {% set content_url = file_url(paragraph.field_hero_image.entity.uri.value) %}
+{% elseif bundle == 'image' %}
   {% set file_entity = media_entity.field_media_image.0.entity %}
-  {% set image_uri = file_entity.uri.value %}
-  {% set image_url = file_url(image_uri) %}
-<!-- DEBUG: Media ID: {{ media_entity.id() }} | URI: {{ image_uri }} | URL: {{ image_url }} -->
-{% else %}
-  {# Fallback/Debug #}
-  {% set image_url = '' %}
-<!-- DEBUG: No Media Entity Found -->
+  {% if file_entity %}
+    {% set content_url = file_url(file_entity.uri.value) %}
+  {% endif %}
+{% elseif bundle == 'remote_video' %}
+  {% set content_url = media_entity.field_media_oembed_video.value %}
+  {% set is_video = true %}
+  {% set video_type = 'remote' %}
+{% elseif bundle == 'video' %}
+  {% set file_entity = media_entity.field_media_video_file.0.entity %}
+  {% if file_entity %}
+    {% set content_url = file_url(file_entity.uri.value) %}
+    {% set is_video = true %}
+    {% set video_type = 'file' %}
+  {% endif %}
 {% endif %}
 
-<li class="splide__slide h-full w-full relative">
-    <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('{{ image_url }}'); background-attachment: fixed;">
+<li class="splide__slide h-full w-full relative overflow-hidden">
+  {% if is_video %}
+      <div class="absolute inset-0 w-full h-full ibew-parallax-bg">
+          {% if video_type == 'remote' %}
+              {# Handle YouTube/Vimeo embeds. Simple iframe for now. #}
+              {# Extract video ID for YouTube #}
+              {% if 'youtube' in content_url or 'youtu.be' in content_url %}
+                 {% set video_id = content_url|split('v=')|last|split('&')|first %}
+                 {% if 'youtu.be' in content_url %}
+                    {% set video_id = content_url|split('/')|last %}
+                 {% endif %}
+                 <iframe 
+                    class="w-full h-full object-cover pointer-events-none" 
+                    src="https://www.youtube.com/embed/{{ video_id }}?autoplay=1&mute=1&loop=1&playlist={{ video_id }}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1" 
+                    frameborder="0" 
+                    allow="autoplay; encrypted-media" 
+                    allowfullscreen>
+                 </iframe>
+              {% elseif 'vimeo' in content_url %}
+                 {% set vimeo_parts = content_url|trim('/')|split('/') %}
+                 {% set video_id = vimeo_parts|last %}
+                 <iframe 
+                    class="w-full h-full object-cover pointer-events-none" 
+                    src="https://player.vimeo.com/video/{{ video_id }}?autoplay=1&loop=1&muted=1&background=1" 
+                    frameborder="0" 
+                    allow="autoplay; encrypted-media" 
+                    allowfullscreen>
+                 </iframe>
+              {% endif %}
+          {% else %}
+              {# Local Video File #}
+              <video 
+                 class="w-full h-full object-cover" 
+                 autoplay 
+                 muted 
+                 loop 
+                 playsinline>
+                 <source src="{{ content_url }}" type="video/mp4">
+              </video>
+          {% endif %}
+      </div>
+  {% else %}
+      {# Default Image Slide #}
+      <img 
+         src="{{ content_url }}" 
+         alt="Hero Slide" 
+         class="absolute inset-0 w-full h-full object-cover ibew-parallax-bg" 
+         draggable="false"
+      />
+  {% endif %}
 
-
-    </div>
+  {# Hero Overlay - uses .ibew-hero-overlay class for consistent styling #}
+  <div class="ibew-hero-overlay"></div>
 </li>

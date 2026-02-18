@@ -26,3 +26,114 @@
     overflow: visible !important;
     overscroll-behavior: auto !important;
 }
+
+/* ============================================================
+   STICKY NAV FIX — USING position: fixed
+   
+   position: sticky does NOT work when ANY ancestor between
+   the sticky element and the viewport has overflow other than
+   'visible'. Bootstrap, Tailwind, and Drupal core all add
+   overflow-x: hidden to html, body, or wrapper divs.
+   
+   position: fixed ignores all ancestor overflow entirely.
+   We compensate for the removed flow space with body padding.
+   ============================================================ */
+
+/* Use overflow-x: clip instead of hidden on html/body.
+   'clip' prevents horizontal overflow just like 'hidden',
+   but does NOT create a new scroll container, which means
+   sticky positioning still works for descendants.
+   This is the modern replacement for overflow-x: hidden. */
+html,
+body {
+    overflow-x: clip !important;
+}
+
+/* The nav itself — fixed to viewport top */
+.ibew-nav {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 500 !important;
+    width: 100% !important;
+}
+
+/* Push the page content down so it doesn't hide behind the fixed nav.
+   The nav is roughly 70-80px tall. We use a CSS variable so JS can
+   set the exact height, with 75px as a safe default. */
+body {
+    padding-top: var(--ibew-nav-height, 75px) !important;
+}
+
+/* When the Drupal admin toolbar is present, the fixed nav
+   needs to account for the toolbar's own height. */
+body.admin-toolbar-expanded .ibew-nav {
+    top: 56px !important;
+    /* Height of Drupal admin toolbar */
+}
+
+body.admin-toolbar-expanded {
+    padding-top: calc(var(--ibew-nav-height, 75px) + 56px) !important;
+}
+
+/* Ancestors: ensure they don't break anything */
+.layout-container,
+.ibew-page {
+    overflow-x: clip !important;
+    overflow-y: visible !important;
+    height: auto !important;
+}
+
+/* ============================================================
+   MOBILE HERO LOGO CENTERING
+   ============================================================ */
+@media (max-width: 768px) {
+
+    /* The hero content wrapper must center its children */
+    .ibew-hero-content-wrapper,
+    .ibew-hero-content-wrapper .container,
+    .ibew-region--hero-content {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+        width: 100% !important;
+    }
+
+    /* Center the logo field and all its Drupal wrappers */
+    .ibew-region--hero-content .field--name-field-hero-logo,
+    .ibew-region--hero-content .hero-logo-wrapper,
+    .ibew-region--hero-content .hero-logo-container,
+    .ibew-region--hero-content .field--name-field-hero-logo .field__item {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        width: 100% !important;
+        text-align: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    /* The logo image itself */
+    .ibew-region--hero-content .hero-logo-wrapper img,
+    .ibew-region--hero-content .hero-logo-container img,
+    .ibew-region--hero-content .field--name-field-hero-logo img {
+        display: block !important;
+        margin: 0 auto !important;
+        max-width: 200px !important;
+        max-height: 120px !important;
+        width: auto !important;
+        height: auto !important;
+        object-fit: contain !important;
+    }
+
+    /* Also center all Drupal blocks inside hero content */
+    .ibew-region--hero-content .block {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        width: 100% !important;
+    }
+}

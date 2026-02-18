@@ -100,4 +100,31 @@
 
         }
     };
+
+    /**
+     * Sticky Nav Height Measurement
+     * Measures the .ibew-nav element and sets --ibew-nav-height on the body
+     * so the CSS padding-top is always accurate for the fixed header.
+     */
+    Drupal.behaviors.ibewStickyNav = {
+        attach: function (context) {
+            // Only run once on full page load
+            if (context !== document) return;
+
+            var nav = document.querySelector('.ibew-nav');
+            if (!nav) return;
+
+            function updateNavHeight() {
+                var h = nav.offsetHeight;
+                if (h > 0) {
+                    document.body.style.setProperty('--ibew-nav-height', h + 'px');
+                }
+            }
+
+            // Measure after fonts/images load
+            updateNavHeight();
+            window.addEventListener('load', updateNavHeight);
+            window.addEventListener('resize', updateNavHeight);
+        }
+    };
 })(Drupal);

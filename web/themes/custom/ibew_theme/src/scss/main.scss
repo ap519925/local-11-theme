@@ -117,10 +117,7 @@ a {
 }
 
 // STRICT STICKY FIX
-// Force all potential parent containers to allow overflow so sticky works
-html,
-body,
-.dialog-off-canvas-main-canvas,
+// Only target theme containers, leaving html/body/drupal-wrappers alone for Admin Toolbar to function
 .layout-container,
 .ibew-page {
     overflow-x: clip !important;
@@ -128,42 +125,11 @@ body,
     height: auto !important;
 }
 
-// ADMIN TOOLBAR FIX
-// Allow admin toolbar dropdowns to display outside overflow constraints
-#toolbar-item-administration-tray,
-#toolbar-bar,
-.toolbar-tray,
-.toolbar-menu,
-.toolbar-menu__item,
-.gin-toolbar-bar,
-.gin-sidebar {
-    overflow: visible !important;
-    z-index: 99999 !important;
-}
-
-// Ensure contextual links and quick edit are also visible
-.contextual-region,
-.contextual {
-    z-index: 9999 !important;
-}
-
-// Specific fix for vertical toolbar submenus
-.toolbar-tray-vertical {
-    z-index: 99999 !important;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
-}
-
 // Remove conflict with theme z-indicies
 .ibew-page,
 .layout-container {
     z-index: 1;
-    /* reset to low value */
     position: relative;
-}
-
-// Fix for submenus being clipped
-.toolbar-menu__sub {
-    z-index: 100000 !important;
 }
 
 // Enforce sticky nav with high specificity
@@ -171,8 +137,22 @@ body,
     position: -webkit-sticky !important;
     position: sticky !important;
     top: 0 !important;
-    z-index: 1020 !important;
+    z-index: 500 !important;
+    /* Lower than Admin Toolbar (usually 999+) */
     width: 100% !important;
+}
+
+// ----------------------------------------------------
+// HOTFIX: Override Admin Toolbar Overflow Issue
+// ----------------------------------------------------
+// This targets the specific issue where admin-toolbar__content
+// gets overflow-y: auto on large screens, breaking submenus.
+:is(#extra-specificity-hack, [data-drupal-admin-styles]) .admin-toolbar__content {
+    @media (min-width: 64rem) {
+        overflow-y: visible !important;
+        overflow-x: visible !important;
+        overflow: visible !important;
+    }
 }
 
 // Calendar Override

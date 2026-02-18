@@ -35,7 +35,7 @@ class NewsJsonController extends ControllerBase
                 $item = [
                     'title' => $node->getTitle(),
                     'url' => $node->toUrl()->toString(),
-                    'date' => $node->getCreatedTime(),
+                    'date' => date('c', $node->getCreatedTime()),
                     'summary' => '',
                     'image' => '',
                 ];

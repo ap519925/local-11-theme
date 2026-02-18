@@ -5,7 +5,7 @@ dependencies:
   module:
     - node
     - text
-id: node.contractor_profile.field_street_address
+id: node.field_street_address
 field_name: field_street_address
 entity_type: node
 type: text

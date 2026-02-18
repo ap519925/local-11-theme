@@ -47,13 +47,14 @@ module:
   help: 0
   history: 0
   hover_on: 0
-  jquery_ui: 0
-  jquery_ui_autocomplete: 0
-  jquery_ui_menu: 0
   ibew_contact: 0
+  ibew_contractor_map: 0
   ibew_homepage_blocks: 0
   ibew_login_redirect: 0
   image: 0
+  jquery_ui: 0
+  jquery_ui_autocomplete: 0
+  jquery_ui_menu: 0
   key: 0
   layout_builder: 0
   layout_discovery: 0

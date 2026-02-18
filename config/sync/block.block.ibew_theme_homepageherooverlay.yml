@@ -17,7 +17,7 @@ plugin: 'block_content:89521010-91d0-4ea4-82fe-d10a66805df7'
 settings:
   id: 'block_content:89521010-91d0-4ea4-82fe-d10a66805df7'
   label: 'IBEW LOCAL 90'
-  label_display: '0'
+  label_display: visible
   provider: block_content
   view_mode: full
 visibility: {  }

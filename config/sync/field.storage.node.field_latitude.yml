@@ -4,7 +4,7 @@ status: true
 dependencies:
   module:
     - node
-id: node.contractor_profile.field_latitude
+id: node.field_latitude
 field_name: field_latitude
 entity_type: node
 type: float

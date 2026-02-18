@@ -157,30 +157,112 @@
     width: 100%;
 }
 
+/* Hero content flex wrapper - ensure logo is above text and centered */
+.hero-content-flex-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+
+    /* Force logo container to be first */
+    .hero-logo-container {
+        order: -1 !important;
+        margin-bottom: 1.5rem !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        display: flex !important;
+        justify-content: center !important;
+    }
+
+    /* Force h1 to be second */
+    h1 {
+        order: 1 !important;
+    }
+
+    /* Force description to be third */
+    >p {
+        order: 2 !important;
+    }
+
+    /* Force buttons to be fourth */
+    .hero-actions-wrapper {
+        order: 3 !important;
+    }
+}
+
 /* Hero Logo - Auto-scaled to appropriate size */
-.hero-logo-wrapper {
-    max-width: 300px;
-    width: 100%;
-    margin: 0 auto;
+.hero-logo-container {
+    max-width: 300px !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    order: -1 !important;
+    z-index: 50 !important;
+    text-align: center !important;
+
+    /* Inner wrapper (hero-logo-wrapper from field template) */
+    .hero-logo-wrapper {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Drupal field wrappers */
+    .field,
+    .field__item,
+    .field--item,
+    article {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        width: 100%;
+    }
 
     /* Target any img nested inside */
     img,
+    picture,
     picture img,
-    .field--item img,
-    .field__item img {
-        width: 100% !important;
+    article img,
+    .field img,
+    .field--name-field-hero-logo img {
+        width: auto !important;
+        max-width: 100% !important;
         height: auto !important;
-        max-height: 120px !important;
+        max-height: 200px !important;
         object-fit: contain !important;
-        object-position: center !important;
+        margin: 0 auto !important;
+        display: block !important;
     }
 
     /* SVG logos */
     svg {
-        width: 100%;
-        height: auto;
-        max-height: 120px;
+        width: auto !important;
+        max-width: 100% !important;
+        height: auto !important;
+        max-height: 200px !important;
+        margin: 0 auto !important;
     }
+}
+
+/* Explicit ordering for siblings to ensure Logo is first */
+.ibew-region--hero-content h1,
+.ibew-region--hero-content .display-2 {
+    order: 2 !important;
+}
+
+.ibew-region--hero-content p,
+.ibew-region--hero-content .lead {
+    order: 3 !important;
+}
+
+.hero-actions-wrapper,
+.field--name-field-hero-actions {
+    order: 4 !important;
 }
 
 /* Responsive logo sizing */
@@ -373,13 +455,13 @@
     }
 
     /* Ensure Logo isn't too huge */
-    .hero-logo-wrapper {
+    .hero-logo-container {
         margin-bottom: 0.5rem !important;
         /* Reduce logo bottom margin */
     }
 
-    .hero-logo-wrapper img,
-    .hero-logo-wrapper svg {
+    .hero-logo-container img,
+    .hero-logo-container svg {
         max-height: 70px !important;
         width: auto !important;
     }
@@ -398,11 +480,12 @@
 }
 
 /* Ensure Logo is centered */
-.hero-logo-wrapper {
+.hero-logo-container {
     margin-left: auto !important;
     margin-right: auto !important;
-    display: flex;
-    justify-content: center;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
 }
 
 /* Typography Overrides for Hero Overlay */

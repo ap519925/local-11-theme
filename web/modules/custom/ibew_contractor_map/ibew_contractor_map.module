@@ -43,7 +43,7 @@ function ibew_contractor_map_page_attachments(array &$page) {
   if ($route_name === 'view.contractors.page_1') {
     // Get API Key from config or fallback to provided key
     $config = \Drupal::config('ibew_contractor_map.settings');
-    $api_key = $config->get('google_maps_api_key') ?: '';
+    $api_key = $config->get('google_maps_api_key') ?: 'AIzaSyB5HikunMY2rPla7Xug_6YMIHqdE3u3_0g';
 
     if ($api_key) {
       // Load Google Maps API with additional libraries and clustering

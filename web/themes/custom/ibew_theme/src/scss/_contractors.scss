@@ -101,104 +101,65 @@
     }
 }
 
-/* Contractor Card */
+/* Contractor Card - Horizontal Layout (Dark Theme) */
 .ibew-contractor-card {
-    background: #152a45;
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    background: #1e3a5f !important;
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    color: #ffffff !important;
 
     &:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+        border-color: #f7c948 !important;
     }
 
-    .contractor-image {
-        width: 100%;
-        height: 180px;
-        object-fit: cover;
-        background-color: #f0f0f0;
+    /* Card title - bright white */
+    .card-title {
+        color: #ffffff !important;
 
-        &.placeholder {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #adb5bd;
-            font-size: 3rem;
+        a {
+            color: #ffffff !important;
+            text-decoration: none;
+
+            &:hover {
+                color: #f7c948 !important;
+            }
         }
     }
 
-    .contractor-content {
-        padding: 1.25rem;
+    /* Card body text - readable on dark */
+    .card-body {
+        color: #ffffff !important;
+        background: transparent !important;
+    }
 
-        h3 {
-            font-family: 'Oswald', sans-serif;
-            font-size: 1.25rem;
-            font-weight: 600;
-            color: #1e3a5f;
-            margin-bottom: 0.75rem;
-            text-transform: uppercase;
+    /* Muted text - visible on dark bg */
+    .text-muted {
+        color: rgba(255, 255, 255, 0.65) !important;
+    }
 
-            a {
-                color: inherit;
-                text-decoration: none;
+    /* Links - gold accent */
+    a:not(.btn) {
+        color: #f7c948 !important;
+        text-decoration: none;
 
-                &:hover {
-                    color: #f7c948;
-                }
-            }
+        &:hover {
+            color: #ffe07a !important;
         }
+    }
 
-        .contractor-specialties {
-            margin-bottom: 0.75rem;
+    /* Website button */
+    .btn {
+        background-color: #f7c948 !important;
+        color: #1e3a5f !important;
+        border: none !important;
 
-            .specialty-tag {
-                display: inline-block;
-                background: rgba(45, 74, 111, 0.1);
-                color: #2d4a6f;
-                padding: 0.25rem 0.5rem;
-                border-radius: 4px;
-                font-size: 0.75rem;
-                font-weight: 500;
-                margin-right: 0.375rem;
-                margin-bottom: 0.375rem;
-            }
-        }
-
-        .contractor-service-area {
-            color: #6c757d;
-            font-size: 0.875rem;
-            margin-bottom: 0.75rem;
-
-            svg {
-                width: 14px;
-                height: 14px;
-                margin-right: 0.375rem;
-            }
-        }
-
-        .contractor-contact {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            font-size: 0.875rem;
-
-            a {
-                color: #2d4a6f;
-                text-decoration: none;
-
-                &:hover {
-                    color: #f7c948;
-                }
-            }
-
-            svg {
-                width: 14px;
-                height: 14px;
-                margin-right: 0.5rem;
-                color: #adb5bd;
-            }
+        &:hover {
+            background-color: #ffe07a !important;
         }
     }
 }
@@ -307,9 +268,14 @@
         }
     }
 
+    /* Stack cards vertically on small screens */
     .ibew-contractor-card {
-        .contractor-image {
-            height: 160px;
+        flex-direction: column !important;
+
+        /* Image section becomes top on mobile */
+        >.position-relative.flex-shrink-0 {
+            width: 100% !important;
+            min-height: 120px;
         }
     }
 }
@@ -370,32 +336,33 @@
 .contractor-list-item {
     padding: 1rem;
     margin-bottom: 0.75rem;
-    background: #152a45;
+    background: #1e3a5f;
     border-radius: 0.375rem;
     cursor: pointer;
     transition: all 0.2s ease;
     border-left: 3px solid transparent;
+    color: #ffffff;
 
     &:hover {
-        background: #e9ecef;
+        background: #2d4a6f;
         border-left-color: #f7c948;
     }
 
     &.active {
-        background: #e7f1ff;
-        border-left-color: #0066cc;
+        background: #2d4a6f;
+        border-left-color: #f7c948;
     }
 
     h4 {
         font-family: 'Oswald', sans-serif;
         font-size: 1rem;
         font-weight: 600;
-        color: #1e3a5f;
+        color: #ffffff;
         margin: 0 0 0.5rem 0;
         text-transform: uppercase;
 
         a {
-            color: inherit;
+            color: #ffffff;
             text-decoration: none;
 
             &:hover {
@@ -406,7 +373,7 @@
 
     .contractor-address {
         font-size: 0.875rem;
-        color: #6c757d;
+        color: rgba(255, 255, 255, 0.75);
         margin-bottom: 0.25rem;
     }
 
@@ -414,7 +381,7 @@
         font-size: 0.875rem;
 
         a {
-            color: #0066cc;
+            color: #f7c948;
             text-decoration: none;
 
             &:hover {
@@ -456,61 +423,29 @@
     }
 }
 
-/* Views Row - Full Width Cards */
+/* Views Row - Dark Cards (remove white wrapper) */
 .view-contractors .views-row {
     width: 100%;
     max-width: 100%;
     margin: 0 0 1rem 0;
-    padding: 1.25rem;
-    background: white;
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    padding: 0;
+    background: transparent !important;
+    border-radius: 0;
+    box-shadow: none;
     box-sizing: border-box;
     display: block;
     float: none;
 
     &:hover {
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        box-shadow: none;
     }
+}
 
-    .views-field-title {
-        font-family: 'Oswald', sans-serif;
-        font-size: 1.25rem;
-        font-weight: 600;
-        color: #1e3a5f;
-        margin-bottom: 0.75rem;
-        text-transform: uppercase;
-
-        a {
-            color: inherit;
-            text-decoration: none;
-
-            &:hover {
-                color: #f7c948;
-            }
-        }
-    }
-
-    .views-field {
-        margin-bottom: 0.5rem;
-    }
-
-    .views-field-field-street-address,
-    .views-field-field-city,
-    .views-field-field-state,
-    .views-field-field-zip {
-        display: block;
-        color: #6c757d;
-        font-size: 0.875rem;
-    }
-
-    .views-field-field-phone a,
-    .views-field-field-website a {
-        color: #0066cc;
-        text-decoration: none;
-
-        &:hover {
-            text-decoration: underline;
-        }
-    }
+/* Also remove white from views grid wrapper */
+.ibew-contractors-list .views-view-grid,
+.ibew-contractors-list .row,
+.ibew-contractors-list .views-row,
+.ibew-contractors-list .views-col,
+.ibew-contractors-list .col {
+    background: transparent !important;
 }

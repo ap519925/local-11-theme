@@ -47,10 +47,10 @@
 			<div class="p-3 p-md-4 ibew-contractors-list flex-grow-1">
 				{% if page.content %}
 					{# 
-																																																																																																																																																																																																																																																																															   The View content will be rendered here.
-																																																																																																																																																																																																																																																																															   We need to ensure the view grid classes don't break the layout.
-																																																																																																																																																																																																																																																																															   We'll handle that via CSS adjustments in the <style> block below. 
-																																																																																																																																																																																																																																																																															#}
+																																																																																																																																																																																																																																																																																														   The View content will be rendered here.
+																																																																																																																																																																																																																																																																																														   We need to ensure the view grid classes don't break the layout.
+																																																																																																																																																																																																																																																																																														   We'll handle that via CSS adjustments in the <style> block below. 
+																																																																																																																																																																																																																																																																																														#}
 					{{ page.content }}
 				{% else %}
 					<div class="alert alert-info">
@@ -149,13 +149,12 @@
 	/* Buttons */
 	#contractorMap .contractor-info-window a.btn,
 	#contractorMap .contractor-info-window a[style*="background"] {
-		color: #ffffff !important; /* Only keeping important where inline styles might compete */
+		color: #ffffff !important;
 	}
 
 	/* Layout Overrides for the Airbnb Style */
-	/* Target the specific View Grid implementation */
 	.ibew-contractors-list .views-view-grid {
-		display: block !important; /* Reset table/grid behavior */
+		display: block !important;
 	}
 
 	/* Force grid items/rows to full width */
@@ -166,7 +165,7 @@
 		margin-bottom: 1rem;
 	}
 
-	/* Reset internal containers that might constrain width */
+	/* Reset internal containers */
 	.ibew-contractors-list .container,
 	.ibew-contractors-list .container-fluid {
 		width: 100% !important;
@@ -175,7 +174,7 @@
 		padding-right: 0 !important;
 	}
 
-	/* If using Bootstrap Grid Cols (e.g. col-md-4), force them to full width in this context */
+	/* Force cols to full width */
 	.ibew-contractors-list [class*="col-"] {
 		width: 100% !important;
 		flex: 0 0 100% !important;
@@ -196,31 +195,129 @@
 		}
 	}
 
-	/* Adjust Card Styles for Compact List and Fix Readability */
+	/* Contractor Card Contrast Fixes */
 	.ibew-contractor-card,
-	.ibew-contractor-card .card-body,
-	.ibew-contractor-card .card-img-top {
-		border-color: rgba(0, 0, 0, 0.1) !important;
+	.ibew-contractor-card .card-body {
+		background: #1e3a5f !important;
+		border-color: rgba(255, 255, 255, 0.08) !important;
+		color: #ffffff !important;
 	}
-
-	.ibew-contractor-card h3,
-	.ibew-contractor-card a:not(.btn),
-	.ibew-contractor-card div,
-	.ibew-contractor-card p,
-	.ibew-contractor-card span {}
 
 	.ibew-contractor-card a:not(.btn) {
 		text-decoration: none;
+		color: #f7c948 !important;
 	}
 
 	.ibew-contractor-card:hover {
 		transform: translateY(-2px);
-		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08) !important;
-		border-color: var(--ibew-primary) !important;
+		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3) !important;
+		border-color: #f7c948 !important;
 	}
 
-	/* HIDE Unwanted Homepage Blocks that might be in the content region */
-	/* We specifically target likely IDs or classes for the About Section */
+	/* Remove white from all view wrappers */
+	.ibew-contractors-list .views-view-grid,
+	.ibew-contractors-list .row,
+	.ibew-contractors-list .views-row,
+	.ibew-contractors-list .views-col,
+	.ibew-contractors-list .col,
+	.ibew-contractors-list .container,
+	.ibew-contractors-list .container-fluid {
+		background: transparent !important;
+		box-shadow: none !important;
+	}
+	.ibew-contractors-list .views-row {
+		padding: 0 !important;
+		border: none !important;
+	}
+
+	/* ========================================================
+	   SEARCH/FILTER FORM STYLING FOR DARK PANEL
+	   ======================================================== */
+	/* All labels white on dark bg */
+	.ibew-contractors-list label,
+	.sticky-top label,
+	.ibew-contractors-list .form-item label,
+	.sticky-top .form-item label {
+		color: #ffffff !important;
+		font-weight: 600 !important;
+		font-size: 0.8rem !important;
+		text-transform: uppercase !important;
+		letter-spacing: 0.05em !important;
+		margin-bottom: 0.375rem !important;
+	}
+
+	/* Form inputs styled for dark bg */
+	.ibew-contractors-list input[type="text"],
+	.ibew-contractors-list input[type="search"],
+	.ibew-contractors-list select,
+	.sticky-top input[type="text"],
+	.sticky-top input[type="search"],
+	.sticky-top select,
+	.ibew-contractors-list .form-control,
+	.sticky-top .form-control,
+	.ibew-contractors-list .form-select,
+	.sticky-top .form-select {
+		background-color: rgba(255, 255, 255, 0.1) !important;
+		border: 1px solid rgba(255, 255, 255, 0.25) !important;
+		color: #ffffff !important;
+		border-radius: 0.5rem !important;
+		padding: 0.5rem 0.75rem !important;
+	}
+	.ibew-contractors-list input::placeholder,
+	.sticky-top input::placeholder {
+		color: rgba(255, 255, 255, 0.5) !important;
+	}
+
+	/* Submit buttons */
+	.ibew-contractors-list input[type="submit"],
+	.ibew-contractors-list .form-submit,
+	.sticky-top input[type="submit"],
+	.sticky-top .form-submit {
+		background-color: #f7c948 !important;
+		color: #1e3a5f !important;
+		border: none !important;
+		font-weight: 700 !important;
+		text-transform: uppercase !important;
+		border-radius: 0.5rem !important;
+		padding: 0.5rem 1.5rem !important;
+		cursor: pointer !important;
+		transition: all 0.2s ease !important;
+		margin-top: 1rem !important;
+		margin-bottom: 1rem !important;
+		display: inline-block !important;
+	}
+	.ibew-contractors-list input[type="submit"]:hover,
+	.sticky-top input[type="submit"]:hover {
+		background-color: #e5b83a !important;
+		transform: translateY(-1px) !important;
+	}
+
+	/* ALL text in the left dark panel must be readable */
+	.ibew-contractors-list .text-muted {
+		color: rgba(255, 255, 255, 0.65) !important;
+	}
+
+	/* Breadcrumbs - white text */
+	.breadcrumb-item,
+	.breadcrumb-item a {
+		color: rgba(255, 255, 255, 0.7) !important;
+		text-decoration: none !important;
+	}
+	.breadcrumb-item.active {
+		color: #ffffff !important;
+		font-weight: 600 !important;
+	}
+	.breadcrumb-item a:hover {
+		color: #f7c948 !important;
+	}
+
+	/* Page description text */
+	.ibew-contractors-list p,
+	.sticky-top p {
+		color: rgba(255, 255, 255, 0.8) !important;
+	}
+
+	/* HIDE Unwanted Homepage Blocks */
 	.block-ibew-about-section,
 	[id*="about-section"],
 	[class*="about-section"] {

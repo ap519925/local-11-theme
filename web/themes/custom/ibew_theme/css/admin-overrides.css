@@ -1,0 +1,28 @@
+/* Admin Toolbar Override to Fix Overflow Issues */
+/* Attempt to beat the specific selector from Gin/Admin Toolbar */
+:is(#extra-specificity-hack, [data-drupal-admin-styles]) .admin-toolbar__content {
+    overflow-y: visible !important;
+    overflow-x: visible !important;
+    overflow: visible !important;
+    display: flex !important;
+    /* Ensure flex behavior is kept */
+}
+
+/* Ensure submenus are visible */
+.toolbar-menu__sub {
+    display: block !important;
+    /* or whatever is needed */
+}
+
+/* 
+ * OVERRIDE CORE DRUPAL NAVIGATION MODULE 
+ * File: core/modules/navigation/css/components/admin-toolbar.css
+ * Issue: Sets overflow-y: auto on larger screens, hiding pop-out menus
+ */
+:root:has(.admin-toolbar) .admin-toolbar__content,
+.admin-toolbar__content {
+    overflow-y: visible !important;
+    overflow-x: visible !important;
+    overflow: visible !important;
+    overscroll-behavior: auto !important;
+}

@@ -3,14 +3,30 @@ langcode: en
 status: true
 dependencies:
   config:
+    - block_content.type.basic
+    - block_content.type.footer_contact
+    - block_content.type.footer_links
+    - block_content.type.hero_overlay
+    - block_content.type.hero_slider
     - filter.format.restricted_html
+    - taxonomy.vocabulary.contractor_specialties
+    - taxonomy.vocabulary.event_type
+    - taxonomy.vocabulary.feed_source
+    - taxonomy.vocabulary.gallery_type
+    - taxonomy.vocabulary.news_category
+    - taxonomy.vocabulary.newsletter_series
+    - taxonomy.vocabulary.resource_category
+    - taxonomy.vocabulary.resource_type
   module:
+    - block_content
     - comment
     - contact
     - filter
     - media
+    - paragraphs_type_permissions
     - search
     - system
+    - taxonomy
 _core:
   default_config_hash: 6WavjUYXIegP9AAg2zXGx54MWIVoomC3SZhNiqe-Dyk
 id: anonymous
@@ -21,6 +37,33 @@ permissions:
   - 'access comments'
   - 'access content'
   - 'access site-wide contact form'
+  - 'access user profiles'
   - 'search content'
+  - 'use advanced search'
   - 'use text format restricted_html'
+  - 'view any basic block content history'
+  - 'view any footer_contact block content history'
+  - 'view any footer_links block content history'
+  - 'view any hero_overlay block content history'
+  - 'view any hero_slider block content history'
   - 'view media'
+  - 'view paragraph content from_library'
+  - 'view paragraph content hero_button'
+  - 'view paragraph content hero_slide'
+  - 'view paragraph content ibew_cta_strip'
+  - 'view paragraph content ibew_section'
+  - 'view paragraph content ibew_section_contractors'
+  - 'view paragraph content ibew_section_cta_grid'
+  - 'view paragraph content ibew_section_events'
+  - 'view paragraph content ibew_section_news'
+  - 'view paragraph content ibew_section_news_events'
+  - 'view paragraph content ibew_stats_bar'
+  - 'view term revisions in contractor_specialties'
+  - 'view term revisions in event_type'
+  - 'view term revisions in feed_source'
+  - 'view term revisions in gallery_type'
+  - 'view term revisions in news_category'
+  - 'view term revisions in newsletter_series'
+  - 'view term revisions in resource_category'
+  - 'view term revisions in resource_type'
+  - 'view vocabulary labels'

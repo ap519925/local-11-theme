@@ -6,7 +6,7 @@ features:
   favicon: true
   node_user_picture: true
 logo:
-  path: 'public://Untitled_0_0.png'
+  path: 'public://Untitled_1.png'
   use_default: false
 top_bar_show: true
 top_bar_address: '2 N Plains Industrial Rd, Wallingford, CT 06492'
@@ -38,3 +38,5 @@ hero_video_overlay_opacity: 0
 hero_video_poster: ''
 logo_preview: ''
 favicon_preview: ''
+ibew_light_tertiary: '#e27859'
+ibew_dark_tertiary: '#e27859'

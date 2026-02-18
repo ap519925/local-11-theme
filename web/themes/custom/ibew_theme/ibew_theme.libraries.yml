@@ -15,3 +15,8 @@ global-styling:
     - core/jquery
 
 
+admin-overrides:
+  version: 1.0
+  css:
+    theme:
+      css/admin-overrides.css: { weight: 1000 }

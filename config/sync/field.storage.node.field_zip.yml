@@ -5,7 +5,7 @@ dependencies:
   module:
     - node
     - text
-id: node.contractor_profile.field_zip
+id: node.field_zip
 field_name: field_zip
 entity_type: node
 type: text

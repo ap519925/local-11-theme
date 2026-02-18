@@ -41,6 +41,9 @@ ibew_theme.settings:
     ibew_light_secondary:
       type: string
       label: 'Light Mode Secondary Color'
+    ibew_light_tertiary:
+      type: string
+      label: 'Light Mode Tertiary Color'
     ibew_light_accent:
       type: string
       label: 'Light Mode Accent Color'
@@ -61,6 +64,9 @@ ibew_theme.settings:
     ibew_dark_secondary:
       type: string
       label: 'Dark Mode Secondary Color'
+    ibew_dark_tertiary:
+      type: string
+      label: 'Dark Mode Tertiary Color'
     ibew_dark_accent:
       type: string
       label: 'Dark Mode Accent Color'
@@ -73,6 +79,14 @@ ibew_theme.settings:
     ibew_dark_text:
       type: string
       label: 'Dark Mode Text Color'
+    
+    # Core Theme Settings artifacts
+    logo_preview:
+      type: ignore
+      label: 'Logo Preview'
+    favicon_preview:
+      type: ignore
+      label: 'Favicon Preview'
 
     # Hero Video Background Settings
     hero_video_enabled:

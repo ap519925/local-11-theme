@@ -5,7 +5,7 @@ dependencies:
   module:
     - node
     - text
-id: node.contractor_profile.field_state
+id: node.field_state
 field_name: field_state
 entity_type: node
 type: text

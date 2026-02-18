@@ -111,6 +111,39 @@
         });
 
         mapInitialized = true;
+
+        // Add Click Listener to List Items
+        $(document).on('click', '.ibew-contractor-card', function (e) {
+            // Allow clicks on links/buttons inside the card to work normally
+            if ($(e.target).closest('a, button').length > 0 && !$(e.target).closest('.stretched-link').length) {
+                return;
+            }
+
+            e.preventDefault();
+            const contractorId = $(this).data('id');
+            // Fallback to name if ID fails (for backward compatibility)
+            const contractorName = $(this).data('name');
+
+            let marker;
+
+            if (contractorId) {
+                // Find by ID (robust) - need to ensure types match (string vs int)
+                marker = markers.find(m => m.contractorData && String(m.contractorData.id) === String(contractorId));
+            }
+
+            if (!marker && contractorName) {
+                // Find by Name (fallback)
+                marker = markers.find(m => m.getTitle() === contractorName);
+            }
+
+            if (marker) {
+                google.maps.event.trigger(marker, 'click');
+                // Optional: Smooth scroll to map on mobile
+                if (window.innerWidth < 992) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        });
     };
 
     // Function to show contractor info 

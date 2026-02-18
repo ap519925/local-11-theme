@@ -111,8 +111,11 @@ function ibew_theme_preprocess_html(&$variables) {
       '#tag' => 'style',
       '#value' => $custom_css,
     ],
-    'ibew-theme-colors'
+    'ibew-theme-colors',
   ];
+  
+  // Attach admin overrides globally to catch toolbar issues on frontend
+  $variables['page']['#attached']['library'][] = 'ibew_theme/admin-overrides';
 }
 
 /**

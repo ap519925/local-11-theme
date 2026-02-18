@@ -40,6 +40,58 @@
 			color: #849bc0 !important;
 
 		}
+
+		/* CENTER HERO LOGO */
+		.ibew-region--hero-content .field--name-field-hero-logo,
+		.ibew-region--hero-content .hero-logo-wrapper {
+			display: flex !important;
+			justify-content: center !important;
+			align-items: center !important;
+			width: 100% !important;
+			text-align: center !important;
+		}
+		.ibew-region--hero-content .hero-logo-wrapper img {
+			display: block !important;
+			margin: 0 auto !important;
+			max-width: 300px !important;
+			max-height: 200px !important;
+			width: auto !important;
+			height: auto !important;
+			object-fit: contain !important;
+		}
+
+		/* STYLE HERO TITLE FIELD */
+		.ibew-region--hero-content .field--name-field-display-title {
+			font-family: 'Oswald', sans-serif !important;
+			font-weight: 700 !important;
+			color: #ffffff !important;
+			text-transform: uppercase !important;
+			font-size: 3.5rem !important;
+			letter-spacing: 0.05em !important;
+			text-align: center !important;
+			margin-bottom: 0.75rem !important;
+			text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8) !important;
+			width: 100% !important;
+		}
+
+		/* STYLE HERO DESCRIPTION FIELD */
+		.ibew-region--hero-content .field--name-field-hero-description {
+			color: #ffffff !important;
+			font-size: 1.25rem !important;
+			text-align: center !important;
+			max-width: 800px !important;
+			margin: 0 auto 2rem !important;
+			opacity: 0.9 !important;
+			font-weight: 300 !important;
+			text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8) !important;
+		}
+
+		/* CENTER HERO ACTIONS */
+		.ibew-region--hero-content .field--name-field-hero-actions {
+			display: flex !important;
+			justify-content: center !important;
+			width: 100% !important;
+		}
 	</style>
 
 	<section
@@ -177,7 +229,7 @@
 										</div>
 										<h3 class="h5 fw-bold font-oswald mb-0 text-dark">Contractors</h3>
 									</div>
-									<p class="small text-muted mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+									<p class="small mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
 
 									<div class="d-grid gap-2">
 										<a href="/contractors" class="btn btn-light shadow-sm text-start fw-bold d-flex justify-content-between align-items-center">
@@ -200,7 +252,7 @@
 
 							<div class="mt-5">
 								<div class="bg-white p-3 rounded-4 shadow-sm border border-light">
-									<h3 class="h6 fw-bold text-uppercase text-muted mb-3 font-oswald">Updates from @IBEW</h3>
+									<h3 class="h6 fw-bold text-uppercase mb-3 font-oswald">Updates from @IBEW</h3>
 									<a class="twitter-timeline" data-height="600" href="https://twitter.com/IBEW?ref_src=twsrc%5Etfw">Tweets by IBEW</a>
 									<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 								</div>
@@ -229,14 +281,14 @@
 
 		{# 5. Contact / CTA - REMOVED PER REQUEST #}
 		{# 
-																																																																																						      {% if page.homepage_contact %}
-																																																																																						            <section id="contact" class="ibew-section py-16 bg-gray-50 w-100">
-																																																																																						              <div class="ibew-region ibew-region--contact w-100">
-																																																																																						                  {{ page.homepage_contact }}
-																																																																																						              </div>
-																																																																																						            </section>
-																																																																																						          {% endif %}
-																																																																																						          #}
+																																																																																												      {% if page.homepage_contact %}
+																																																																																												            <section id="contact" class="ibew-section py-16 bg-gray-50 w-100">
+																																																																																												              <div class="ibew-region ibew-region--contact w-100">
+																																																																																												                  {{ page.homepage_contact }}
+																																																																																												              </div>
+																																																																																												            </section>
+																																																																																												          {% endif %}
+																																																																																												          #}
 
 		{# --- New CTA Section --- #}
 		{# --- New CTA Section (Parallax) --- #}

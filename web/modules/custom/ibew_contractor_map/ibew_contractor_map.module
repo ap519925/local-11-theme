@@ -3,9 +3,16 @@
 /**
  * @file
  * IBEW Contractor Map module file.
+ *
+ * Provides:
+ * - Google Maps integration for contractor profiles
+ * - Auto-geocoding of addresses on node save
+ * - Automatic map/list updates when contractors are added/modified/deleted
+ * - Admin settings form for API key and map configuration
  */
 
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Entity\EntityInterface;
 use Drupal\node\NodeInterface;
 
 /**
@@ -14,7 +21,18 @@ use Drupal\node\NodeInterface;
 function ibew_contractor_map_help($route_name, RouteMatchInterface $route_match) {
   switch ($route_name) {
     case 'help.page.ibew_contractor_map':
-      return '<p>IBEW Contractor Map adds map functionality to the contractor search page.</p>';
+      $output = '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('IBEW Contractor Map adds interactive map functionality to the contractor search page.') . '</p>';
+      $output .= '<h3>' . t('Features') . '</h3>';
+      $output .= '<ul>';
+      $output .= '<li>' . t('Google Maps integration with contractor markers') . '</li>';
+      $output .= '<li>' . t('Auto-geocoding: Addresses are automatically converted to map coordinates when saved') . '</li>';
+      $output .= '<li>' . t('Automatic updates: New contractor profiles appear on the map immediately') . '</li>';
+      $output .= '<li>' . t('Search and filter contractors by name, specialty, and service area') . '</li>';
+      $output .= '</ul>';
+      $output .= '<h3>' . t('Configuration') . '</h3>';
+      $output .= '<p>' . t('Visit <a href=":url">IBEW Contractor Map Settings</a> to configure the Google Maps API key and map display options.', [':url' => '/admin/config/ibew/contractor-map']) . '</p>';
+      return $output;
   }
 }
 
@@ -28,6 +46,7 @@ function ibew_contractor_map_theme() {
       'variables' => [
         'contractors' => [],
         'map_id' => 'contractor-map',
+        'map_height' => 600,
       ],
     ],
   ];
@@ -38,15 +57,15 @@ function ibew_contractor_map_theme() {
  */
 function ibew_contractor_map_page_attachments(array &$page) {
   $route_name = \Drupal::routeMatch()->getRouteName();
-  
+
   // Only add libraries on the contractors page.
   if ($route_name === 'view.contractors.page_1') {
-    // Get API Key from config or fallback to provided key
+    // Get API Key from config.
     $config = \Drupal::config('ibew_contractor_map.settings');
-    $api_key = $config->get('google_maps_api_key') ?: 'AIzaSyB5HikunMY2rPla7Xug_6YMIHqdE3u3_0g';
+    $api_key = $config->get('google_maps_api_key');
 
     if ($api_key) {
-      // Load Google Maps API with additional libraries and clustering
+      // Load Google Maps API with additional libraries.
       $page['#attached']['html_head'][] = [
         [
           '#tag' => 'script',
@@ -61,13 +80,17 @@ function ibew_contractor_map_page_attachments(array &$page) {
     }
 
     $page['#attached']['library'][] = 'ibew_contractor_map/contractor-map';
-    
-    // Get contractor data and pass to JavaScript.
+
+    // Get contractor data and map settings, pass to JavaScript.
     /** @var \Drupal\ibew_contractor_map\Service\ContractorDataService $data_service */
     $data_service = \Drupal::service('ibew_contractor_map.contractor_data_service');
     $contractors = $data_service->getContractorData();
-    
-    $page['#attached']['drupalSettings']['ibewContractorMap']['contractors'] = $contractors;
+    $map_settings = $data_service->getMapSettings();
+
+    $page['#attached']['drupalSettings']['ibewContractorMap'] = [
+      'contractors' => $contractors,
+      'mapSettings' => $map_settings,
+    ];
   }
 }
 
@@ -76,11 +99,153 @@ function ibew_contractor_map_page_attachments(array &$page) {
  */
 function ibew_contractor_map_preprocess_page(&$variables) {
   $route_name = \Drupal::routeMatch()->getRouteName();
-  
-  // Add map container to contractors page - but template already has one, so we don't need to add.
-  // The module adds Google Maps API and JavaScript via page_attachments.
+
   if ($route_name === 'view.contractors.page_1') {
-    // Log for debugging
     \Drupal::logger('ibew_contractor_map')->info('Contractors page detected');
   }
+}
+
+/**
+ * Implements hook_entity_presave().
+ *
+ * Auto-geocode contractor profile addresses before saving.
+ * This means when someone creates or edits a contractor profile,
+ * the lat/lng will be automatically populated from the address.
+ */
+function ibew_contractor_map_entity_presave(EntityInterface $entity) {
+  // Only process contractor_profile nodes.
+  if (!$entity instanceof NodeInterface || $entity->bundle() !== 'contractor_profile') {
+    return;
+  }
+
+  // Check if auto-geocoding is enabled.
+  $config = \Drupal::config('ibew_contractor_map.settings');
+  if (!$config->get('auto_geocode')) {
+    return;
+  }
+
+  // Build the address from fields.
+  $street = $entity->get('field_street_address')->value;
+  $city = $entity->get('field_city')->value;
+  $state = $entity->get('field_state')->value;
+  $zip = $entity->get('field_zip')->value;
+
+  // Only geocode if we have at least some address data.
+  if (!$street && !$city && !$state && !$zip) {
+    return;
+  }
+
+  // Check if address has actually changed (skip geocoding if unchanged).
+  $needs_geocoding = FALSE;
+
+  if ($entity->isNew()) {
+    // Always geocode new nodes.
+    $needs_geocoding = TRUE;
+  }
+  else {
+    // Check if address fields changed.
+    $original = $entity->original ?? NULL;
+    if ($original) {
+      $old_street = $original->get('field_street_address')->value;
+      $old_city = $original->get('field_city')->value;
+      $old_state = $original->get('field_state')->value;
+      $old_zip = $original->get('field_zip')->value;
+
+      if ($street !== $old_street || $city !== $old_city || $state !== $old_state || $zip !== $old_zip) {
+        $needs_geocoding = TRUE;
+      }
+    }
+    else {
+      // If no original, and lat/lng are empty, geocode.
+      $lat = $entity->get('field_latitude')->value;
+      $lng = $entity->get('field_longitude')->value;
+      if (empty($lat) || empty($lng)) {
+        $needs_geocoding = TRUE;
+      }
+    }
+  }
+
+  // Also geocode if lat/lng are currently empty regardless of address change.
+  $current_lat = $entity->get('field_latitude')->value;
+  $current_lng = $entity->get('field_longitude')->value;
+  if (empty($current_lat) || empty($current_lng)) {
+    $needs_geocoding = TRUE;
+  }
+
+  if (!$needs_geocoding) {
+    return;
+  }
+
+  /** @var \Drupal\ibew_contractor_map\Service\GeocodingService $geocoding_service */
+  $geocoding_service = \Drupal::service('ibew_contractor_map.geocoding_service');
+  $address = $geocoding_service->buildAddressString($street, $city, $state, $zip);
+  $coordinates = $geocoding_service->geocode($address);
+
+  if ($coordinates) {
+    $entity->set('field_latitude', $coordinates['lat']);
+    $entity->set('field_longitude', $coordinates['lng']);
+
+    \Drupal::messenger()->addStatus(t('Map coordinates automatically set from address: @lat, @lng', [
+      '@lat' => round($coordinates['lat'], 6),
+      '@lng' => round($coordinates['lng'], 6),
+    ]));
+  }
+  else {
+    \Drupal::messenger()->addWarning(t('Could not automatically determine map coordinates from the address. You can set latitude and longitude manually.'));
+  }
+}
+
+/**
+ * Implements hook_entity_insert().
+ *
+ * Invalidate cache when a new contractor profile is added.
+ */
+function ibew_contractor_map_entity_insert(EntityInterface $entity) {
+  if ($entity instanceof NodeInterface && $entity->bundle() === 'contractor_profile') {
+    _ibew_contractor_map_invalidate_cache();
+    \Drupal::logger('ibew_contractor_map')->info('New contractor profile added: @title (NID: @nid)', [
+      '@title' => $entity->getTitle(),
+      '@nid' => $entity->id(),
+    ]);
+  }
+}
+
+/**
+ * Implements hook_entity_update().
+ *
+ * Invalidate cache when a contractor profile is updated.
+ */
+function ibew_contractor_map_entity_update(EntityInterface $entity) {
+  if ($entity instanceof NodeInterface && $entity->bundle() === 'contractor_profile') {
+    _ibew_contractor_map_invalidate_cache();
+  }
+}
+
+/**
+ * Implements hook_entity_delete().
+ *
+ * Invalidate cache when a contractor profile is deleted.
+ */
+function ibew_contractor_map_entity_delete(EntityInterface $entity) {
+  if ($entity instanceof NodeInterface && $entity->bundle() === 'contractor_profile') {
+    _ibew_contractor_map_invalidate_cache();
+    \Drupal::logger('ibew_contractor_map')->info('Contractor profile deleted: @title (NID: @nid)', [
+      '@title' => $entity->getTitle(),
+      '@nid' => $entity->id(),
+    ]);
+  }
+}
+
+/**
+ * Invalidate contractor map caches.
+ *
+ * Ensures the contractor list and map show up-to-date data
+ * whenever a contractor profile is added, edited, or removed.
+ */
+function _ibew_contractor_map_invalidate_cache() {
+  // Invalidate render cache for the contractors view.
+  \Drupal::service('cache_tags.invalidator')->invalidateTags([
+    'node_list:contractor_profile',
+    'config:views.view.contractors',
+  ]);
 }

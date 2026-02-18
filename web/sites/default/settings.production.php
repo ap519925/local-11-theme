@@ -60,3 +60,8 @@ $config['system.logging']['error_level'] = 'hide';
 
 // File system
 $settings['file_private_path'] = '../private';
+
+// Google Maps API Key (from .env, never committed to Git)
+if (getenv('GOOGLE_MAPS_API_KEY')) {
+    $config['ibew_contractor_map.settings']['google_maps_api_key'] = getenv('GOOGLE_MAPS_API_KEY');
+}

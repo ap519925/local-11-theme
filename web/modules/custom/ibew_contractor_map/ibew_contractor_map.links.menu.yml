@@ -1,0 +1,6 @@
+ibew_contractor_map.settings:
+  title: 'IBEW Contractor Map'
+  description: 'Configure Google Maps API key and contractor map settings.'
+  route_name: ibew_contractor_map.settings
+  parent: system.admin_config_system
+  weight: 10

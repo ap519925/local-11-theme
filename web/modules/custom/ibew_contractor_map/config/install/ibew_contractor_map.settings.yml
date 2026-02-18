@@ -1,0 +1,9 @@
+# IBEW Contractor Map settings.
+# The actual API key should be set via settings.local.php or settings.production.php
+# to keep it out of version control.
+google_maps_api_key: ''
+auto_geocode: true
+default_zoom: 9
+default_lat: 41.50
+default_lng: -72.80
+map_height: 600

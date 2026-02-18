@@ -2,12 +2,21 @@
 /**
  * @file
  * Contractor map container template.
- #}
+ *
+ * Variables:
+ * - contractors: Array of contractor data.
+ * - map_id: The HTML ID for the map element.
+ * - map_height: The height of the map in pixels.
+ */
+#}
 <div class="contractor-search-container">
+	<div class="contractor-map-header">
+		<div id="contractor-count" class="contractor-count"></div>
+	</div>
 	<div
 		class="contractor-list-section">{# The views page content renders here #}
 	</div>
 	<div class="contractor-map-section">
-		<div id="{{ map_id }}" style="height: 600px; width: 100%;"></div>
+		<div id="{{ map_id }}" class="contractor-map-canvas" style="height: {{ map_height|default(600) }}px; width: 100%;"></div>
 	</div>
 </div>

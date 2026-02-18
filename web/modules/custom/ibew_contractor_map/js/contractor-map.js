@@ -1,6 +1,6 @@
 /**
  * @file
- * IBEW Contractor Map JavaScript - Optimized for performance.
+ * IBEW Contractor Map JavaScript - Enhanced with auto-populate support.
  */
 
 (function ($, Drupal, drupalSettings) {
@@ -9,6 +9,7 @@
     let mapInitialized = false;
     let markers = [];
     let infoWindow;
+    let map;
 
     // Global init function for Google Maps API callback
     window.initContractorMap = function () {
@@ -32,53 +33,74 @@
 
         console.log('IBEW Map: Target element found', targetElement);
 
-        // Get contractor data from drupalSettings
-        const contractors = drupalSettings.ibewContractorMap && drupalSettings.ibewContractorMap.contractors || [];
+        // Get contractor data and map settings from drupalSettings
+        const contractorSettings = drupalSettings.ibewContractorMap || {};
+        const contractors = contractorSettings.contractors || [];
+        const mapSettings = contractorSettings.mapSettings || {};
         console.log('IBEW Map: Contractors data', contractors.length, 'contractors');
 
-        // Default center (Connecticut)
-        const defaultCenter = { lat: 41.50, lng: -72.80 };
+        // Use configurable defaults
+        const defaultCenter = {
+            lat: parseFloat(mapSettings.default_lat) || 41.50,
+            lng: parseFloat(mapSettings.default_lng) || -72.80
+        };
+        const defaultZoom = parseInt(mapSettings.default_zoom) || 9;
 
-        // Optimized map settings for better performance
-        const map = new google.maps.Map(targetElement, {
-            zoom: 9,
+        // Initialize map with configurable settings
+        map = new google.maps.Map(targetElement, {
+            zoom: defaultZoom,
             center: defaultCenter,
             mapTypeId: 'roadmap',
-            // Disable unnecessary controls for performance
             disableDefaultUI: false,
             streetViewControl: true,
             mapTypeControl: true,
             fullscreenControl: true,
             zoomControl: true,
-            // Performance optimizations
-            gestureHandling: 'greedy', // Better for touch
+            gestureHandling: 'greedy',
             optimization: true,
-            // Minimal styles for faster rendering
-            styles: []
+            styles: [
+                {
+                    featureType: 'poi',
+                    elementType: 'labels',
+                    stylers: [{ visibility: 'off' }]
+                }
+            ]
         });
 
         infoWindow = new google.maps.InfoWindow();
 
         // Create bounds to fit all markers
         const bounds = new google.maps.LatLngBounds();
+        let hasMarkers = false;
 
-        // Create markers for each contractor - optimized
+        // Create markers for each contractor with coordinates
         contractors.forEach(function (contractor) {
             if (contractor.lat && contractor.lng) {
                 const lat = parseFloat(contractor.lat);
                 const lng = parseFloat(contractor.lng);
 
-                // Add to bounds
-                bounds.extend({ lat: lat, lng: lng });
+                if (isNaN(lat) || isNaN(lng)) return;
 
-                // Create Marker - optimized without animation
+                bounds.extend({ lat: lat, lng: lng });
+                hasMarkers = true;
+
                 const marker = new google.maps.Marker({
                     position: { lat: lat, lng: lng },
                     map: map,
                     title: contractor.title,
-                    // No animation for better performance
                     animation: null,
-                    optimized: true
+                    optimized: true,
+                    icon: {
+                        url: 'data:image/svg+xml,' + encodeURIComponent(
+                            '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="42" viewBox="0 0 32 42">' +
+                            '<path d="M16 0C7.2 0 0 7.2 0 16c0 12 16 26 16 26s16-14 16-26C32 7.2 24.8 0 16 0z" fill="#1e3a5f"/>' +
+                            '<circle cx="16" cy="14" r="7" fill="#f7c948"/>' +
+                            '<text x="16" y="18" font-size="10" text-anchor="middle" fill="#1e3a5f" font-weight="bold">⚡</text>' +
+                            '</svg>'
+                        ),
+                        scaledSize: new google.maps.Size(32, 42),
+                        anchor: new google.maps.Point(16, 42)
+                    }
                 });
 
                 // Store contractor data with marker
@@ -94,88 +116,111 @@
         });
 
         // Fit map to show all markers if we have any
-        if (markers.length > 0) {
+        if (hasMarkers) {
             map.fitBounds(bounds);
 
-            // Add some padding
             google.maps.event.addListenerOnce(map, 'bounds_changed', () => {
-                if (map.getZoom() > 12) {
-                    map.setZoom(12);
+                if (map.getZoom() > 14) {
+                    map.setZoom(14);
                 }
             });
         }
 
-        // Enable scroll wheel zoom after initial load
-        map.setOptions({
-            scrollwheel: true
-        });
+        map.setOptions({ scrollwheel: true });
 
         mapInitialized = true;
 
-        // Add Click Listener to List Items
+        // Update contractor count display
+        updateContractorCount(contractors.length, markers.length);
+
+        // Add click listener to list items
         $(document).on('click', '.ibew-contractor-card', function (e) {
-            // Allow clicks on links/buttons inside the card to work normally
             if ($(e.target).closest('a, button').length > 0 && !$(e.target).closest('.stretched-link').length) {
                 return;
             }
 
             e.preventDefault();
             const contractorId = $(this).data('id');
-            // Fallback to name if ID fails (for backward compatibility)
             const contractorName = $(this).data('name');
 
             let marker;
 
             if (contractorId) {
-                // Find by ID (robust) - need to ensure types match (string vs int)
                 marker = markers.find(m => m.contractorData && String(m.contractorData.id) === String(contractorId));
             }
 
             if (!marker && contractorName) {
-                // Find by Name (fallback)
                 marker = markers.find(m => m.getTitle() === contractorName);
             }
 
             if (marker) {
                 google.maps.event.trigger(marker, 'click');
-                // Optional: Smooth scroll to map on mobile
                 if (window.innerWidth < 992) {
                     targetElement.scrollIntoView({ behavior: 'smooth' });
                 }
             }
         });
+
+        // Add search/filter interaction
+        setupSearchInteraction();
     };
 
-    // Function to show contractor info 
+    /**
+     * Show contractor info window on map marker click.
+     */
     function showContractorInfo(marker, map) {
         const contractor = marker.contractorData;
 
-        // Build info window content
+        // Build specialties pills
+        let specialtiesHtml = '';
+        if (contractor.specialties && contractor.specialties.length > 0) {
+            specialtiesHtml = '<div style="margin: 8px 0; display: flex; flex-wrap: wrap; gap: 4px;">';
+            contractor.specialties.forEach(function (specialty) {
+                specialtiesHtml += `<span style="display: inline-block; padding: 2px 8px; background: #e8f0fe; color: #1e3a5f; border-radius: 12px; font-size: 0.75rem; font-weight: 500;">${specialty}</span>`;
+            });
+            specialtiesHtml += '</div>';
+        }
+
+        // Build service areas text
+        let serviceAreasHtml = '';
+        if (contractor.service_areas && contractor.service_areas.length > 0) {
+            serviceAreasHtml = `<p style="margin: 4px 0; color: #666; font-size: 0.8rem;">📍 Service Areas: ${contractor.service_areas.join(', ')}</p>`;
+        }
+
         let contentString = `
-            <div class="contractor-info-window" style="min-width: 280px; max-width: 320px; background: white; color: #333; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.2);">
+            <div class="contractor-info-window" style="min-width: 280px; max-width: 340px; background: white; color: #333; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.2);">
                 ${contractor.image ?
                 `<div style="width: 100%; height: 120px; overflow: hidden; background: #f0f0f0;">
                         <img src="${contractor.image}" alt="${contractor.title}" style="width: 100%; height: 100%; object-fit: cover;">
                     </div>` :
-                `<div style="width: 100%; height: 80px; background: linear-gradient(135deg, #1e3a5f 0%, #2d5a8a 100%); display: flex; align-items: center; justify-content: center;">
-                        <span style="font-size: 2rem; color: white;">⚡</span>
+                `<div style="width: 100%; height: 60px; background: linear-gradient(135deg, #1e3a5f 0%, #2d5a8a 100%); display: flex; align-items: center; justify-content: center;">
+                        <span style="font-size: 1.5rem; color: white;">⚡</span>
                     </div>`
             }
                 <div style="padding: 12px;">
-                    <h4 style="margin: 0 0 8px; font-size: 1.1rem; font-weight: 600; color: #1e3a5f;">${contractor.title}</h4>
+                    <h4 style="margin: 0 0 6px; font-size: 1.1rem; font-weight: 700; color: #1e3a5f;">${contractor.title}</h4>
                     
-                    ${contractor.address ? `<p style="margin: 5px 0; color: #555; font-size: 0.9rem;">📍 ${contractor.address}</p>` : ''}
+                    ${contractor.contact_person ? `<p style="margin: 4px 0; color: #555; font-size: 0.85rem;">👤 ${contractor.contact_person}</p>` : ''}
                     
-                    ${contractor.phone ? `<p style="margin: 5px 0; color: #555; font-size: 0.9rem;"><a href="tel:${contractor.phone}" style="color: #0066cc; text-decoration: none;">📞 ${contractor.phone}</a></p>` : ''}
+                    ${contractor.address ? `<p style="margin: 4px 0; color: #555; font-size: 0.85rem;">📍 ${contractor.address}</p>` : ''}
                     
-                    <div style="margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap;">
+                    ${contractor.phone ? `<p style="margin: 4px 0; font-size: 0.85rem;"><a href="tel:${contractor.phone}" style="color: #0066cc; text-decoration: none;">📞 ${contractor.phone}</a></p>` : ''}
+                    
+                    ${contractor.email ? `<p style="margin: 4px 0; font-size: 0.85rem;"><a href="mailto:${contractor.email}" style="color: #0066cc; text-decoration: none;">✉️ ${contractor.email}</a></p>` : ''}
+                    
+                    ${specialtiesHtml}
+                    ${serviceAreasHtml}
+                    
+                    <div style="margin-top: 10px; display: flex; gap: 6px; flex-wrap: wrap;">
                         <a href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(contractor.address || contractor.title)}" 
                            target="_blank" 
-                           style="flex: 1; padding: 8px 12px; background: #1e3a5f; color: white; text-align: center; text-decoration: none; border-radius: 4px; font-size: 0.85rem;">
+                           style="flex: 1; padding: 8px 10px; background: #1e3a5f; color: white; text-align: center; text-decoration: none; border-radius: 6px; font-size: 0.8rem; font-weight: 600;">
                             🚗 Directions
                         </a>
                         
-                        ${contractor.website ? `<a href="${contractor.website}" target="_blank" style="flex: 1; padding: 8px 12px; background: #f7c948; color: #1e3a5f; text-align: center; text-decoration: none; border-radius: 4px; font-size: 0.85rem; font-weight: 600;">🌐 Website</a>` : ''}
+                        ${contractor.website ? `<a href="${contractor.website}" target="_blank" style="flex: 1; padding: 8px 10px; background: #f7c948; color: #1e3a5f; text-align: center; text-decoration: none; border-radius: 6px; font-size: 0.8rem; font-weight: 600;">🌐 Website</a>` : ''}
+                        
+                        ${contractor.url ? `<a href="${contractor.url}" style="flex: 1; padding: 8px 10px; background: #e8f0fe; color: #1e3a5f; text-align: center; text-decoration: none; border-radius: 6px; font-size: 0.8rem; font-weight: 600;">📋 Profile</a>` : ''}
                     </div>
                 </div>
             </div>
@@ -185,13 +230,40 @@
         infoWindow.open(map, marker);
     }
 
+    /**
+     * Update the contractor count in the UI.
+     */
+    function updateContractorCount(totalCount, mappedCount) {
+        const countEl = document.getElementById('contractor-count');
+        if (countEl) {
+            countEl.textContent = `${totalCount} contractor${totalCount !== 1 ? 's' : ''} found (${mappedCount} on map)`;
+        }
+    }
+
+    /**
+     * Setup search interaction to filter map markers.
+     */
+    function setupSearchInteraction() {
+        // When the views exposed form is submitted, the page reloads with new data,
+        // so markers will automatically update. But we can add visual feedback.
+        const searchForm = document.querySelector('.views-exposed-form');
+        if (searchForm) {
+            searchForm.addEventListener('submit', function () {
+                // Show loading state on map
+                const mapContainer = document.getElementById('contractorMap') || document.getElementById('contractor-map');
+                if (mapContainer) {
+                    mapContainer.style.opacity = '0.6';
+                    mapContainer.style.transition = 'opacity 0.3s';
+                }
+            });
+        }
+    }
+
     // Initialize when DOM is ready
     $(document).ready(function () {
-        // Immediate check
         if (typeof google !== 'undefined' && google.maps && typeof window.initContractorMap === 'function') {
             window.initContractorMap();
         } else {
-            // Polling fallback
             let attempts = 0;
             const interval = setInterval(function () {
                 attempts++;
@@ -200,6 +272,11 @@
                     clearInterval(interval);
                 } else if (attempts > 50) {
                     console.warn('IBEW Map: Google Maps API failed to load within 10 seconds.');
+                    // Show fallback message
+                    const mapContainer = document.getElementById('contractorMap') || document.getElementById('contractor-map');
+                    if (mapContainer) {
+                        mapContainer.innerHTML = '<div style="display: flex; align-items: center; justify-content: center; height: 100%; background: #f5f5f5; border-radius: 8px;"><p style="color: #666; text-align: center;">Map could not be loaded.<br>Please check your internet connection.</p></div>';
+                    }
                     clearInterval(interval);
                 }
             }, 200);

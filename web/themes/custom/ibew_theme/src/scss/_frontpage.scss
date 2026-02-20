@@ -66,12 +66,16 @@ html.dark {
 
   p,
   .text-body,
-  .text-secondary {
-    color: #e5e7eb; // Gray 200
+  .text-secondary,
+  .card-text,
+  .views-field-body,
+  .ibew-card p,
+  .card p {
+    color: #f3f4f6 !important; // Was #e5e7eb, bumped for contrast
   }
 
   .text-muted {
-    color: #9ca3af; // Gray 400 - Readable on Dark
+    color: #cbd5e1 !important; // Gray 300 - Much more readable on Dark
   }
 
   .card,
@@ -98,10 +102,6 @@ html.dark {
 
     .btn {
       color: #111827;
-    }
-
-    .row {
-      flex-direction: row-reverse;
     }
   }
 }

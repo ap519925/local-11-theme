@@ -47,10 +47,10 @@
 			<div class="p-3 p-md-4 ibew-contractors-list flex-grow-1">
 				{% if page.content %}
 					{# 
-																																																																																																																																																																																																																																																																																														   The View content will be rendered here.
-																																																																																																																																																																																																																																																																																														   We need to ensure the view grid classes don't break the layout.
-																																																																																																																																																																																																																																																																																														   We'll handle that via CSS adjustments in the <style> block below. 
-																																																																																																																																																																																																																																																																																														#}
+																																																																																																																																																																																																																																																																																																			   The View content will be rendered here.
+																																																																																																																																																																																																																																																																																																			   We need to ensure the view grid classes don't break the layout.
+																																																																																																																																																																																																																																																																																																			   We'll handle that via CSS adjustments in the <style> block below. 
+																																																																																																																																																																																																																																																																																																			#}
 					{{ page.content }}
 				{% else %}
 					<div class="alert alert-info">
@@ -63,7 +63,7 @@
 			<div class="p-3 border-top bg-dark text-center small text-muted">
 				&copy;
 				{{ 'now'|date('Y') }}
-				IBEW Local 90. All Rights Reserved.
+				{{ site_name|default('Our Union') }}. All Rights Reserved.
 			</div>
 		</div>
 
@@ -76,7 +76,7 @@
 
 			{# Floating Map Controls or Legend could go here #}
 			<div class="position-absolute bottom-0 start-0 m-4 p-3 rounded shadow-sm z-10" style="max-width: 250px;">
-				<h6 class="fw-bold text-ibew-navy mb-1 small text-uppercase">IBEW Local 90</h6>
+				<h6 class="fw-bold text-ibew-navy mb-1 small text-uppercase">{{ site_name|default('Our Union') }}</h6>
 				<p class="text-muted small mb-0">Contractor Location Map</p>
 			</div>
 		</div>

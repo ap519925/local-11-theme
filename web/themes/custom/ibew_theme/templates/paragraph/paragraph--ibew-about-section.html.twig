@@ -18,7 +18,9 @@
 					{% if content.field_about_body|render|striptags|trim %}
 						{{ content.field_about_body }}
 					{% else %}
-						<p>Founded in 1892, IBEW Local 90 has been at the forefront of the electrical industry, representing skilled workers throughout our jurisdiction. Our union has played a vital role in building the infrastructure that powers our communities.</p>
+						<p>Founded in 1892,
+							{{ site_name|default('Our Union') }}
+							has been at the forefront of the electrical industry, representing skilled workers throughout our jurisdiction. Our union has played a vital role in building the infrastructure that powers our communities.</p>
 						<p>From the earliest days of electrical work to today's cutting-edge renewable energy projects, our members have consistently delivered excellence, safety, and professionalism on every job site.</p>
 						<p>We take pride in our apprenticeship program, which has trained thousands of electricians who have gone on to become industry leaders and mentors to the next generation.</p>
 					{% endif %}

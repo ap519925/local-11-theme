@@ -5,14 +5,14 @@
  */
 #}
 <a href="/" class="ibew-footer__brand-logo">
-    {% if content.field_footer_logo[0] %}
-      {# Use Drupal default image rendering or custom markup if needed #}
-       {{ content.field_footer_logo }}
-    {% else %}
-       <img src="/themes/custom/ibew_theme/logo.png" alt="Local 90">
-    {% endif %}
-    <span>Local 90</span>
+	{% if content.field_footer_logo[0] %}
+		{# Use Drupal default image rendering or custom markup if needed #}
+		{{ content.field_footer_logo }}
+	{% else %}
+		<img src="/themes/custom/ibew_theme/logo.png" alt="{{ site_name }}">
+	{% endif %}
+	<span>{{ site_name|default('Our Union') }}</span>
 </a>
 {% if content.field_footer_desc %}
-   <p>{{ content.field_footer_desc[0]['#context'].value }}</p>
+	<p>{{ content.field_footer_desc[0]['#context'].value }}</p>
 {% endif %}

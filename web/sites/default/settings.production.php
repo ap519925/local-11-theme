@@ -1,4 +1,4 @@
-<?php
+=<?php
 /**
  * @file
  * Production settings for WHM/cPanel server.
@@ -43,12 +43,14 @@ if (getenv('DRUPAL_HASH_SALT')) {
     $settings['hash_salt'] = getenv('DRUPAL_HASH_SALT');
 }
 
-// Trusted host patterns - UPDATE with your actual domain
-$settings['trusted_host_patterns'] = [
-    '^ibew\.yourdomain\.com$',
-    '^www\.ibew\.yourdomain\.com$',
-    '^localhost$',
-];
+// Trusted host patterns - loaded from .env
+if (getenv('TRUSTED_HOSTS')) {
+    $hosts = explode(',', getenv('TRUSTED_HOSTS'));
+    $settings['trusted_host_patterns'] = array_map('trim', $hosts);
+} else {
+    // Fallback allowing all hosts (make sure to set TRUSTED_HOSTS in production)
+    $settings['trusted_host_patterns'] = ['.*'];
+}
 
 // Config sync directory
 $settings['config_sync_directory'] = '../config/sync';

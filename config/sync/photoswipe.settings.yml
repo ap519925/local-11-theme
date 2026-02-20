@@ -1,1 +1,2 @@
-enable_cdn: 'true'
+enable_cdn: true
+photoswipe_default_settings: {  }

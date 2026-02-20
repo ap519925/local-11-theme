@@ -28,7 +28,7 @@
 				{# We assume the title block is within the content region, or we can print title prefix/suffix if needed #}
 				<h1 class="font-oswald text-5xl md:text-6xl fw-bold text-uppercase mb-4 tracking-wide text-shadow-md">{{ node.label }}</h1>
 			{% else %}
-				<h1 class="font-oswald text-5xl md:text-6xl fw-bold text-uppercase mb-4 tracking-wide text-shadow-md">{{ 'IBEW Local 90'|t }}</h1>
+				<h1 class="font-oswald text-5xl md:text-6xl fw-bold text-uppercase mb-4 tracking-wide text-shadow-md">{{ site_name ?: 'IBEW Local Theme' }}</h1>
 			{% endif %}
 
 			<div class="w-24 h-1 bg-yellow-400 mx-auto mt-6 rounded-full"></div>
@@ -69,8 +69,7 @@
 										<circle cx="12" cy="10" r="3"></circle>
 									</svg>
 									<div>
-										2 North Plains Industrial Road<br>
-										Wallingford, CT 06492
+										{{ top_bar_address|striptags('<br>')|raw }}
 									</div>
 								</div>
 								<div class="d-flex gap-3 mb-3">
@@ -79,7 +78,7 @@
 									</svg>
 									<div>
 										Phone:
-										<a href="tel:203-265-3820" class="text-white text-decoration-none hover:text-ibew-gold">203-265-3820</a>
+										<a href="tel:{{ top_bar_phone }}" class="text-white text-decoration-none hover:text-ibew-gold">{{ top_bar_phone }}</a>
 									</div>
 								</div>
 								<div class="d-flex gap-3 mb-3">
@@ -97,7 +96,7 @@
 										<polyline points="22,6 12,13 2,6"></polyline>
 									</svg>
 									<div>
-										<a href="mailto:info@ibewlocal90.org" class="text-white text-decoration-none hover:text-ibew-gold">info@ibewlocal90.org</a>
+										<a href="mailto:{{ top_bar_email }}" class="text-white text-decoration-none hover:text-ibew-gold">{{ top_bar_email }}</a>
 									</div>
 								</div>
 							</div>

@@ -65,10 +65,10 @@
 <nav class="ibew-nav">
 	<div class="ibew-shell ibew-nav__inner">
 		<a href="/" class="ibew-brand">
-			<img src="{{ logo }}" alt="IBEW Local 90" class="ibew-brand__logo">
+			<img src="{{ logo }}" alt="{{ site_name }}" class="ibew-brand__logo">
 			<div class="ibew-brand__text">
-				<span class="ibew-brand__title">{{ 'IBEW LOCAL 90'|t }}</span>
-				<span class="ibew-eyebrow">{{ 'IBEW Local 90'|t }}</span>
+				<span class="ibew-brand__title">{{ site_name ?: 'IBEW Local Theme' }}</span>
+				<span class="ibew-eyebrow">{{ site_slogan }}</span>
 			</div>
 		</a>
 
@@ -108,8 +108,8 @@
 		</div>
 
 		{# ========================================
-																												   MOBILE HAMBURGER TOGGLE (Inside Nav Bar)
-																												   ======================================== #}
+																														   MOBILE HAMBURGER TOGGLE (Inside Nav Bar)
+																														   ======================================== #}
 		<a href="#nav-mobile" class="nav-mobile__toggle d-xl-none" role="button" aria-expanded="false" aria-controls="nav-mobile-menu">
 			<svg class="menuicon" xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewbox="0 0 50 50">
 				<title>{{ 'Toggle Menu'|t }}</title>

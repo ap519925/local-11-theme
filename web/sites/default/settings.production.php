@@ -1,4 +1,4 @@
-=<?php
+<?php
 /**
  * @file
  * Production settings for WHM/cPanel server.

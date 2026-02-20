@@ -6,3 +6,11 @@ contractor-map:
     - core/drupal
     - core/drupalSettings
     - core/jquery
+
+contractor-form:
+  version: 1.0.0
+  js:
+    js/contractor-form.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery

@@ -65,6 +65,11 @@ Since this is a cloned site, you need to clear caches to ensure there are no rem
 vendor/bin/drush cr
 ```
 
+If the default homepage Call To Action blocks are missing from the content export, you can regenerate and place them automatically by running:
+```bash
+vendor/bin/drush ibew:setup-cta-blocks
+```
+
 If you have made code-level configuration changes in the master template (like adding fields), run the config import:
 ```bash
 vendor/bin/drush config:import -y

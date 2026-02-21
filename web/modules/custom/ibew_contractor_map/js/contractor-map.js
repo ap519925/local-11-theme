@@ -176,7 +176,7 @@
         if (contractor.specialties && contractor.specialties.length > 0) {
             specialtiesHtml = '<div style="margin: 8px 0; display: flex; flex-wrap: wrap; gap: 4px;">';
             contractor.specialties.forEach(function (specialty) {
-                specialtiesHtml += `<span style="display: inline-block; padding: 2px 8px; background: #e8f0fe; color: #1e3a5f; border-radius: 12px; font-size: 0.75rem; font-weight: 500;">${specialty}</span>`;
+                specialtiesHtml += `<span style="display: inline-block; padding: 2px 8px; background: #e8f0fe; color: #1e3a5f !important; border-radius: 12px; font-size: 0.75rem; font-weight: 500;">${specialty}</span>`;
             });
             specialtiesHtml += '</div>';
         }
@@ -184,7 +184,7 @@
         // Build service areas text
         let serviceAreasHtml = '';
         if (contractor.service_areas && contractor.service_areas.length > 0) {
-            serviceAreasHtml = `<p style="margin: 4px 0; color: #666; font-size: 0.8rem;">📍 Service Areas: ${contractor.service_areas.join(', ')}</p>`;
+            serviceAreasHtml = `<p style="margin: 4px 0; color: #666 !important; font-size: 0.8rem;">📍 <span style="color: #666 !important;">Service Areas: ${contractor.service_areas.join(', ')}</span></p>`;
         }
 
         let contentString = `
@@ -198,15 +198,15 @@
                     </div>`
             }
                 <div style="padding: 12px;">
-                    <h4 style="margin: 0 0 6px; font-size: 1.1rem; font-weight: 700; color: #1e3a5f;">${contractor.title}</h4>
+                    <h4 style="margin: 0 0 6px; font-size: 1.1rem; font-weight: 700; color: #1e3a5f !important;">${contractor.title}</h4>
                     
-                    ${contractor.contact_person ? `<p style="margin: 4px 0; color: #555; font-size: 0.85rem;">👤 ${contractor.contact_person}</p>` : ''}
+                    ${contractor.contact_person ? `<p style="margin: 4px 0; color: #555 !important; font-size: 0.85rem;">👤 <span style="color: #555 !important;">${contractor.contact_person}</span></p>` : ''}
                     
-                    ${contractor.address ? `<p style="margin: 4px 0; color: #555; font-size: 0.85rem;">📍 ${contractor.address}</p>` : ''}
+                    ${contractor.address ? `<p style="margin: 4px 0; color: #555 !important; font-size: 0.85rem;">📍 <span style="color: #555 !important;">${contractor.address}</span></p>` : ''}
                     
-                    ${contractor.phone ? `<p style="margin: 4px 0; font-size: 0.85rem;"><a href="tel:${contractor.phone}" style="color: #0066cc; text-decoration: none;">📞 ${contractor.phone}</a></p>` : ''}
+                    ${contractor.phone ? `<p style="margin: 4px 0; font-size: 0.85rem;"><a href="tel:${contractor.phone}" style="color: #0066cc !important; text-decoration: none;">📞 ${contractor.phone}</a></p>` : ''}
                     
-                    ${contractor.email ? `<p style="margin: 4px 0; font-size: 0.85rem;"><a href="mailto:${contractor.email}" style="color: #0066cc; text-decoration: none;">✉️ ${contractor.email}</a></p>` : ''}
+                    ${contractor.email ? `<p style="margin: 4px 0; font-size: 0.85rem;"><a href="mailto:${contractor.email}" style="color: #0066cc !important; text-decoration: none;">✉️ ${contractor.email}</a></p>` : ''}
                     
                     ${specialtiesHtml}
                     ${serviceAreasHtml}
@@ -214,13 +214,13 @@
                     <div style="margin-top: 10px; display: flex; gap: 6px; flex-wrap: wrap;">
                         <a href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(contractor.address || contractor.title)}" 
                            target="_blank" 
-                           style="flex: 1; padding: 8px 10px; background: #1e3a5f; color: white; text-align: center; text-decoration: none; border-radius: 6px; font-size: 0.8rem; font-weight: 600;">
+                           style="flex: 1; padding: 8px 10px; background: #1e3a5f; color: white !important; text-align: center; text-decoration: none; border-radius: 6px; font-size: 0.8rem; font-weight: 600;">
                             🚗 Directions
                         </a>
                         
-                        ${contractor.website ? `<a href="${contractor.website}" target="_blank" style="flex: 1; padding: 8px 10px; background: #f7c948; color: #1e3a5f; text-align: center; text-decoration: none; border-radius: 6px; font-size: 0.8rem; font-weight: 600;">🌐 Website</a>` : ''}
+                        ${contractor.website ? `<a href="${contractor.website}" target="_blank" style="flex: 1; padding: 8px 10px; background: #f7c948; color: #1e3a5f !important; text-align: center; text-decoration: none; border-radius: 6px; font-size: 0.8rem; font-weight: 600;">🌐 Website</a>` : ''}
                         
-                        ${contractor.url ? `<a href="${contractor.url}" style="flex: 1; padding: 8px 10px; background: #e8f0fe; color: #1e3a5f; text-align: center; text-decoration: none; border-radius: 6px; font-size: 0.8rem; font-weight: 600;">📋 Profile</a>` : ''}
+                        ${contractor.url ? `<a href="${contractor.url}" style="flex: 1; padding: 8px 10px; background: #e8f0fe; color: #1e3a5f !important; text-align: center; text-decoration: none; border-radius: 6px; font-size: 0.8rem; font-weight: 600;">📋 Profile</a>` : ''}
                     </div>
                 </div>
             </div>

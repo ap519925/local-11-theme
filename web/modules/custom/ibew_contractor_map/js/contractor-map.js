@@ -57,14 +57,7 @@
             mapTypeControl: true,
             fullscreenControl: true,
             zoomControl: true,
-            gestureHandling: 'greedy',
-            styles: [
-                {
-                    featureType: 'poi',
-                    elementType: 'labels',
-                    stylers: [{ visibility: 'off' }]
-                }
-            ]
+            gestureHandling: 'greedy'
         });
 
         infoWindow = new google.maps.InfoWindow();
@@ -106,7 +99,7 @@
                 marker.contractorData = contractor;
 
                 // Add click listener
-                marker.addListener('click', () => {
+                marker.addListener('gmp-click', () => {
                     showContractorInfo(marker, map);
                 });
 

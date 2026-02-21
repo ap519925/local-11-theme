@@ -65,12 +65,23 @@ function ibew_contractor_map_page_attachments(array &$page) {
     $api_key = $config->get('google_maps_api_key');
 
     if ($api_key) {
+      // Add placeholder to prevent InvalidValueError on async load
+      $page['#attached']['html_head'][] = [
+        [
+          '#type' => 'html_tag',
+          '#tag' => 'script',
+          '#value' => 'window.initContractorMapPlaceholder = function() { };',
+        ],
+        'google_maps_api_placeholder',
+      ];
+
       // Load Google Maps API with additional libraries.
       $page['#attached']['html_head'][] = [
         [
+          '#type' => 'html_tag',
           '#tag' => 'script',
           '#attributes' => [
-            'src' => 'https://maps.googleapis.com/maps/api/js?key=' . $api_key . '&v=weekly&loading=async&libraries=places,geometry,marker&callback=initContractorMap',
+            'src' => 'https://maps.googleapis.com/maps/api/js?key=' . $api_key . '&v=weekly&loading=async&libraries=places,geometry,marker&callback=initContractorMapPlaceholder',
             'async' => TRUE,
             'defer' => TRUE,
           ],

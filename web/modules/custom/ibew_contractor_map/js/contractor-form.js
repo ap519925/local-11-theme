@@ -1,21 +1,22 @@
-(function ($, Drupal) {
+(function ($, Drupal, once) {
     'use strict';
 
     Drupal.behaviors.contractorMapForm = {
         attach: function (context, settings) {
-            // Find the street address input field.
-            var $streetInput = $('input[name="field_street_address[0][value]"]', context).once('contractor-autocomplete');
+            // Find the street address input field using modern once().
+            var elements = once('contractor-autocomplete', 'input[name="field_street_address[0][value]"]', context);
 
-            if ($streetInput.length) {
+            if (elements.length) {
+                var inputElement = elements[0];
                 if (typeof google !== 'undefined' && google.maps && google.maps.places) {
-                    initAutocomplete($streetInput[0]);
+                    initAutocomplete(inputElement);
                 } else {
                     // Wait for google maps places library to load
                     var attempts = 0;
                     var interval = setInterval(function () {
                         attempts++;
                         if (typeof google !== 'undefined' && google.maps && google.maps.places) {
-                            initAutocomplete($streetInput[0]);
+                            initAutocomplete(inputElement);
                             clearInterval(interval);
                         } else if (attempts > 50) {
                             console.warn('Google Maps Places Library failed to load.');
@@ -92,4 +93,4 @@
             }
         }
     };
-})(jQuery, Drupal);
+})(jQuery, Drupal, once);

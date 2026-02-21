@@ -6,12 +6,12 @@
 #}
 <a id="main-content" tabindex="-1"></a>
 
-<div class="ibew-page">
+<div class="ibew-page min-vh-100 d-flex flex-column">
 	{% include '@ibew_theme/includes/header.html.twig' %}
 
 	{# Breadcrumbs #}
 	{% if breadcrumb %}
-		<div class="ibew-breadcrumb-wrapper bg-gray-50 border-b border-gray-200">
+		<div class="ibew-breadcrumb-wrapper bg-dark border-bottom border-light-subtle shadow-sm z-10 position-relative">
 			<div class="container py-3">
 				{% include '@ibew_theme/navigation/breadcrumb.html.twig' %}
 			</div>
@@ -20,40 +20,48 @@
 
 	{# --- HERO SECTION --- #}
 	<section
-		class="ibew-about-hero">
+		class="ibew-parallax-hero relative py-32 overflow-hidden d-flex flex-column justify-content-center" style="min-height: 55vh;">
 		{# Background Image #}
 		{% if node.field_hero_image.entity.uri.value %}
-			<div class="ibew-about-hero__bg" style="background-image: url('{{ file_url(node.field_hero_image.entity.uri.value) }}');"></div>
+			<div class="ibew-parallax-bg" style="background-image: url('{{ file_url(node.field_hero_image.entity.uri.value) }}');"></div>
 		{% else %}
-			<div class="ibew-about-hero__bg" style="background-image: url('/themes/custom/ibew_theme/screenshot.jpg');"></div>
+			<div class="ibew-parallax-bg" style="background-image: url('/themes/custom/ibew_theme/images/cta-background.jpg');"></div>
 		{% endif %}
 
-		<div class="ibew-about-hero__overlay"></div>
+		<div class="ibew-parallax-overlay" style="background: linear-gradient(135deg, rgba(30, 58, 95, 0.8) 0%, rgba(45, 74, 111, 0.7) 100%);"></div>
 
-		<div class="container ibew-about-hero__content">
-			<h1 class="ibew-about-hero__title">
-				{% if node.field_display_title.value %}
-					{{ node.field_display_title.value }}
-				{% else %}
-					{{ 'About Us'|t }}
-				{% endif %}
-			</h1>
-			<p class="ibew-about-hero__subtitle">
-				{% if node.field_hero_description.value %}
-					{{ node.field_hero_description.value }}
-				{% else %}
-					{{ "Empowering the electrical industry through skill, safety, and brotherhood since 1892."|t }}
-				{% endif %}
-			</p>
-			<div class="w-24 h-1 bg-yellow-400 mx-auto mt-8 rounded-full"></div>
+		<div class="container relative z-10 text-center text-white pb-5 pb-lg-5">
+			<div style="max-width: 900px;" class="mx-auto mt-4 mt-lg-5">
+				<h1 class="font-oswald display-2 fw-bold text-uppercase mb-4 tracking-wide drop-shadow-lg">
+					{% if node.field_display_title.value %}
+						{{ node.field_display_title.value }}
+					{% else %}
+						{{ 'About Us'|t }}
+					{% endif %}
+				</h1>
+				<p class="fs-4 mb-0 font-sans drop-shadow-md mx-auto fw-light opacity-75" style="max-width: 800px; line-height: 1.6;">
+					{% if node.field_hero_description.value %}
+						{{ node.field_hero_description.value }}
+					{% else %}
+						{{ "Empowering the electrical industry through skill, safety, and brotherhood since 1892."|t }}
+					{% endif %}
+				</p>
+				<div class="h-1 bg-warning mx-auto mt-5 rounded-full shadow-sm" style="width: 100px;"></div>
+			</div>
 		</div>
 	</section>
 
-	<main class="ibew-about-content">
-		<div
-			class="container">
-			{# Render the main content (Paragraphs, Body, etc.) #}
-			{{ page.content }}
+	<main class="ibew-about-content flex-grow-1 position-relative z-20" style="margin-top: -60px;">
+		<div class="container pb-5">
+			<div class="ibew-card ibew-card-surface shadow-lg border-0 rounded-4 overflow-hidden mb-5">
+				<div
+					class="card-body p-4 p-md-5 p-lg-5">
+					{# Render the main content (Paragraphs, Body, etc.) #}
+					<div class="ibew-prose w-100" style="color: inherit;">
+						{{ page.content }}
+					</div>
+				</div>
+			</div>
 		</div>
 	</main>
 

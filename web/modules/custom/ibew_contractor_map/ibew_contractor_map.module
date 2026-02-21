@@ -70,7 +70,7 @@ function ibew_contractor_map_page_attachments(array &$page) {
         [
           '#tag' => 'script',
           '#attributes' => [
-            'src' => 'https://maps.googleapis.com/maps/api/js?key=' . $api_key . '&libraries=places,geometry&callback=initContractorMap',
+            'src' => 'https://maps.googleapis.com/maps/api/js?key=' . $api_key . '&v=weekly&loading=async&libraries=places,geometry,marker&callback=initContractorMap',
             'async' => TRUE,
             'defer' => TRUE,
           ],
@@ -262,7 +262,7 @@ function ibew_contractor_map_form_node_form_alter(&$form, \Drupal\Core\Form\Form
         [
           '#tag' => 'script',
           '#attributes' => [
-            'src' => 'https://maps.googleapis.com/maps/api/js?key=' . $api_key . '&libraries=places',
+            'src' => 'https://maps.googleapis.com/maps/api/js?key=' . $api_key . '&v=weekly&loading=async&libraries=places,geometry,marker',
             'async' => TRUE,
             'defer' => TRUE,
           ],

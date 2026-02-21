@@ -50,6 +50,7 @@
         map = new google.maps.Map(targetElement, {
             zoom: defaultZoom,
             center: defaultCenter,
+            mapId: 'CONTRACTOR_MAP_ID',
             mapTypeId: 'roadmap',
             disableDefaultUI: false,
             streetViewControl: true,
@@ -57,7 +58,6 @@
             fullscreenControl: true,
             zoomControl: true,
             gestureHandling: 'greedy',
-            optimization: true,
             styles: [
                 {
                     featureType: 'poi',
@@ -84,23 +84,22 @@
                 bounds.extend({ lat: lat, lng: lng });
                 hasMarkers = true;
 
-                const marker = new google.maps.Marker({
+                const iconImg = document.createElement("img");
+                iconImg.src = 'data:image/svg+xml,' + encodeURIComponent(
+                    '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="42" viewBox="0 0 32 42">' +
+                    '<path d="M16 0C7.2 0 0 7.2 0 16c0 12 16 26 16 26s16-14 16-26C32 7.2 24.8 0 16 0z" fill="#1e3a5f"/>' +
+                    '<circle cx="16" cy="14" r="7" fill="#f7c948"/>' +
+                    '<text x="16" y="18" font-size="10" text-anchor="middle" fill="#1e3a5f" font-weight="bold">⚡</text>' +
+                    '</svg>'
+                );
+                iconImg.style.width = '32px';
+                iconImg.style.height = '42px';
+
+                const marker = new google.maps.marker.AdvancedMarkerElement({
                     position: { lat: lat, lng: lng },
                     map: map,
                     title: contractor.title,
-                    animation: null,
-                    optimized: true,
-                    icon: {
-                        url: 'data:image/svg+xml,' + encodeURIComponent(
-                            '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="42" viewBox="0 0 32 42">' +
-                            '<path d="M16 0C7.2 0 0 7.2 0 16c0 12 16 26 16 26s16-14 16-26C32 7.2 24.8 0 16 0z" fill="#1e3a5f"/>' +
-                            '<circle cx="16" cy="14" r="7" fill="#f7c948"/>' +
-                            '<text x="16" y="18" font-size="10" text-anchor="middle" fill="#1e3a5f" font-weight="bold">⚡</text>' +
-                            '</svg>'
-                        ),
-                        scaledSize: new google.maps.Size(32, 42),
-                        anchor: new google.maps.Point(16, 42)
-                    }
+                    content: iconImg,
                 });
 
                 // Store contractor data with marker
@@ -150,11 +149,13 @@
             }
 
             if (!marker && contractorName) {
-                marker = markers.find(m => m.getTitle() === contractorName);
+                marker = markers.find(m => m.title === contractorName);
             }
 
             if (marker) {
-                google.maps.event.trigger(marker, 'click');
+                // For AdvancedMarkerElement, there is no generic event trigger, we must dispatch custom ones or call a custom func.
+                // Or simply call our existing showContractorInfo since we have it bound!
+                showContractorInfo(marker, map);
                 if (window.innerWidth < 992) {
                     targetElement.scrollIntoView({ behavior: 'smooth' });
                 }

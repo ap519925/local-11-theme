@@ -50,7 +50,7 @@
         map = new google.maps.Map(targetElement, {
             zoom: defaultZoom,
             center: defaultCenter,
-            mapId: 'CONTRACTOR_MAP_ID',
+            mapId: 'DEMO_MAP_ID',
             mapTypeId: 'roadmap',
             disableDefaultUI: false,
             streetViewControl: true,

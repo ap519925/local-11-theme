@@ -67,9 +67,10 @@
 				</div>
 				<div class="col-md-6">
 					<h3 class="h5 text-muted mb-3">Body Text (Open Sans / Sans-Serif)</h3>
-					<p class="lead">Lead paragraph: The IBEW Local 90 represents the most skilled electrical workers in New Haven.</p>
+					<p class="lead">Lead paragraph: Our union represents the most skilled electrical workers in our jurisdiction.</p>
 					<p>Standard paragraph: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur sed metus at lectus gravida commodo. Integer feugiat, nulla nec ullamcorper lobortis, sem est placerat ipsum, nec convallis ipsum di.</p>
-					<p class="small text-muted">Small text: Copyright &copy; 2023 IBEW Local 90.</p>
+					<p class="small text-muted">Small text: Copyright &copy; 2023
+						{{ site_name|default('Our Union') }}.</p>
 					<p>
 						<strong>Bold text</strong>,
 						<em>Italic text</em>,
@@ -114,7 +115,8 @@
 								<a href="#" style="color: var(--ibew-primary); text-decoration: none;">New Training Center Opens</a>
 							</h3>
 							<p class="card-text text-muted mb-4 flex-grow-1">
-								IBEW Local 90 is proud to announce the grand opening of our state-of-the-art training facility...
+								{{ site_name|default('Our Union') }}
+								is proud to announce the grand opening of our state-of-the-art training facility...
 							</p>
 							<a href="#" class="btn btn-link p-0 text-decoration-none fw-bold" style="color: var(--ibew-secondary);">
 								Read More &rarr;

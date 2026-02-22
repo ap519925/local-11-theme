@@ -54,7 +54,7 @@ content:
     third_party_settings: {  }
   field_city:
     type: string_textfield
-    weight: 129
+    weight: 130
     region: content
     settings:
       size: 60
@@ -86,14 +86,14 @@ content:
     third_party_settings: {  }
   field_latitude:
     type: number
-    weight: 130
+    weight: 133
     region: content
     settings:
       placeholder: ''
     third_party_settings: {  }
   field_longitude:
     type: number
-    weight: 131
+    weight: 134
     region: content
     settings:
       placeholder: ''
@@ -122,7 +122,7 @@ content:
     third_party_settings: {  }
   field_state:
     type: string_textfield
-    weight: 132
+    weight: 131
     region: content
     settings:
       size: 60
@@ -130,7 +130,7 @@ content:
     third_party_settings: {  }
   field_street_address:
     type: string_textfield
-    weight: 133
+    weight: 129
     region: content
     settings:
       size: 60
@@ -146,7 +146,7 @@ content:
     third_party_settings: {  }
   field_zip:
     type: string_textfield
-    weight: 134
+    weight: 132
     region: content
     settings:
       size: 60

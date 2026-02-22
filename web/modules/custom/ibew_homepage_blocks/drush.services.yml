@@ -1,0 +1,5 @@
+services:
+  ibew_homepage_blocks.commands:
+    class: \Drupal\ibew_homepage_blocks\Commands\HomepageBlocksCommands
+    tags:
+      - { name: drush.command }

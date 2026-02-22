@@ -65,12 +65,23 @@ function ibew_contractor_map_page_attachments(array &$page) {
     $api_key = $config->get('google_maps_api_key');
 
     if ($api_key) {
+      // Add placeholder to prevent InvalidValueError on async load
+      $page['#attached']['html_head'][] = [
+        [
+          '#type' => 'html_tag',
+          '#tag' => 'script',
+          '#value' => 'window.initContractorMapPlaceholder = function() { };',
+        ],
+        'google_maps_api_placeholder',
+      ];
+
       // Load Google Maps API with additional libraries.
       $page['#attached']['html_head'][] = [
         [
+          '#type' => 'html_tag',
           '#tag' => 'script',
           '#attributes' => [
-            'src' => 'https://maps.googleapis.com/maps/api/js?key=' . $api_key . '&libraries=places,geometry&callback=initContractorMap',
+            'src' => 'https://maps.googleapis.com/maps/api/js?key=' . $api_key . '&v=weekly&loading=async&libraries=places,geometry,marker&callback=initContractorMapPlaceholder',
             'async' => TRUE,
             'defer' => TRUE,
           ],
@@ -248,4 +259,33 @@ function _ibew_contractor_map_invalidate_cache() {
     'node_list:contractor_profile',
     'config:views.view.contractors',
   ]);
+}
+
+/**
+ * Implements hook_form_BASE_FORM_ID_alter() for node forms.
+ */
+function ibew_contractor_map_form_node_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  if ($form_id === 'node_contractor_profile_form' || $form_id === 'node_contractor_profile_edit_form') {
+    $config = \Drupal::config('ibew_contractor_map.settings');
+    $api_key = $config->get('google_maps_api_key');
+    if ($api_key) {
+      $form['#attached']['html_head'][] = [
+        [
+          '#tag' => 'script',
+          '#attributes' => [
+            'src' => 'https://maps.googleapis.com/maps/api/js?key=' . $api_key . '&v=weekly&loading=async&libraries=places,geometry,marker',
+            'async' => TRUE,
+            'defer' => TRUE,
+          ],
+        ],
+        'google_maps_api_form',
+      ];
+      $form['#attached']['library'][] = 'ibew_contractor_map/contractor-form';
+      
+      // Add a helpful description to the street address field letting them know it auto-fills.
+      if (isset($form['field_street_address']['widget'][0]['value'])) {
+          $form['field_street_address']['widget'][0]['value']['#description'] = t('Start typing an address to search via Google Maps. Selecting a result will automatically populate the rest of the address and map coordinates.');
+      }
+    }
+  }
 }

@@ -1,0 +1,23 @@
+uuid: 409907f1-099b-4600-8772-1c225d72ef9d
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:0977b7a1-8ff4-47ba-a2e3-b6a9394be18e'
+  module:
+    - block_content
+  theme:
+    - ibew_theme
+id: cta_prospective_members
+theme: ibew_theme
+region: homepage_cta_cards
+weight: 0
+provider: null
+plugin: 'block_content:0977b7a1-8ff4-47ba-a2e3-b6a9394be18e'
+settings:
+  id: 'block_content:0977b7a1-8ff4-47ba-a2e3-b6a9394be18e'
+  label: 'CTA: Prospective Members'
+  label_display: '0'
+  provider: block_content
+  view_mode: full
+visibility: {  }

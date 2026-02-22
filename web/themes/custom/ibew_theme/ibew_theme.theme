@@ -193,6 +193,12 @@ function ibew_theme_preprocess_page(&$variables) {
   $variables['top_bar_join_link'] = theme_get_setting('top_bar_join_link') ?: 'https://JoinIBEWCT.org';
   $variables['top_bar_join_text'] = theme_get_setting('top_bar_join_text') ?: 'JoinIBEWCT.org';
   
+  // Inject Site Branding Settings Server-side
+  $config = \Drupal::config('system.site');
+  $variables['site_name'] = $config->get('name') ?: 'IBEW Local Theme';
+  $variables['site_slogan'] = $config->get('slogan') ?: '';
+
+  
   // Default social links to '#' so icons render by default (mimicking hardcoded behavior)
   $variables['social_facebook'] = theme_get_setting('social_facebook') ?: '#';
   $variables['social_twitter'] = theme_get_setting('social_twitter') ?: '#';
@@ -392,6 +398,7 @@ function ibew_theme_preprocess_block(array &$variables) {
     'homepage_events',
     'homepage_members',
     'homepage_contact',
+    'homepage_cta_cards',
     'footer'
   ];
 
@@ -432,6 +439,7 @@ function ibew_theme_preprocess_block(array &$variables) {
 function ibew_theme_preprocess_region(array &$variables) {
   $layout_classes = [
     'homepage_contact' => ['ibew-row'],
+    'homepage_cta_cards' => ['ibew-cta-grid'],
   ];
 
           // Manual Block Reordering in Homepage Regions

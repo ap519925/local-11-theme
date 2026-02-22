@@ -88,10 +88,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
             if (!document.documentElement.dataset.themeToggleAttached) {
                 document.documentElement.dataset.themeToggleAttached = 'true';
 
-                const themeToggleBtn = document.querySelector('.js-theme-toggle');
+                const themeToggleBtns = document.querySelectorAll('.js-theme-toggle');
                 const htmlEl = document.documentElement;
-                const moonIcon = document.querySelector('.icon-moon');
-                const sunIcon = document.querySelector('.icon-sun');
 
                 // Check LocalStorage or System Preference
                 const userTheme = localStorage.getItem('theme');
@@ -105,23 +103,24 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
                     updateIcons(false);
                 }
 
-                if (themeToggleBtn) {
-                    themeToggleBtn.addEventListener('click', () => {
+                themeToggleBtns.forEach(btn => {
+                    btn.addEventListener('click', () => {
                         htmlEl.classList.toggle('dark');
                         const isDark = htmlEl.classList.contains('dark');
                         localStorage.setItem('theme', isDark ? 'dark' : 'light');
                         updateIcons(isDark);
                     });
-                }
+                });
 
                 function updateIcons(isDark) {
-                    if (!moonIcon || !sunIcon) return;
+                    const moonIcons = document.querySelectorAll('.icon-moon');
+                    const sunIcons = document.querySelectorAll('.icon-sun');
                     if (isDark) {
-                        sunIcon.classList.add('d-none');
-                        moonIcon.classList.remove('d-none');
+                        sunIcons.forEach(icon => icon.classList.add('d-none'));
+                        moonIcons.forEach(icon => icon.classList.remove('d-none'));
                     } else {
-                        sunIcon.classList.remove('d-none');
-                        moonIcon.classList.add('d-none');
+                        sunIcons.forEach(icon => icon.classList.remove('d-none'));
+                        moonIcons.forEach(icon => icon.classList.add('d-none'));
                     }
                 }
             }

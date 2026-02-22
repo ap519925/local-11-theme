@@ -61,6 +61,20 @@
 			object-fit: contain !important;
 		}
 
+		/* CTA GRID LAYOUT OVERRIDE */
+		.ibew-region--cta {
+			display: grid !important;
+			grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+			gap: 1.5rem !important;
+			width: 100% !important;
+		}
+		@media(min-width: 768px) {
+			.ibew-region--cta {
+				grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+			}
+		}
+
+
 		/* STYLE HERO TITLE FIELD */
 		.ibew-region--hero-content .field--name-field-display-title {
 			font-family: 'Oswald', sans-serif !important;
@@ -96,7 +110,7 @@
 	</style>
 
 	<section
-		class="ibew-hero ibew-parallax-hero p-0 relative h-[60vh] min-h-[500px] overflow-hidden">
+		class="ibew-hero ibew-parallax-hero p-0 relative h-[70vh] min-h-[650px] overflow-hidden">
 
 		{# ===== HERO BACKGROUND (Video or Image Slider) ===== #}
 		{% if hero_video_enabled and hero_video_url %}
@@ -152,185 +166,140 @@
 			<div class="sections-wrapper"> {# Welcome Section moved to Hero Overlay #}
 
 			{# 2. About Section #}
-			{# 2. Welcome / About Section (Static) #}
-				<section id="about" class="ibew-section text-white w-100" style="background-color: #1e3a5f; padding-top: 8rem; padding-bottom: 8rem;"> <div class="container-fluid" style="max-width: 1400px;">
-					<div
-						class="row align-items-center gx-5">
-						{# Left Column: Image (Wider) #}
-						<div class="col-lg-7 mb-5 mb-lg-0">
+				{% if page.homepage_about %}
+					<section id="about" class="ibew-section"> <div class="container">
+						<div class="ibew-region ibew-region--about">
+							{{ page.homepage_about }}
+						</div>
+					</div>
+				</section>
+			{% endif %}
+
+			{# 2. Combined News & Events Section #}
+			{% if embedded_news_view or embedded_events_view %}
+				<section
+					id="news-events" class="ibew-section py-24 bg-gray-50">
+					{# We keep a container for this wrapper because the grid itself is defined HERE, not in a block #}
+					<div class="container">
+						{# Replaced Bootstrap Row with Tailwind Grid for better layout control #}
+						{# Restoring News & Events with Bootstrap Grid with tight horizontal spacing #}
+						{# USER REQUEST: Add small margin between columns (gx-1 was too tight, gx-3 adds 1rem gap) #}
 							<div
-								class="position-relative rounded-4 overflow-hidden shadow-2xl h-100">
-								{# Using the painting image #}
-								<img
-								src="/themes/custom/ibew_theme/images/ibew-building-painting.jpg" alt="IBEW Local 90 Building Painting" class="img-fluid w-100 object-cover" style="height: 600px; min-height: 500px; object-fit: cover;">
+							class="row gx-3"> {# Left Column: Recent News (Col-9) #}
+							<div class="col-lg-8">
+								<div class="d-flex justify-content-between align-items-end mb-4">
+									<h2 class="display-6 fw-bold font-oswald text-uppercase text-dark mb-0">
+										{{ site_name }}
+										News and Updates</h2>
 
-								{# Optional overlay gradient #}
-								<div class="absolute inset-0 bg-gradient-to-t from-gray-900/40 to-transparent pointer-events-none"></div>
-							</div>
-						</div>
+								</div>
 
-						{# Right Column: Text Content #}
-						<div class="col-lg-5 text-start ps-lg-5">
-							<h2 class="display-5 fw-bold font-oswald text-uppercase text-white mb-4">ABOUT IBEW LOCAL 90</h2>
-
-							<div class="text-gray-200 space-y-4 text-lg font-light leading-relaxed">
-								<p>
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-								</p>
-								<p>
-									Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-								</p>
+								<div class="ibew-region ibew-region--news">
+									{{ embedded_news_view }}
+								</div>
 							</div>
 
-							<a href="/about" class="btn btn-warning btn-lg mt-5 text-uppercase fw-bold px-5 py-3 shadow-lg font-oswald tracking-wide" style="min-width: 250px; background-color: #f7c948; border: none; color: #1e3a5f;">
-								Lorem Ipsum
-							</a>
-						</div>
-					</div>
-				</div>
-			</section>
-		</div>
+							{# Right Column: Events & Training (Col-3) #}
+							<div class="col-lg-4">
+								<div class="d-flex justify-content-between align-items-end mb-4">
+									<h2 class="display-6 fw-bold font-oswald text-uppercase text-dark mb-0">Events & Training</h2>
+									<a href="/events" class="text-decoration-none fw-bold small text-primary">Calendar &rarr;</a>
+								</div>
 
-		{# 2. Combined News & Events Section #}
-		{% if embedded_news_view or embedded_events_view %}
-			<section
-				id="news-events" class="ibew-section py-24 bg-gray-50">
-				{# We keep a container for this wrapper because the grid itself is defined HERE, not in a block #}
-				<div class="container">
-					{# Replaced Bootstrap Row with Tailwind Grid for better layout control #}
-					{# Restoring News & Events with Bootstrap Grid with tight horizontal spacing #}
-					{# USER REQUEST: Add small margin between columns (gx-1 was too tight, gx-3 adds 1rem gap) #}
-						<div
-						class="row gx-3"> {# Left Column: Recent News (Col-9) #}
-						<div class="col-lg-8">
-							<div class="d-flex justify-content-between align-items-end mb-4">
-								<h2 class="display-6 fw-bold font-oswald text-uppercase text-dark mb-0">
-									IBEW 90 News and Updates</h2>
-
-							</div>
-
-							<div class="ibew-region ibew-region--news">
-								{{ embedded_news_view }}
-							</div>
-						</div>
-
-						{# Right Column: Events & Training (Col-3) #}
-						<div class="col-lg-4">
-							<div class="d-flex justify-content-between align-items-end mb-4">
-								<h2 class="display-6 fw-bold font-oswald text-uppercase text-dark mb-0">Events & Training</h2>
-								<a href="/events" class="text-decoration-none fw-bold small text-primary">Calendar &rarr;</a>
-							</div>
-
-							{# Optional "For Contractors" Block #}
-							<div class="ibew-card bg-primary-subtle border-0 p-4 mb-4 rounded-4 position-relative overflow-hidden">
-								<div class="position-relative z-10">
-									<div class="d-flex align-items-center gap-3 mb-3">
-										<div class="bg-primary text-white rounded p-2">
-											<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewbox="0 0 16 16"><path d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v8A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-8A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1h-3zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5z"/></svg>
+								{# Optional "For Contractors" Block #}
+								<div class="ibew-card bg-primary-subtle border-0 p-4 mb-4 rounded-4 position-relative overflow-hidden">
+									<div class="position-relative z-10">
+										<div class="d-flex align-items-center gap-3 mb-3">
+											<div class="bg-primary text-white rounded p-2">
+												<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewbox="0 0 16 16"><path d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v8A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-8A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1h-3zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5z"/></svg>
+											</div>
+											<h3 class="h5 fw-bold font-oswald mb-0 text-dark">Contractors</h3>
 										</div>
-										<h3 class="h5 fw-bold font-oswald mb-0 text-dark">Contractors</h3>
+										<p class="small mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+
+										<div class="d-grid gap-2">
+											<a href="/contractors" class="btn btn-light shadow-sm text-start fw-bold d-flex justify-content-between align-items-center">
+												Lorem Ipsum
+												<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewbox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>
+											</a>
+											<a href="/projects" class="btn btn-light shadow-sm text-start fw-bold d-flex justify-content-between align-items-center">
+												Dolor Sit Amet
+												<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewbox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>
+											</a>
+										</div>
 									</div>
-									<p class="small mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p>
+									<!-- Decor -->
+									<div class="position-absolute top-0 end-0 rounded-circle bg-white opacity-25" style="width: 150px; height: 150px; margin-top: -50px; margin-right: -50px;"></div>
+								</div>
 
-									<div class="d-grid gap-2">
-										<a href="/contractors" class="btn btn-light shadow-sm text-start fw-bold d-flex justify-content-between align-items-center">
-											Lorem Ipsum
-											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewbox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>
-										</a>
-										<a href="/projects" class="btn btn-light shadow-sm text-start fw-bold d-flex justify-content-between align-items-center">
-											Dolor Sit Amet
-											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewbox="0 0 16 16"><path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/></svg>
-										</a>
+								<div class="ibew-region ibew-region--events">
+									{{ embedded_events_view }}
+								</div>
+
+								{% if social_twitter and social_twitter != '#' %}
+									<div class="mt-5">
+										<div class="bg-white p-3 rounded-4 shadow-sm border border-light">
+											<h3 class="h6 fw-bold text-uppercase mb-3 font-oswald">Updates from X</h3>
+											<a class="twitter-timeline" data-height="600" href="{{ social_twitter }}?ref_src=twsrc%5Etfw">Tweets</a>
+											<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+										</div>
 									</div>
-								</div>
-								<!-- Decor -->
-								<div class="position-absolute top-0 end-0 rounded-circle bg-white opacity-25" style="width: 150px; height: 150px; margin-top: -50px; margin-right: -50px;"></div>
-							</div>
+								{% endif %}
 
-							<div class="ibew-region ibew-region--events">
-								{{ embedded_events_view }}
-							</div>
-
-							<div class="mt-5">
-								<div class="bg-white p-3 rounded-4 shadow-sm border border-light">
-									<h3 class="h6 fw-bold text-uppercase mb-3 font-oswald">Updates from @IBEW</h3>
-									<a class="twitter-timeline" data-height="600" href="https://twitter.com/IBEW?ref_src=twsrc%5Etfw">Tweets by IBEW</a>
-									<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-								</div>
 							</div>
 
 						</div>
+					</div>
+				</section>
+			{% endif %}
 
+			{# 4. Stats / Members Section #}
+			{% if page.homepage_stats or page.homepage_members %}
+				<section
+					id="stats" class="ibew-section py-20 bg-gray-900 text-white relative overflow-hidden w-100">
+					{# Full width region, no shell #}
+					<div class="ibew-region ibew-region--stats w-100">
+						{{ page.homepage_stats }}
+						{# {{ page.homepage_members }} #}
+					</div>
+					{# Background accent for stats #}
+					<div class="absolute inset-0 bg-blue-900/20 pointer-events-none"></div>
+				</section>
+			{% endif %}
+
+			{# 5. Contact / CTA - REMOVED PER REQUEST #}
+			{# 
+																																																																																																																																																															      {% if page.homepage_contact %}
+																																																																																																																																																															            <section id="contact" class="ibew-section py-16 bg-gray-50 w-100">
+																																																																																																																																																															              <div class="ibew-region ibew-region--contact w-100">
+																																																																																																																																																															                  {{ page.homepage_contact }}
+																																																																																																																																																															              </div>
+																																																																																																																																																															            </section>
+																																																																																																																																																															          {% endif %}
+																																																																																																																																																															          #}
+
+			{# --- New CTA Section --- #}
+			{# --- New CTA Section (Parallax) --- #}
+				<section
+				class="ibew-parallax-hero ibew-cta-section w-100 relative py-20 overflow-hidden text-white" style="margin-bottom: 0 !important;"> {# Parallax Background #}
+				<div class="ibew-parallax-bg" style="background-image: url('/themes/custom/ibew_theme/images/cta-background.jpg');"></div>
+
+				{# Overlay #}
+				<div class="ibew-parallax-overlay" style="background: linear-gradient(135deg, rgba(30, 58, 95, 0.6) 0%, rgba(45, 74, 111, 0.5) 100%);"></div>
+
+				<div class="container relative z-10 text-center">
+					<h2 class="display-4 fw-bold font-oswald text-uppercase mb-5 text-shadow-md">
+						Use the
+						{{ site_name }}
+						Website to Find What You Need
+					</h2>
+
+					<div class="ibew-region ibew-region--cta w-100 ibew-cta-grid md:grid md:grid-cols-3 gap-6">
+						{{ page.homepage_cta_cards }}
 					</div>
 				</div>
 			</section>
-		{% endif %}
+		</main>
 
-		{# 4. Stats / Members Section #}
-		{% if page.homepage_stats or page.homepage_members %}
-			<section
-				id="stats" class="ibew-section py-20 bg-gray-900 text-white relative overflow-hidden w-100">
-				{# Full width region, no shell #}
-				<div class="ibew-region ibew-region--stats w-100">
-					{{ page.homepage_stats }}
-					{# {{ page.homepage_members }} #}
-				</div>
-				{# Background accent for stats #}
-				<div class="absolute inset-0 bg-blue-900/20 pointer-events-none"></div>
-			</section>
-		{% endif %}
-
-		{# 5. Contact / CTA - REMOVED PER REQUEST #}
-		{# 
-																																																																																																      {% if page.homepage_contact %}
-																																																																																																            <section id="contact" class="ibew-section py-16 bg-gray-50 w-100">
-																																																																																																              <div class="ibew-region ibew-region--contact w-100">
-																																																																																																                  {{ page.homepage_contact }}
-																																																																																																              </div>
-																																																																																																            </section>
-																																																																																																          {% endif %}
-																																																																																																          #}
-
-		{# --- New CTA Section --- #}
-		{# --- New CTA Section (Parallax) --- #}
-			<section
-			class="ibew-parallax-hero ibew-cta-section w-100 relative py-20 overflow-hidden text-white" style="margin-bottom: 0 !important;"> {# Parallax Background #}
-			<div class="ibew-parallax-bg" style="background-image: url('/themes/custom/ibew_theme/images/cta-background.jpg');"></div>
-
-			{# Overlay #}
-			<div class="ibew-parallax-overlay" style="background: linear-gradient(135deg, rgba(30, 58, 95, 0.6) 0%, rgba(45, 74, 111, 0.5) 100%);"></div>
-
-			<div class="container relative z-10 text-center">
-				<h2 class="display-4 fw-bold font-oswald text-uppercase mb-5 text-shadow-md">
-					Use the IBEW Local 90 Website to Find What You Need
-				</h2>
-
-				<div
-					class="ibew-cta-grid grid grid-cols-1 md:grid-cols-3 gap-6">
-					<!-- Prospective Members -->
-					<div class="ibew-cta-card bg-white/10 backdrop-blur-sm border border-white/20 p-8 rounded-2xl hover:bg-white/20 transition-all duration-300">
-						<h3 class="font-oswald text-2xl font-bold mb-3 text-white uppercase text-shadow-sm">Prospective Members</h3>
-						<p class="text-white/90 mb-6 min-h-[60px] font-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-						<a href="/join" class="btn w-full py-3 fw-bold text-uppercase font-oswald tracking-wide shadow-lg hover:shadow-xl transition-all" style="background-color: #cc9c42; color: #1e3a5f; border: none;">Join</a>
-					</div>
-
-					<!-- Contractors -->
-					<div class="ibew-cta-card bg-white/10 backdrop-blur-sm border border-white/20 p-8 rounded-2xl hover:bg-white/20 transition-all duration-300">
-						<h3 class="font-oswald text-2xl font-bold mb-3 text-white uppercase text-shadow-sm">Contractors</h3>
-						<p class="text-white/90 mb-6 min-h-[60px] font-light">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-						<a href="/contractors" class="btn w-full py-3 fw-bold text-uppercase font-oswald tracking-wide shadow-lg hover:shadow-xl transition-all" style="background-color: #465a8c; color: white; border: none;">Contractor Information</a>
-					</div>
-
-					<!-- Training -->
-					<div class="ibew-cta-card bg-white/10 backdrop-blur-sm border border-white/20 p-8 rounded-2xl hover:bg-white/20 transition-all duration-300">
-						<h3 class="font-oswald text-2xl font-bold mb-3 text-white uppercase text-shadow-sm">Training Opportunities</h3>
-						<p class="text-white/90 mb-6 min-h-[60px] font-light">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-						<a href="/training" class="btn w-full py-3 fw-bold text-uppercase font-oswald tracking-wide shadow-lg hover:shadow-xl transition-all" style="background-color: #9e373f; color: white; border: none;">IBEW Training</a>
-					</div>
-				</div>
-			</div>
-		</section>
-	</main>
-
-	{# --- Footer (Reusable Include) --- #}
-	{% include '@ibew_theme/includes/footer.html.twig' %}</div>
+		{# --- Footer (Reusable Include) --- #}
+		{% include '@ibew_theme/includes/footer.html.twig' %}</div>

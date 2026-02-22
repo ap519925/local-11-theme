@@ -1,0 +1,23 @@
+uuid: 9c41356b-2416-41ce-bf17-54ac28d71ed5
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:18192b8a-ce59-47a7-89ec-3fbd66644e56'
+  module:
+    - block_content
+  theme:
+    - ibew_theme
+id: cta_training
+theme: ibew_theme
+region: homepage_cta_cards
+weight: 2
+provider: null
+plugin: 'block_content:18192b8a-ce59-47a7-89ec-3fbd66644e56'
+settings:
+  id: 'block_content:18192b8a-ce59-47a7-89ec-3fbd66644e56'
+  label: 'CTA: Training Opportunities'
+  label_display: '0'
+  provider: block_content
+  view_mode: full
+visibility: {  }

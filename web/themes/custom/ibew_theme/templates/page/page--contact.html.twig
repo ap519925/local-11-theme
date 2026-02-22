@@ -32,7 +32,7 @@
 				{{ 'Contact Us'|t }}
 			</h1>
 			<p class="text-xl md:text-2xl opacity-90 max-w-2xl mx-auto font-light leading-relaxed">
-				{{ "We're here to help. Reach out to IBEW Local 90 for membership inquiries, training information, or any questions you may have."|t }}
+				{{ "We're here to help. Reach out to " ~ site_name|default('us') ~ " for membership inquiries, training information, or any questions you may have." }}
 			</p>
 			<div class="w-24 h-1 bg-yellow-400 mx-auto mt-8 rounded-full"></div>
 		</div>
@@ -66,7 +66,7 @@
 						</div>
 						<div class="ibew-contact-text">
 							<strong>{{ 'Address'|t }}</strong>
-							<span>2 N Plains Industrial Rd<br>Wallingford, CT 06492</span>
+							<span>{{ top_bar_address|raw }}</span>
 						</div>
 					</div>
 
@@ -78,7 +78,7 @@
 						</div>
 						<div class="ibew-contact-text">
 							<strong>{{ 'Phone'|t }}</strong>
-							<a href="tel:+12032659533">(203) 265-9533</a>
+							<a href="tel:{{ top_bar_phone }}">{{ top_bar_phone }}</a>
 						</div>
 					</div>
 
@@ -90,7 +90,7 @@
 						</div>
 						<div class="ibew-contact-text">
 							<strong>{{ 'Email'|t }}</strong>
-							<a href="mailto:info@ibewlocal90.org">info@ibewlocal90.org</a>
+							<a href="mailto:{{ top_bar_email }}">{{ top_bar_email }}</a>
 						</div>
 					</div>
 				</div>

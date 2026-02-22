@@ -11,49 +11,51 @@
 		{# LEFT COL: History + Stats #}
 		<div class="col-lg-7">
 			<div class="pe-lg-5">
-				<h2 class="display-6 fw-bold mb-4 font-oswald text-uppercase text-dark">Our History</h2>
+				<h2 class="display-6 fw-bold mb-4 font-oswald text-uppercase" style="color: var(--ibew-primary, #1e3a5f);">Our History</h2>
 
 				{# Using the dynamic body field for the text, or falling back if empty #}
-				<div class="text-muted mb-5 leading-relaxed" style="font-size: 1.05rem; line-height: 1.7;">
+				<div class="mb-5 leading-relaxed opacity-75" style="font-size: 1.05rem; line-height: 1.7; color: inherit;">
 					{% if content.field_about_body|render|striptags|trim %}
 						{{ content.field_about_body }}
 					{% else %}
-						<p>Founded in 1892, IBEW Local 90 has been at the forefront of the electrical industry, representing skilled workers throughout our jurisdiction. Our union has played a vital role in building the infrastructure that powers our communities.</p>
+						<p>Founded in 1892,
+							{{ site_name|default('Our Union') }}
+							has been at the forefront of the electrical industry, representing skilled workers throughout our jurisdiction. Our union has played a vital role in building the infrastructure that powers our communities.</p>
 						<p>From the earliest days of electrical work to today's cutting-edge renewable energy projects, our members have consistently delivered excellence, safety, and professionalism on every job site.</p>
 						<p>We take pride in our apprenticeship program, which has trained thousands of electricians who have gone on to become industry leaders and mentors to the next generation.</p>
 					{% endif %}
 				</div>
 
 				{# STATS CARD #}
-				<div class="card border-0 shadow-sm rounded-4 p-4 mb-4 bg-white ibew-about-stats">
+				<div class="card border-0 shadow-sm rounded-4 p-4 mb-4 ibew-about-stats" style="background-color: rgba(128,128,128,0.05);">
 					<h3 class="h5 font-oswald text-uppercase fw-bold mb-4">By The Numbers</h3>
 					<div class="row g-4 text-center">
 
 						<div class="col-6">
-							<div class="p-3 rounded-3 bg-light ibew-stat-item">
+							<div class="p-3 rounded-3 ibew-stat-item" style="background-color: rgba(128,128,128,0.1);">
 								<div class="ibew-stat-number text-primary">1,200+</div>
-								<div class="ibew-stat-label text-muted">Active Members</div>
+								<div class="ibew-stat-label opacity-75">Active Members</div>
 							</div>
 						</div>
 
 						<div class="col-6">
-							<div class="p-3 rounded-3 bg-warning-subtle text-warning-emphasis ibew-stat-item">
-								<div class="ibew-stat-number text-warning-emphasis">130+</div>
-								<div class="ibew-stat-label text-muted">Years of Service</div>
+							<div class="p-3 rounded-3 ibew-stat-item" style="background-color: rgba(247, 201, 72, 0.1);">
+								<div class="ibew-stat-number text-warning">130+</div>
+								<div class="ibew-stat-label opacity-75">Years of Service</div>
 							</div>
 						</div>
 
 						<div class="col-6">
-							<div class="p-3 rounded-3 bg-light ibew-stat-item">
-								<div class="ibew-stat-number text-dark">250+</div>
-								<div class="ibew-stat-label text-muted">Apprentices Trained Annually</div>
+							<div class="p-3 rounded-3 ibew-stat-item" style="background-color: rgba(128,128,128,0.1);">
+								<div class="ibew-stat-number" style="color: inherit;">250+</div>
+								<div class="ibew-stat-label opacity-75">Apprentices Trained Annually</div>
 							</div>
 						</div>
 
 						<div class="col-6">
-							<div class="p-3 rounded-3 bg-danger-subtle text-danger-emphasis ibew-stat-item">
-								<div class="ibew-stat-number text-danger-emphasis">100%</div>
-								<div class="ibew-stat-label text-muted">Commitment to Safety</div>
+							<div class="p-3 rounded-3 ibew-stat-item" style="background-color: rgba(220, 53, 69, 0.1);">
+								<div class="ibew-stat-number text-danger">100%</div>
+								<div class="ibew-stat-label opacity-75">Commitment to Safety</div>
 							</div>
 						</div>
 
@@ -69,9 +71,9 @@
 
 			{# MISSION #}
 			<div class="mb-5">
-				<h2 class="display-6 fw-bold mb-4 font-oswald text-uppercase text-dark align-middle">Our Mission</h2>
-				<div class="bg-light border border-light-subtle rounded-4 p-4 shadow-sm">
-					<p class="mb-0 text-secondary fs-5" style="line-height: 1.6;">
+				<h2 class="display-6 fw-bold mb-4 font-oswald text-uppercase align-middle" style="color: var(--ibew-primary, #1e3a5f);">Our Mission</h2>
+				<div class="border border-secondary border-opacity-25 rounded-4 p-4 shadow-sm" style="background-color: rgba(128,128,128,0.05);">
+					<p class="mb-0 fs-5 opacity-75" style="line-height: 1.6; color: inherit;">
 						To represent, organize, and serve electrical workers through collective bargaining, ensuring fair wages, benefits, and safe working conditions while maintaining the highest standards of craftsmanship and professionalism in the electrical industry.
 					</p>
 				</div>
@@ -79,40 +81,40 @@
 
 			{# VALUES #}
 			<div>
-				<h2 class="display-6 fw-bold mb-4 font-oswald text-uppercase text-dark">Core Values</h2>
+				<h2 class="display-6 fw-bold mb-4 font-oswald text-uppercase" style="color: var(--ibew-primary, #1e3a5f);">Core Values</h2>
 				<div
 					class="d-flex flex-column gap-3">
 
 					{# Value 1 #}
-					<div class="d-flex align-items-center bg-primary-subtle border border-primary-subtle rounded-4 p-3 shadow-sm">
+					<div class="d-flex align-items-center border border-secondary border-opacity-25 rounded-4 p-3 shadow-sm" style="background-color: rgba(128,128,128,0.05);">
 						<div class="d-flex align-items-center justify-content-center bg-white text-primary rounded-circle shadow-sm me-3" style="width: 50px; height: 50px; min-width: 50px;">
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-award" viewbox="0 0 16 16"><path d="M9.669.864 8 0 6.331.864l-1.858.282-.842 1.68-1.337 1.32L2.6 6l-.306 1.854 1.337 1.32.842 1.68 1.858.282L8 12l1.669-.864 1.858-.282.842-1.68 1.337-1.32L13.4 6l.306-1.854-1.337-1.32-.842-1.68L9.669.864zm1.196 1.193.684 1.365 1.086 1.072L12.387 6l.248 1.506-1.086 1.072-.684 1.365-1.51.229L8 10.874l-1.355-.702-1.51-.229-.684-1.365-1.086-1.072L3.614 6l-.25-1.506 1.087-1.072.684-1.365 1.51-.229L8 1.126l1.356.702 1.509.229z"/><path d="M4 11.794V16l4-1 4 1v-4.206l-2.018.306L8 13.126 6.018 12.1 4 11.794z"/></svg>
 						</div>
 						<div>
-							<h4 class="h6 font-oswald fw-bold text-uppercase mb-1 text-dark">Excellence</h4>
-							<p class="mb-0 small text-muted">Maintaining the highest standards in our craft</p>
+							<h4 class="h6 font-oswald fw-bold text-uppercase mb-1" style="color: var(--ibew-primary, #1e3a5f);">Excellence</h4>
+							<p class="mb-0 small opacity-75" style="color: inherit;">Maintaining the highest standards in our craft</p>
 						</div>
 					</div>
 
 					{# Value 2 #}
-					<div class="d-flex align-items-center bg-warning-subtle border border-warning-subtle rounded-4 p-3 shadow-sm">
+					<div class="d-flex align-items-center border border-secondary border-opacity-25 rounded-4 p-3 shadow-sm" style="background-color: rgba(247, 201, 72, 0.1);">
 						<div class="d-flex align-items-center justify-content-center bg-white text-warning rounded-circle shadow-sm me-3" style="width: 50px; height: 50px; min-width: 50px;">
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-people" viewbox="0 0 16 16"><path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022zM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0zM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816zM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.903 1.146-1.206 3.24-1.276zM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"/></svg>
 						</div>
 						<div>
-							<h4 class="h6 font-oswald fw-bold text-uppercase mb-1 text-dark">Brotherhood</h4>
-							<p class="mb-0 small text-muted">Supporting each other as a united family</p>
+							<h4 class="h6 font-oswald fw-bold text-uppercase mb-1" style="color: var(--ibew-primary, #1e3a5f);">Brotherhood</h4>
+							<p class="mb-0 small opacity-75" style="color: inherit;">Supporting each other as a united family</p>
 						</div>
 					</div>
 
 					{# Value 3 #}
-					<div class="d-flex align-items-center bg-info-subtle border border-info-subtle rounded-4 p-3 shadow-sm">
+					<div class="d-flex align-items-center border border-secondary border-opacity-25 rounded-4 p-3 shadow-sm" style="background-color: rgba(128,128,128,0.05);">
 						<div class="d-flex align-items-center justify-content-center bg-white text-info rounded-circle shadow-sm me-3" style="width: 50px; height: 50px; min-width: 50px;">
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-wrench" viewbox="0 0 16 16"><path d="M.102 2.223A3.004 3.004 0 0 0 3.78 5.897l6.341 6.252A3.003 3.003 0 0 0 13 16a3 3 0 1 0-.851-5.878L5.897 3.781A3.004 3.004 0 0 0 2.223.1l2.141 2.142L4 4l-1.757.364L.102 2.223zm13.37 9.019.528.026.287.445.445.287.026.529L15 13l-.242.471-.026.529-.445.287-.287.445-.529.026L13 15l-.471-.242-.529-.026-.287-.445-.445-.287-.026-.529L11 13l.242-.471.026-.529.445-.287.287-.445.529-.026L13 11l.471.242z"/></svg>
 						</div>
 						<div>
-							<h4 class="h6 font-oswald fw-bold text-uppercase mb-1 text-dark">Skill</h4>
-							<p class="mb-0 small text-muted">Continuous training and development</p>
+							<h4 class="h6 font-oswald fw-bold text-uppercase mb-1" style="color: var(--ibew-primary, #1e3a5f);">Skill</h4>
+							<p class="mb-0 small opacity-75" style="color: inherit;">Continuous training and development</p>
 						</div>
 					</div>
 

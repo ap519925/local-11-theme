@@ -36,8 +36,8 @@
 
 				{# Search/Filter Placeholder - The Exposed Form from the View will render below #}
 				<div class="d-flex gap-2">
-					<button class="btn btn-primary d-lg-none w-100" type="button" data-bs-toggle="collapse" data-bs-target="#mobileMap" aria-expanded="false" aria-controls="mobileMap">
-						<i class="bi bi-map me-2"></i>
+					<button id="showMobileMapBtn" class="btn btn-warning d-lg-none w-100 text-dark fw-bold" type="button">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-map me-2" viewbox="0 0 16 16"><path fill-rule="evenodd" d="M15.817.113A.5.5 0 0 1 16 .5v14a.5.5 0 0 1-.402.49l-5 1a.502.502 0 0 1-.196 0L5.5 15.01l-4.902.98A.5.5 0 0 1 0 15.5v-14a.5.5 0 0 1 .402-.49l5-1a.5.5 0 0 1 .196 0L10.5.99l4.902-.98a.5.5 0 0 1 .415.103zM10 1.91l-4-.8v12.98l4 .8V1.91zm1 12.98 4-.8V1.11l-4 .8v12.98zm-6-.8V1.11l-4 .8v12.98l4-.8z"/></svg>
 						Show Map
 					</button>
 				</div>
@@ -47,10 +47,10 @@
 			<div class="p-3 p-md-4 ibew-contractors-list flex-grow-1">
 				{% if page.content %}
 					{# 
-																																																																																																																																																																																																																																																																																														   The View content will be rendered here.
-																																																																																																																																																																																																																																																																																														   We need to ensure the view grid classes don't break the layout.
-																																																																																																																																																																																																																																																																																														   We'll handle that via CSS adjustments in the <style> block below. 
-																																																																																																																																																																																																																																																																																														#}
+																																																																																																																																																																																																																																																																																																													   The View content will be rendered here.
+																																																																																																																																																																																																																																																																																																													   We need to ensure the view grid classes don't break the layout.
+																																																																																																																																																																																																																																																																																																													   We'll handle that via CSS adjustments in the <style> block below. 
+																																																																																																																																																																																																																																																																																																													#}
 					{{ page.content }}
 				{% else %}
 					<div class="alert alert-info">
@@ -63,20 +63,24 @@
 			<div class="p-3 border-top bg-dark text-center small text-muted">
 				&copy;
 				{{ 'now'|date('Y') }}
-				IBEW Local 90. All Rights Reserved.
+				{{ site_name|default('Our Union') }}. All Rights Reserved.
 			</div>
 		</div>
 
 		{# RIGHT COLUMN: Map #}
 		{# Hidden on mobile by default, togglable or stacked #}
-		<div class="w-100 w-lg-50 w-xl-60 h-100 position-relative bg-gray-200 d-none d-lg-block" id="desktopMapContainer" style="min-height: 600px;">
+		<div class="w-100 w-lg-50 w-xl-60 h-100 bg-gray-200 ibew-map-wrapper" id="mobileMap" style="min-height: 600px;">
+			<button id="closeMobileMapBtn" class="btn btn-dark d-lg-none position-absolute top-0 start-0 m-3 shadow z-20 d-flex align-items-center gap-2" type="button">
+				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x-circle-fill" viewbox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/></svg>
+				Close Map
+			</button>
 			<div id="contractorMap" class="w-100 h-100 z-0 text-center d-flex align-items-center justify-content-center text-muted" style="min-height: 600px;">
 				<span>Loading Map...</span>
 			</div>
 
 			{# Floating Map Controls or Legend could go here #}
 			<div class="position-absolute bottom-0 start-0 m-4 p-3 rounded shadow-sm z-10" style="max-width: 250px;">
-				<h6 class="fw-bold text-ibew-navy mb-1 small text-uppercase">IBEW Local 90</h6>
+				<h6 class="fw-bold text-ibew-navy mb-1 small text-uppercase">{{ site_name|default('Our Union') }}</h6>
 				<p class="text-muted small mb-0">Contractor Location Map</p>
 			</div>
 		</div>
@@ -84,6 +88,25 @@
 	</div>
 
 </div>
+
+<script>
+	document.addEventListener('DOMContentLoaded', function () {
+var showBtn = document.getElementById('showMobileMapBtn');
+var closeBtn = document.getElementById('closeMobileMapBtn');
+var mapWrapper = document.getElementById('mobileMap');
+
+if (showBtn && closeBtn && mapWrapper) {
+showBtn.addEventListener('click', function (e) {
+e.preventDefault();
+mapWrapper.classList.add('show-mobile-map');
+});
+closeBtn.addEventListener('click', function (e) {
+e.preventDefault();
+mapWrapper.classList.remove('show-mobile-map');
+});
+}
+});
+</script>
 
 {# Google Maps API is loaded via the module or theme #}
 <style>
@@ -149,7 +172,26 @@
 	/* Buttons */
 	#contractorMap .contractor-info-window a.btn,
 	#contractorMap .contractor-info-window a[style*="background"] {
-		color: #ffffff !important;
+		color: #ffffff;
+	}
+
+	/* Mobile Map Wrapper Overlay */
+	@media(max-width: 991.98px) {
+		.ibew-map-wrapper {
+			display: block !important;
+			position: fixed !important;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			z-index: 1050;
+			height: 100vh !important;
+			transform: translateY(100%);
+			transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		}
+		.ibew-map-wrapper.show-mobile-map {
+			transform: translateY(0);
+		}
 	}
 
 	/* Layout Overrides for the Airbnb Style */

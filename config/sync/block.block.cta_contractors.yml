@@ -1,0 +1,23 @@
+uuid: c1169605-7b92-4b1f-b3e1-60fd72464946
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:c374e8f4-cde1-4d18-84c2-7308259b61c9'
+  module:
+    - block_content
+  theme:
+    - ibew_theme
+id: cta_contractors
+theme: ibew_theme
+region: homepage_cta_cards
+weight: 1
+provider: null
+plugin: 'block_content:c374e8f4-cde1-4d18-84c2-7308259b61c9'
+settings:
+  id: 'block_content:c374e8f4-cde1-4d18-84c2-7308259b61c9'
+  label: 'CTA: Contractors'
+  label_display: '0'
+  provider: block_content
+  view_mode: full
+visibility: {  }
